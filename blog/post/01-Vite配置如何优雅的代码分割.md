@@ -2,7 +2,7 @@
 title: Vite配置如何优雅的code spliiting代码分割
 date: 2022/08/28
 desc: Vite配置如何优雅的code spliiting代码分割
-tags: ['#全部','#前端']
+tags: ["#全部", "#前端"]
 ---
 
 [[toc]]
@@ -64,23 +64,26 @@ export default function () {
 
 ```js
 // dist\foo-xxxxxx.js
-'use strict'
-const foo = 'hello foo!'
-exports.default = foo
+"use strict";
+const foo = "hello foo!";
+exports.default = foo;
 
 // dist\main.js
-'use strict'
+("use strict");
 
 // 动态导入案例1
 function main() {
-  Promise.resolve().then(() => { return require('./foo-e385385a.js') })
-    .then(() => {
-      // console.log(导入成功);
-    })
-    .catch(() => {})
+    Promise.resolve()
+        .then(() => {
+            return require("./foo-e385385a.js");
+        })
+        .then(() => {
+            // console.log(导入成功);
+        })
+        .catch(() => {});
 }
 
-module.exports = main
+module.exports = main;
 ```
 
 按照动态导入语句分割打包测试验证成功。
@@ -89,7 +92,7 @@ module.exports = main
 
 ```js
 // foo.js
-export default 'hello foo!'
+export default "hello foo!";
 ```
 
 ```js
@@ -119,29 +122,29 @@ export default function () {
 
 ```js
 // dist\foo-xxxx.js
-'use strict'
+"use strict";
 
-var foo = 'hello foo!'
+var foo = "hello foo!";
 
-exports.foo = foo
+exports.foo = foo;
 
 // dist\main.js
 
-'use strict'
-var foo = require('./foo-f41bffe6.js')
+("use strict");
+var foo = require("./foo-f41bffe6.js");
 // 静态导入案例
 function main() {
-  console.log(foo.foo)
+    console.log(foo.foo);
 }
-module.exports = main
+module.exports = main;
 
 // dist\main1.js
-'use strict'
-var foo = require('./foo-f41bffe6.js')
+("use strict");
+var foo = require("./foo-f41bffe6.js");
 function main1() {
-  console.log(foo.foo)
+    console.log(foo.foo);
 }
-module.exports = main1
+module.exports = main1;
 ```
 
 按照资源导入入口点分割打包测试验证成功。

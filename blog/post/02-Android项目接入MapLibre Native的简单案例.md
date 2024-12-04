@@ -2,7 +2,7 @@
 title: Android项目接入MapLibre Native的简单案例
 date: 2022/09/25
 desc: Android项目接入MapLibre Native的简单案例记录
-tags: ['#全部','#Android']
+tags: ["#全部", "#Android"]
 cover: https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/imagesWaveDrag.gif
 ---
 
