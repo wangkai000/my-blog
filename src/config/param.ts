@@ -12,8 +12,8 @@ export const navFilter = [
 ]
 
 export const SITE = {
-  title: '天渺工作室',
-  author: '天渺工作室',
+  title: '天渺工作室的小站',
+  author: '天渺工作室的小站',
   description: '记录 kai 的history',
   profileContent:
         '我是kai，曾创过业。喜欢 Vue、React、Android、Flutter、Nodejs。目前在从事Node全栈，Android开发的工作。',
