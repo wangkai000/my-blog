@@ -246,8 +246,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: {
-        name: `天渺工作室的小站`,
-        short_name: `天渺studio的小站`,
+        name: '天渺工作室的小站',
+        short_name: '天渺studio的小站',
         theme_color: '#ffffff',
         icons: [
           {
