@@ -9,7 +9,7 @@ context("Basic", () => {
         cy.contains("[Home Layout]").should("exist");
 
         cy.get("#input")
-            .type("Vitesse{Enter}")
+            .type("天渺工作室的小站{Enter}")
             .url()
             .should("eq", "http://localhost:3333/hi/Vitesse");
 
