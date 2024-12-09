@@ -244,7 +244,7 @@ export default defineConfig({
     VitePWA({
       selfDestroying: true, // 禁用了
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
+      includeAssets: ['favicon.svg'],
       manifest: {
         name: '天渺工作室的小站',
         short_name: '天渺studio的小站',
