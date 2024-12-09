@@ -26,7 +26,7 @@ import GitHubAlerts from 'markdown-it-github-alerts'
 
 import TOC from 'markdown-it-table-of-contents'
 import sharp from 'sharp'
-import { slugify } from './scripts/slugify'
+// import { slugify } from './scripts/slugify'
 import operateBlogPlugin from './plugins/operate-blog'
 import { SITE } from '@/config/param'
 
@@ -178,13 +178,13 @@ export default defineConfig({
           }),
         )
 
-        md.use(anchor, {
-          slugify,
-          permalink: anchor.permalink.linkInsideHeader({
-            symbol: '#',
-            renderAttrs: () => ({ 'aria-hidden': 'true' }),
-          }),
-        })
+        // md.use(anchor, {
+        //   slugify,
+        //   permalink: anchor.permalink.linkInsideHeader({
+        //     symbol: '#',
+        //     renderAttrs: () => ({ 'aria-hidden': 'true' }),
+        //   }),
+        // })
 
         md.use(LinkAttributes, {
           matcher: (link: string) => /^https?:\/\//.test(link),
@@ -194,50 +194,50 @@ export default defineConfig({
           },
         })
 
-        md.use(TOC, {
-          includeLevel: [1, 2, 3, 4],
-          slugify,
-          containerHeaderHtml: `
-            <div class="table-of-contents-anchor hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 4h18v2H3zm0 7h12v2H3zm0 7h18v2H3z"/></svg>
-            </div>
-          `,
-        })
+        // md.use(TOC, {
+        //   includeLevel: [1, 2, 3, 4],
+        //   slugify,
+        //   containerHeaderHtml: `
+        //     <div class="table-of-contents-anchor hidden">
+        //       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 4h18v2H3zm0 7h12v2H3zm0 7h18v2H3z"/></svg>
+        //     </div>
+        //   `,
+        // })
 
         md.use(GitHubAlerts)
       },
-      frontmatterPreprocess(frontmatter, options, id, defaults) {
-        (() => {
-          if (!id.endsWith('.md'))
-            return
-          const route = basename(id, '.md')
-          if (
-            route === 'index'
-            || frontmatter.image
-            || !frontmatter.title
-          ) {
-            return
-          }
-          const path = `og/${route}.png`
-          promises.push(
-            fs.existsSync(`${id.slice(0, -3)}.png`)
-              ? fs.copy(
-                                  `${id.slice(0, -3)}.png`,
-                                  `public/${path}`,
-              )
-              : generateOg(
-                frontmatter.title!.trim(),
-                                  `public/${path}`,
-                                  frontmatter.date as string,
-              ),
-          )
-          frontmatter.image = `https://mmeme.me/${encodeURIComponent(path)}`
-          frontmatter.description
-                        = (frontmatter?.desc as string) || ''
-        })()
-        const head = defaults(frontmatter, options)
-        return { head, frontmatter }
-      },
+      // frontmatterPreprocess(frontmatter, options, id, defaults) {
+      //   (() => {
+      //     if (!id.endsWith('.md'))
+      //       return
+      //     const route = basename(id, '.md')
+      //     if (
+      //       route === 'index'
+      //       || frontmatter.image
+      //       || !frontmatter.title
+      //     ) {
+      //       return
+      //     }
+      //     const path = `og/${route}.png`
+      //     promises.push(
+      //       fs.existsSync(`${id.slice(0, -3)}.png`)
+      //         ? fs.copy(
+      //                             `${id.slice(0, -3)}.png`,
+      //                             `public/${path}`,
+      //         )
+      //         : generateOg(
+      //           frontmatter.title!.trim(),
+      //                             `public/${path}`,
+      //                             frontmatter.date as string,
+      //         ),
+      //     )
+      //     frontmatter.image = `https://mmeme.me/${encodeURIComponent(path)}`
+      //     frontmatter.description
+      //                   = (frontmatter?.desc as string) || ''
+      //   })()
+      //   const head = defaults(frontmatter, options)
+      //   return { head, frontmatter }
+      // },
     }),
 
     // https://github.com/antfu/vite-plugin-pwa
@@ -300,38 +300,38 @@ export default defineConfig({
   },
 })
 
-const ogSVg = fs.readFileSync('./scripts/og-template.svg', 'utf-8')
+// const ogSVg = fs.readFileSync('./scripts/og-template.svg', 'utf-8')
 
-async function generateOg(title: string, output: string, date: string) {
-  if (fs.existsSync(output))
-    return
+// async function generateOg(title: string, output: string, date: string) {
+//   if (fs.existsSync(output))
+//     return
 
-  await fs.mkdir(dirname(output), { recursive: true })
-  // breakline every 25 chars
-  const lines = title
-    .trim()
-    .split(/(.{0,25})(?:\s|$)/g)
-    .filter(Boolean)
+//   await fs.mkdir(dirname(output), { recursive: true })
+//   // breakline every 25 chars
+//   const lines = title
+//     .trim()
+//     .split(/(.{0,25})(?:\s|$)/g)
+//     .filter(Boolean)
 
-  const data: Record<string, string> = {
-    line1: lines[0],
-    line2: lines[1] || date,
-    line3: lines[2] || date,
-  }
-  const svg = ogSVg.replace(
-    /\{\{([^}]+)\}\}/g,
-    (_, name) => data[name] || '',
-  )
+//   const data: Record<string, string> = {
+//     line1: lines[0],
+//     line2: lines[1] || date,
+//     line3: lines[2] || date,
+//   }
+//   const svg = ogSVg.replace(
+//     /\{\{([^}]+)\}\}/g,
+//     (_, name) => data[name] || '',
+//   )
 
-  // eslint-disable-next-line no-console
-  console.log(`Generating ${output}`)
-  try {
-    await sharp(Buffer.from(svg))
-      .resize(1200 * 1.1, 630 * 1.1)
-      .png()
-      .toFile(output)
-  }
-  catch (e) {
-    console.error('Failed to generate og image', e)
-  }
-}
+//   // eslint-disable-next-line no-console
+//   console.log(`Generating ${output}`)
+//   try {
+//     await sharp(Buffer.from(svg))
+//       .resize(1200 * 1.1, 630 * 1.1)
+//       .png()
+//       .toFile(output)
+//   }
+//   catch (e) {
+//     console.error('Failed to generate og image', e)
+//   }
+// }
