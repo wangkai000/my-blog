@@ -16,7 +16,6 @@ import { SITE } from '~/config/param'
     <img
       class="lozad pointer-events-none absolute left-0 top-0 h-auto w-[370px] select-none object-fill"
       src="/wrap-bg.png"
-      style="transform: rotate(330deg) translate3d(100px, 10px, 10px)"
       alt=""
     >
 
