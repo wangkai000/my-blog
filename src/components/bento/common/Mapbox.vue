@@ -3,7 +3,7 @@ import { Icon } from "@iconify/vue";
 
 import type { LngLatLike } from "mapbox-gl";
 import mapboxgl from "mapbox-gl";
-import MapboxModal from "~/components/bento/modal/MapboxModal.vue";
+// import MapboxModal from "~/components/bento/modal/MapboxModal.vue";
 
 import ShadowCard from "~/components/bento/wrapper/ShadowCard.vue";
 import { SITE } from "~/config/param";

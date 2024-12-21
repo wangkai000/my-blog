@@ -16,6 +16,7 @@ import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Pages from 'vite-plugin-pages'
 import fs from 'fs-extra'
 import matter from 'gray-matter'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 import MarkdownItShiki from '@shikijs/markdown-it'
 import { rendererRich, transformerTwoslash } from '@shikijs/twoslash'
@@ -83,7 +84,13 @@ export default defineConfig({
 
   plugins: [
     operateBlogPlugin(),
-
+    // visualizer({
+    //   open: false, // 构建完成后自动打开报告
+    //   filename: 'stats.html', // 报告文件的名称
+    //   gzipSize: true, // 收集gzip大小并显示
+    //   brotliSize: true, // 收集brotli大小并显示
+    //   // 其他可选配置...
+    // }),
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),

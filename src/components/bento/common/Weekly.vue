@@ -5,8 +5,9 @@ import { SITE } from '~/config/param'
 
 <template>
   <div
-    class="relative select-none overflow-hidden rounded-[10px] bg-[var(--card--bg)]"
+    class="relative select-none overflow-hidden rounded-[10px] bg-[var(--card--bg)] bg-white"
   >
+    <Icon icon="line-md:image-twotone" width="width:100%;" />
     <!-- <img
       class="lozad pointer-events-none h-full w-full select-none object-fill"
       :style="{ opacity: isDark ? 0 : 1 }"
@@ -15,7 +16,7 @@ import { SITE } from '~/config/param'
     > -->
     <img
       class="lozad pointer-events-none absolute left-0 top-0 h-auto w-[370px] select-none object-fill"
-      src="/wrap-bg.png"
+      src="https://s21.ax1x.com/2024/12/22/pAXkf7n.jpg"
       alt=""
     >
 
