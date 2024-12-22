@@ -5,9 +5,9 @@ import { SITE } from '~/config/param'
 
 <template>
   <div
-    class="relative select-none overflow-hidden rounded-[10px] bg-[var(--card--bg)] bg-white"
+    class="relative select-none overflow-hidden rounded-[10px] bg-[var(--card--bg)] bg-white flex items-center justify-center"
   >
-    <Icon icon="line-md:image-twotone" width="width:100%;" />
+    <Icon icon="line-md:image-twotone" height="100" />
     <!-- <img
       class="lozad pointer-events-none h-full w-full select-none object-fill"
       :style="{ opacity: isDark ? 0 : 1 }"

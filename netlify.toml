@@ -1,9 +1,9 @@
 [build]
-publish = "dist"
+publish = "docs"
 command = "pnpm run build"
 
 [build.environment]
-NODE_VERSION = "20"
+NODE_VERSION = "18.20.4"
 
 [[redirects]]
   from = "/styles"
