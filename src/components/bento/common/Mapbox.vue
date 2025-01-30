@@ -12,10 +12,9 @@ import { SITE } from '~/config/param'
 <template>
   <ShadowCard class="!p-[5px] dark:!p-0">
     <div
-      v-if="!online"
       class="mt-1/5 h-full w-full text-center font-[fantasy] italic"
     >
-      You map are offline - -!
+      Map are offline - -!
     </div>
 
     <!-- <Dialog>
