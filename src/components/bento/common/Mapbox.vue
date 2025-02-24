@@ -1,23 +1,21 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import { Icon } from "@iconify/vue";
 
-import type { LngLatLike } from 'mapbox-gl'
+import type { LngLatLike } from "mapbox-gl";
 // import mapboxgl from 'mapbox-gl'
 // import MapboxModal from "~/components/bento/modal/MapboxModal.vue";
 
-import ShadowCard from '~/components/bento/wrapper/ShadowCard.vue'
-import { SITE } from '~/config/param'
+import ShadowCard from "~/components/bento/wrapper/ShadowCard.vue";
+import { SITE } from "~/config/param";
 </script>
 
 <template>
-  <ShadowCard class="!p-[5px] dark:!p-0">
-    <div
-      class="mt-1/5 h-full w-full text-center font-[fantasy] italic"
-    >
-      Map are offline - -!
-    </div>
+    <ShadowCard class="!p-[5px] dark:!p-0">
+        <div class="mt-1/5 h-full w-full text-center font-[fantasy] italic">
+            Map are offline - -!
+        </div>
 
-    <!-- <Dialog>
+        <!-- <Dialog>
       <DialogTrigger class="detail-arrow">
         <Icon class="h-[16px] w-[16px]" icon="carbon-arrow-up-right" />
       </DialogTrigger>
@@ -30,29 +28,29 @@ import { SITE } from '~/config/param'
         <MapboxModal />
       </DialogContent>
     </Dialog> -->
-  </ShadowCard>
+    </ShadowCard>
 </template>
 
 <style scoped>
 .detail-arrow {
-  pointer-events: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 36px;
-  height: 36px;
-  position: absolute;
-  right: 12px;
-  bottom: 10px;
-  color: var(--text-color);
-  border-radius: 18px;
-  background: var(--card--bg);
-  box-shadow: var(--card-border) 0px 0px 0px 2px;
-  transition: box-shadow 0.2s ease-out 0s;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    color: var(--text-color);
+    border-radius: 18px;
+    background: var(--card--bg);
+    box-shadow: var(--card-border) 0px 0px 0px 2px;
+    transition: box-shadow 0.2s ease-out 0s;
 }
 
 .detail-arrow:hover {
-  cursor: pointer;
-  box-shadow: var(--card-border) 0px 0px 0px 5px;
+    cursor: pointer;
+    box-shadow: var(--card-border) 0px 0px 0px 5px;
 }
 </style>

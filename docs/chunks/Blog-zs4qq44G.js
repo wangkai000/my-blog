@@ -1,0 +1,1 @@
+import{d as s,o as a,c as e,g as t,v as l,aa as o,e as d}from"../assets/app-56htHLY7.js";const u=d("iframe",{style:{width:"100vw",height:"100vh"},src:"https://hexo.fluid-dev.com/"},null,-1),h=s({__name:"Blog",setup:s=>(s,d)=>(a(),e("div",null,[(a(),t(o,null,{default:l((()=>[u])),_:1}))]))});export{h as default};

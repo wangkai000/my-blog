@@ -5,7 +5,12 @@ title: About
 <div class="text-center">
   <!-- You can use Vue components inside markdown -->
   <div i-carbon-dicom-overlay class="text-4xl -mb-6 m-auto" />
-  <h3>关于</h3>
+	<img
+		style="width:126px;"
+		class="m-auto h-full w-full rounded-full"
+		src="https://s21.ax1x.com/2024/12/22/pAXAGEn.jpg"
+		alt="about"
+	>
 </div>
 
 来自远方的朋友,你好呀,相逢何必曾相识,虽然不知道你是谁,但你的到来我定然很高兴🍷🍷

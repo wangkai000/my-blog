@@ -1,1 +1,0 @@
-import{h as s,r as a,o as t,g as e,x as r,b as o,a9 as n}from"../assets/app-CCJTeAQi.js";const u=s({},[["render",function(s,u){const f=a("RouterView");return t(),e(n,null,{default:r((()=>[o(f)])),_:1})}]]);export{u as default};

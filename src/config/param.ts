@@ -4,7 +4,7 @@ export const appDescription = 'tianMiao Web App'
 export const navFilter = [
   { label: '首页', route: '/', children: [] },
   { label: '文章', route: '/blog', children: [] },
-  { label: '想法', route: '/record', children: [] },
+  { label: '随笔', route: '/record', children: [] },
   { label: '项目', route: '/project', children: [] },
   { label: '关于', route: '/about', children: [] },
   { label: 'Web3.0', route: '/web3', children: [] },
@@ -13,7 +13,7 @@ export const navFilter = [
 ]
 
 export const SITE = {
-  title: '天渺工作室的小站',
+  title: '天渺studio的小站',
   author: '天渺studio的小站',
   description: '记录 kai 的history',
   profileContent:
@@ -34,6 +34,7 @@ export const SITE = {
   weeklyUrl: 'https://baidu.com',
   repo: 'pinky-pig/what-is-my-astro-blog',
   notion: 'https://www.notion.com/',
+  weibo: 'https://weibo.com/u/5507083242',
   consoleColorFulOutput:
         '%cDon\'t ignore your dreams \nDon\'t work too much \nsay what you think \ncultivate friendships \nbe happy~ ',
 }
@@ -48,8 +49,9 @@ export const bentoCommonComponentsCfg = [
   { id: 'Dark', x: 3, y: 1, width: 1, height: 1, index: 0 },
   { id: 'CountDown', x: 3, y: 1, width: 2, height: 1, index: 0 },
   { id: 'Twitter', x: 4, y: 1, width: 1, height: 1, index: 0 },
-  { id: 'PlaneView', x: 0, y: 2, width: 1, height: 2, index: 0 },
-  { id: 'DragMotion', x: 3, y: 2, width: 1, height: 1, index: 0 },
+  //   { id: 'PlaneView', x: 0, y: 2, width: 1, height: 2, index: 0 },
+  { id: 'Weibo', x: 0, y: 2, width: 1, height: 1, index: 0 },
+  //   { id: 'DragMotion', x: 3, y: 2, width: 1, height: 1, index: 0 },
   { id: 'Notion', x: 3, y: 2, width: 1, height: 1, index: 0 },
   { id: 'PageTransition', x: 4, y: 2, width: 1, height: 1, index: 0 },
 ]
@@ -58,7 +60,7 @@ export const bentoCommonComponentsCfg = [
  * 首页 Bento 自定义组件布局
  */
 export const bentoCustomComponentsCfg = [
-  { id: 'StrokeText', x: 2, y: 2, width: 1, height: 1, index: 0 },
+//   { id: 'StrokeText', x: 2, y: 2, width: 1, height: 1, index: 0 },
   // { id: 'Sticker8', x: 3, y: 3, width: 1, height: 1, index: 0 },
   // { id: 'Cover', x: 0, y: 2, width: 1, height: 2, index: 0 },
 ]
@@ -68,19 +70,19 @@ export const bentoCustomComponentsCfg = [
  */
 export const PROJECTS = [
   {
-    name: 'kai',
+    name: 'test001',
     desc: '个人网站...',
     cover: 'https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/x.png',
     demoUrl: 'baidu.com',
     repoUrl: 'baidu.com',
   },
-  {
-    name: 'Superellipse SVG',
-    desc: 'SVG 超椭圆生成器，支持直接下载及用作 SVG background-image',
-    cover: 'https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230728150846.png',
-    demoUrl: 'https://baidu.com',
-    repoUrl: 'https://baidu.com',
-  },
+  // {
+  //   name: 'Superellipse SVG',
+  //   desc: 'SVG 超椭圆生成器，支持直接下载及用作 SVG background-image',
+  //   cover: 'https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230728150846.png',
+  //   demoUrl: 'https://baidu.com',
+  //   repoUrl: 'https://baidu.com',
+  // },
 ]
 
 export const giscusSetting = {
