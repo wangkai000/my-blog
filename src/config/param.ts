@@ -36,7 +36,7 @@ export const SITE = {
   notion: 'https://www.notion.com/',
   weibo: 'https://weibo.com/u/5507083242',
   consoleColorFulOutput:
-        '%cDon\'t ignore your dreams \nDon\'t work too much \nsay what you think \ncultivate friendships \nbe happy~ ',
+        '%cDon\'t ignore your dreams \nsay what you think \ncultivate friendships \nbe happy~\n不要停止学习的脚步，往前走，不要停。 ',
 }
 
 /**
