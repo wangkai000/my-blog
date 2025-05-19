@@ -42,7 +42,7 @@
         "vite.config.*",
         "components.d.ts",
         "auto-imports.d.ts"
-    ],
+, "src/components/bento/custom/Test.js"    ],
     "exclude": [
         "dist",
         "node_modules",

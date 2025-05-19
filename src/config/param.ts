@@ -8,6 +8,7 @@ export const navFilter = [
   { label: '项目', route: '/project', children: [] },
   { label: '关于', route: '/about', children: [] },
   { label: 'Web3.0', route: '/web3', children: [] },
+  { label: '友链', route: '/friend', children: [] },
   // { label: '更多', route: '/more', children: [] },
   // { label: 'README', route: '/README', children: [] },
 ]
@@ -60,7 +61,7 @@ export const bentoCommonComponentsCfg = [
  * 首页 Bento 自定义组件布局
  */
 export const bentoCustomComponentsCfg = [
-//   { id: 'StrokeText', x: 2, y: 2, width: 1, height: 1, index: 0 },
+  //   { id: 'StrokeText', x: 2, y: 2, width: 1, height: 1, index: 0 },
   // { id: 'Sticker8', x: 3, y: 3, width: 1, height: 1, index: 0 },
   // { id: 'Cover', x: 0, y: 2, width: 1, height: 2, index: 0 },
 ]

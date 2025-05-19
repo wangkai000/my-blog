@@ -1,7 +1,8 @@
 html.dark {
-    --main-text-font-family: X, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+    --main-text-font-family:
+        X, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
     --background: #090c10;
     --bg-color: #231f20;
     --text-color: #f0f2f8;
@@ -19,8 +20,8 @@ html.dark {
     --card--placeholder-bg: #30363de0;
 
     --header-avatar-bg: #6a89a790;
-    --header-avatar-shadow: 0 0 transparent, 0 0 transparent,
-        0 -1px 0 #ffffff1a inset;
+    --header-avatar-shadow:
+        0 0 transparent, 0 0 transparent, 0 -1px 0 #ffffff1a inset;
     --header-avatar-shadow-1: 0 0 0 11px #6a89a750, 0 0 0 24px #6a89a730;
 
     --dockbar-bg: #262626;
@@ -58,17 +59,21 @@ html.dark {
     --ui-main-text: #ffffff;
     --ui-main-border: #fffffffa;
 
-    --ui-button-shadow: inset 0 -3px 4px -1px rgba(255, 255, 255, 0.04),
+    --ui-button-shadow:
+        inset 0 -3px 4px -1px rgba(255, 255, 255, 0.04),
         0 2px 5px rgba(221, 150, 150, 0.04),
         0 4px 4px rgba(255, 255, 255, 0.02), 0 0 0 1px rgba(255, 255, 255, 0.09);
-    --ui-button-hover-shadow: inset 0 -3px 4px -1px rgba(200, 200, 200, 0.09),
+    --ui-button-hover-shadow:
+        inset 0 -3px 4px -1px rgba(200, 200, 200, 0.09),
         0 2px 5px rgba(200, 200, 200, 0.13),
         0 4px 4px rgba(200, 200, 200, 0.02), 0 0 0 1px rgba(200, 200, 200, 0.09);
 
-    --ui-main-box-shadow: inset 0 -3px 4px -1px rgba(255, 255, 255, 0.04),
+    --ui-main-box-shadow:
+        inset 0 -3px 4px -1px rgba(255, 255, 255, 0.04),
         0 2px 5px rgba(221, 150, 150, 0.04),
         0 4px 4px rgba(255, 255, 255, 0.02), 0 0 0 1px rgba(255, 255, 255, 0.09);
-    --ui-main-hover-box-shadow: inset 0 -3px 4px -1px rgba(200, 200, 200, 0.09),
+    --ui-main-hover-box-shadow:
+        inset 0 -3px 4px -1px rgba(200, 200, 200, 0.09),
         0 2px 5px rgba(200, 200, 200, 0.13),
         0 4px 4px rgba(200, 200, 200, 0.02), 0 0 0 1px rgba(200, 200, 200, 0.09);
     --ui-second-bg: #0d1117;
@@ -77,9 +82,10 @@ html.dark {
 }
 
 html {
-    --main-text-font-family: X, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+    --main-text-font-family:
+        X, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
     --background: #ffffff;
     --bg-color: #ffffff;
     --text-color: #000000;
@@ -136,10 +142,12 @@ html {
     --ui-main-text: #000000;
     --ui-main-border: #0000000a;
 
-    --ui-button-shadow: inset 0 -3px 4px -1px rgba(0, 0, 0, 0.04),
+    --ui-button-shadow:
+        inset 0 -3px 4px -1px rgba(0, 0, 0, 0.04),
         0 2px 5px rgba(221, 150, 150, 0.04), 0 4px 4px rgba(0, 0, 0, 0.02),
         0 0 0 1px rgba(0, 0, 0, 0.09);
-    --ui-button-hover-shadow: inset 0 -3px 4px -1px rgba(0, 0, 0, 0.09),
+    --ui-button-hover-shadow:
+        inset 0 -3px 4px -1px rgba(0, 0, 0, 0.09),
         0 2px 5px rgba(0, 0, 0, 0.13), 0 4px 4px rgba(0, 0, 0, 0.02),
         0 0 0 1px rgba(0, 0, 0, 0.09);
 

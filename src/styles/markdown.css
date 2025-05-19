@@ -62,9 +62,11 @@ html:not(.dark) .shiki span {
     margin: 2.6em 0;
     border-radius: 0.5rem;
     --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color),
+    --tw-shadow-colored:
+        0 1px 3px 0 var(--tw-shadow-color),
         0 1px 2px -1px var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    box-shadow:
+        var(--tw-ring-offset-shadow, 0 0 #0000),
         var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -218,13 +220,15 @@ h6:focus .header-anchor {
     border-width: 1px;
     border-style: solid;
     --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color),
+    --tw-shadow-colored:
+        0 1px 3px 0 var(--tw-shadow-color),
         0 1px 2px -1px var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    box-shadow:
+        var(--tw-ring-offset-shadow, 0 0 #0000),
         var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    transition-property: color, background-color, border-color,
-        text-decoration-color, fill, stroke, opacity, box-shadow, transform,
-        filter, backdrop-filter;
+    transition-property:
+        color, background-color, border-color, text-decoration-color, fill,
+        stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 400ms;
 }
@@ -239,9 +243,9 @@ h6:focus .header-anchor {
     opacity: 0;
     margin-top: 4px;
     padding-bottom: 20px;
-    transition-property: color, background-color, border-color,
-        text-decoration-color, fill, stroke, opacity, box-shadow, transform,
-        filter, backdrop-filter;
+    transition-property:
+        color, background-color, border-color, text-decoration-color, fill,
+        stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 700ms;
 }
@@ -271,9 +275,9 @@ h6:focus .header-anchor {
 
 .table-of-contents ul > li > a {
     opacity: 0.75;
-    transition-property: color, background-color, border-color,
-        text-decoration-color, fill, stroke, opacity, box-shadow, transform,
-        filter, backdrop-filter;
+    transition-property:
+        color, background-color, border-color, text-decoration-color, fill,
+        stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
 }
