@@ -46,11 +46,11 @@ export const SITE = {
 export const bentoCommonComponentsCfg = [
   { id: 'Profile', x: 0, y: 0, width: 2, height: 2, index: 0 },
   { id: 'Weekly', x: 2, y: 0, width: 2, height: 1, index: 0 },
-  { id: 'Mapbox', x: 0, y: 1, width: 2, height: 1, index: 0 },
+  { id: 'Notice', x: 0, y: 1, width: 2, height: 1, index: 0 },
   { id: 'Dark', x: 3, y: 1, width: 1, height: 1, index: 0 },
   { id: 'CountDown', x: 3, y: 1, width: 2, height: 1, index: 0 },
   { id: 'Twitter', x: 4, y: 1, width: 1, height: 1, index: 0 },
-  //   { id: 'PlaneView', x: 0, y: 2, width: 1, height: 2, index: 0 },
+  // { id: 'PlaneView', x: 0, y: 2, width: 1, height: 2, index: 0 },
   { id: 'Weibo', x: 0, y: 2, width: 1, height: 1, index: 0 },
   //   { id: 'DragMotion', x: 3, y: 2, width: 1, height: 1, index: 0 },
   { id: 'Notion', x: 3, y: 2, width: 1, height: 1, index: 0 },

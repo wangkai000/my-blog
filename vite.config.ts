@@ -31,8 +31,6 @@ import sharp from 'sharp'
 import operateBlogPlugin from './plugins/operate-blog'
 import { SITE } from '@/config/param'
 
-const promises: Promise<any>[] = []
-
 export default defineConfig({
   css: {
     postcss: {
