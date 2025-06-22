@@ -1,30 +1,36 @@
 <script setup>
 import { ref } from 'vue'
 
-const backgroundUrl = ref('https://picsum.photos/id/1039/1920/1080')
+const backgroundUrl = ref('https://s21.ax1x.com/2025/06/22/pVZa8iV.jpg')
 </script>
 
 <template>
   <ShadowCard class="justify-between !p-[5px]">
-    <div
-      class="relative bg-cover bg-center min-h-screen flex items-center justify-center"
-      :style="{ backgroundImage: `url(${backgroundUrl})` }"
-    >
-      <div class="absolute inset-0 bg-black/50" />
-      <div class="relative text-center p-8 max-w-2xl mx-auto">
-        <h1 class="text-[clamp(2rem,5vw,4rem)] font-bold text-white mb-4 leading-tight">
-          探索无限可能
+    <!-- 外层容器设置为16:8比例 -->
+    <div class="relative aspect-[16/8] overflow-hidden rounded-md">
+      <!-- 背景图片层 -->
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        :style="{ backgroundImage: `url(${backgroundUrl})` }"
+      />
+
+      <!-- 黑色遮罩层 -->
+      <div class="absolute inset-0 bg-black/10" />
+
+      <!-- 文字容器 - 使用flex居中 -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <!-- 文字内容 -->
+        <h1 class="text-white text-1xl md:text-1xl font-bold px-4 text-center leading-relaxed">
+          我觉得学习知识的最好方式就是立即将其用于实践。
         </h1>
-        <p class="text-[clamp(1rem,2vw,1.5rem)] text-white/90 mb-8">
-          创新科技与设计的完美融合，开启未来生活新篇章
-        </p>
-        <button class="bg-white text-black hover:bg-black hover:text-white transition-colors px-8 py-3 rounded-full font-medium">
-          了解更多
-        </button>
       </div>
     </div>
   </ShadowCard>
 </template>
 
 <style scoped>
+/* 添加文字阴影增强可读性 */
+h1 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
 </style>

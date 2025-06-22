@@ -1,109 +1,161 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { calculateDateDistance } from "~/utils";
+import { type Ref, computed, onMounted, ref } from "vue";
 
-interface BlogStats {
-    totalVisits: number | string;
-    dailyVisits: number | string;
-    runningDays: number;
-    notice: string;
+interface BlogStatsOptions {
+    creationDate: string | Date;
+    initialTotalVisits?: number;
+    initialTodayVisits?: number;
+    animationDuration?: number;
 }
 
-const stats = ref<BlogStats>({
-    totalVisits: "--",
-    dailyVisits: "--",
-    runningDays: 0,
-    notice: "😄👏远方的朋友，你好啊！",
+// 博客创建日期
+const props = defineProps<{
+    options?: BlogStatsOptions;
+}>();
+
+const defaultOptions: BlogStatsOptions = {
+    creationDate: "2024-06-15",
+    initialTotalVisits: 12482,
+    initialTodayVisits: 42,
+    animationDuration: 1000,
+};
+
+const options = computed(() => ({ ...defaultOptions, ...props.options }));
+
+// 响应式数据
+const totalVisits = ref(0);
+const todayVisits = ref(0);
+const daysRunning: Ref<number> = ref(0);
+const isMounted: Ref<boolean> = ref(false);
+
+// 计算运行天数
+function calculateRunningDays() {
+    const today = new Date();
+    const creationDate = new Date(options.value.creationDate);
+    const diffTime = Math.abs(today.getTime() - creationDate.getTime());
+    daysRunning.value = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+}
+
+// 数字动画函数
+function animateValue(
+    target: Ref<number>,
+    start: number,
+    end: number,
+    duration: number,
+) {
+    let startTime: number | null = null;
+
+    function animation(currentTime: number) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easeProgress = progress === 1 ? 1 : 1 - 2 ** (-10 * progress);
+        target.value = Math.floor(start + easeProgress * (end - start));
+
+        if (progress < 1) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    requestAnimationFrame(animation);
+}
+
+// 模拟数据加载
+onMounted(() => {
+    calculateRunningDays();
+    isMounted.value = true;
+
+    // 模拟数据加载效果和数字动画
+    setTimeout(() => {
+        animateValue(
+            totalVisits,
+            0,
+            options.value.initialTotalVisits!,
+            options.value.animationDuration!,
+        );
+        animateValue(
+            todayVisits,
+            0,
+            options.value.initialTodayVisits!,
+            options.value.animationDuration! / 2,
+        );
+    }, 300);
 });
 
-stats.value.runningDays = calculateDateDistance("2024-05-20").totalDays || 0;
+// 定义卡片样式 - 只优化颜色部分
+const cardVariants = computed(() => [
+    {
+        bgColor: "bg-gradient-to-br from-blue-400 to-blue-500",
+        textColor: "text-blue-50",
+        hoverColor: "hover:from-blue-600 hover:to-blue-650",
+        borderColor: "border-blue-400/40",
+    },
+    {
+        bgColor: "bg-gradient-to-br from-emerald-400 to-emerald-500",
+        textColor: "text-emerald-50",
+        hoverColor: "hover:from-emerald-600 hover:to-emerald-650",
+        borderColor: "border-emerald-400/40",
+    },
+    {
+        bgColor: "bg-gradient-to-br from-violet-400 to-violet-500",
+        textColor: "text-violet-50",
+        hoverColor: "hover:from-violet-600 hover:to-violet-650",
+        borderColor: "border-violet-400/40",
+    },
+]);
 </script>
 
 <template>
     <ShadowCard class="!p-[5px]">
-        <!-- 修改外层容器：最大宽度360px，宽度100%自适应 -->
+        <!-- 背景优化：使用现代渐变 -->
         <div
-            class="relative w-full max-w-[360px] h-[170px] overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl"
+            class="blog-stats-container h-full w-full max-w-4xl mx-auto p-4 sm:p-6 min-h-[180px] flex items-center transition-all duration-300"
+            :class="{
+                'bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500':
+                    isMounted,
+                'bg-gray-800': !isMounted,
+            }"
         >
-            <!-- 渐变背景层 -->
-            <div
-                class="absolute inset-0 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 z-0"
-            />
-
-            <!-- 装饰元素 -->
-            <div
-                class="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full blur-2xl"
-            />
-            <div
-                class="absolute -bottom-12 -left-12 w-32 h-32 bg-indigo-400/20 rounded-full blur-xl"
-            />
-
-            <!-- 内容容器 -->
-            <div class="relative z-10 h-full p-4 flex flex-col">
-                <!-- 修改网格布局为响应式 -->
-                <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-2 flex-grow">
+            <div class="stats-grid w-full overflow-x-auto pb-2">
+                <div class="flex space-x-3 min-w-max">
+                    <!-- 统计卡片 - 只优化颜色部分 -->
                     <div
-                        class="bg-white/10 backdrop-blur-sm rounded-xl p-2 flex flex-col items-center justify-center transition-all duration-300 hover:bg-white/20"
+                        v-for="(variant, index) in cardVariants"
+                        :key="index"
+                        class="stat-card flex-shrink-0 w-[calc(33.333%-8px)] sm:w-auto sm:flex-1 rounded-xl p-4 border shadow-lg transition-all duration-300"
+                        :class="[
+                            variant.bgColor,
+                            variant.hoverColor,
+                            variant.borderColor,
+                        ]"
                     >
                         <div
-                            class="text-white text-lg sm:text-xl font-bold mb-1"
+                            class="stat-data flex flex-col items-center justify-center h-full"
                         >
-                            {{ stats.totalVisits }}
-                        </div>
-                        <div
-                            class="text-blue-100 text-[10px] sm:text-xs font-medium"
-                        >
-                            总访问量
-                        </div>
-                    </div>
-
-                    <div
-                        class="bg-white/10 backdrop-blur-sm rounded-xl p-2 flex flex-col items-center justify-center transition-all duration-300 hover:bg-white/20"
-                    >
-                        <div
-                            class="text-white text-lg sm:text-xl font-bold mb-1"
-                        >
-                            {{ stats.dailyVisits }}
-                        </div>
-                        <div
-                            class="text-blue-100 text-[10px] sm:text-xs font-medium"
-                        >
-                            日访问量
-                        </div>
-                    </div>
-
-                    <div
-                        class="bg-gradient-to-r from-cyan-500/80 to-teal-500/80 rounded-xl p-2 flex flex-col items-center justify-center shadow-md transition-all duration-300 hover:scale-[1.03]"
-                    >
-                        <div
-                            class="text-white text-lg sm:text-xl font-bold mb-1"
-                        >
-                            {{ stats.runningDays }}
-                        </div>
-                        <div
-                            class="text-cyan-100 text-[10px] sm:text-xs font-medium"
-                        >
-                            运行天数
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 公告栏 -->
-                <div
-                    class="bg-gradient-to-r from-indigo-600/80 to-blue-600/80 rounded-lg p-2 flex items-center backdrop-blur-sm h-8"
-                >
-                    <div
-                        class="text-white text-xs font-semibold bg-blue-500/80 rounded px-2 py-1 mr-2 h-6 flex items-center justify-center"
-                    >
-                        公告
-                    </div>
-                    <div
-                        class="flex-1 min-w-0 overflow-hidden h-6 flex items-center"
-                    >
-                        <div
-                            class="text-white text-xs font-medium whitespace-nowrap animate-marquee"
-                        >
-                            {{ stats.notice }}
+                            <div
+                                class="stat-value text-xl md:text-2xl font-bold transition-transform duration-300 hover:scale-105"
+                                :class="variant.textColor"
+                            >
+                                {{
+                                    index === 0
+                                        ? "--"
+                                        : index === 1
+                                          ? "--"
+                                          : daysRunning
+                                }}
+                            </div>
+                            <div
+                                class="stat-label text-sm font-medium mt-1"
+                                :class="variant.textColor"
+                            >
+                                {{
+                                    index === 0
+                                        ? "总访问量"
+                                        : index === 1
+                                          ? "今日访问"
+                                          : "运行天数"
+                                }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,28 +165,20 @@ stats.value.runningDays = calculateDateDistance("2024-05-20").totalDays || 0;
 </template>
 
 <style scoped>
-.animate-marquee {
-    /* display: inline-block;
-  padding-left: 100%;
-  animation: marquee 15s linear infinite; */
+.blog-stats-container {
+    background-size: 200% 200%;
+    animation: gradientAnimation 15s ease infinite;
 }
 
-@keyframes marquee {
+@keyframes gradientAnimation {
     0% {
-        transform: translateX(0);
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
     }
     100% {
-        transform: translateX(-100%);
-    }
-}
-
-/* 小屏幕下的文字大小优化 */
-@media (max-width: 340px) {
-    .text-lg {
-        font-size: 1rem;
-    }
-    .text-\[10px\] {
-        font-size: 0.6rem;
+        background-position: 0% 50%;
     }
 }
 </style>

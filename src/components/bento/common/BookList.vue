@@ -1,263 +1,399 @@
-<script setup>
-import { computed, ref } from "vue";
+<script setup lang="ts">
+import { type Ref, computed, ref } from 'vue'
 
-// 书籍数据
-const books = ref([
-    {
-        id: 1,
-        title: "Vue.js设计与实现",
-        author: "霍春阳",
-        description:
-            "本书从源码层面分析了Vue.js的设计与实现，详细讲解了Vue.js的核心概念和实现原理，帮助开发者深入理解Vue.js框架的设计思想。",
-        cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-    },
-    {
-        id: 2,
-        title: "JavaScript高级程序设计",
-        author: "Nicholas C. Zakas",
-        description:
-            "本书是JavaScript经典图书的最新版，全面深入地介绍了JavaScript开发者必须掌握的前端开发技术，涉及ECMAScript和DOM等核心概念。",
-        cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-    },
-    {
-        id: 3,
-        title: "深入浅出Node.js",
-        author: "朴灵",
-        description:
-            "本书从不同的视角介绍了Node内在的特点和结构，由首章Node介绍为索引，涉及Node的各个方面，主要内容包含模块机制的揭示、异步I/O实现原理的展现等。",
-        cover: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-    },
-    {
-        id: 4,
-        title: "CSS揭秘",
-        author: "Lea Verou",
-        description:
-            "本书是一本注重实践的教程，作者为我们揭示了47个鲜为人知的CSS技巧，主要内容包括背景与边框、形状、视觉效果、字体排印、用户体验等。",
-        cover: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-    },
-]);
+// 定义书籍类型
+interface Book {
+  id: number
+  title: string
+  author: string
+  description: string
+  cover: string
+}
+
+// 书籍数据 - 更新为您提供的书单
+const books: Ref<Book[]> = ref([
+  {
+    id: 1,
+    title: '《现代JS库开发》',
+    author: '颜海镜 / 侯策',
+    description: '本书深入探讨了JavaScript库的设计与开发，涵盖了模块化、API设计、性能优化等核心主题，适合想要创建高质量JavaScript库的开发者。',
+    cover: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 2,
+    title: '《React设计原理》',
+    author: '卡颂',
+    description: '本书解析了React框架的设计哲学与实现原理，涵盖虚拟DOM、组件生命周期、Hooks等核心概念，帮助开发者深入理解React内部工作机制。',
+    cover: 'https://images.unsplash.com/photo-1495640388908-05fa85288e61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 3,
+    title: '《Vue.js设计与实现》',
+    author: '霍春阳',
+    description: '本书从源码层面分析了Vue.js的设计与实现，详细讲解了Vue.js的核心概念和实现原理，帮助开发者深入理解Vue.js框架的设计思想。',
+    cover: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 4,
+    title: '《Vue.js技术内幕》',
+    author: '黄轶',
+    description: '深入剖析Vue.js的内部实现机制，包括响应式系统、编译过程、虚拟DOM等核心技术，适合想要深入理解Vue.js底层原理的高级开发者。',
+    cover: 'https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 5,
+    title: '《Android开发艺术探索》',
+    author: '任玉刚',
+    description: '本书深入探讨Android开发的高级技巧和设计思想，涵盖性能优化、自定义控件、多线程处理等核心主题，适合有一定经验的Android开发者。',
+    cover: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 6,
+    title: '《狼书1，2，3》',
+    author: '狼叔',
+    description: '本书深入探讨Node.js的核心原理和高级应用，涵盖异步编程、性能优化、框架设计等主题，帮助开发者构建高性能的Node.js应用。',
+    cover: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+  },
+
+  {
+    id: 8,
+    title: '《前方的路》',
+    author: 'ryf',
+    description: '本书探讨技术人员的职业发展路径，涵盖技能提升、职业规划、团队协作等主题，为开发者提供实用的职业发展指导。',
+    cover: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+  },
+])
 
 // 当前书籍索引
-const currentIndex = ref(0);
+const currentIndex = ref(0)
 
 // 当前显示的书籍
-const currentBook = computed(() => {
-    return books.value[currentIndex.value];
-});
+const currentBook = computed((): Book => {
+  return books.value[currentIndex.value]
+})
 
 // 切换到下一本书
-function nextBook() {
-    currentIndex.value = (currentIndex.value + 1) % books.value.length;
+function nextBook(): void {
+  currentIndex.value = (currentIndex.value + 1) % books.value.length
 }
 
 // 切换到上一本书
-function prevBook() {
-    currentIndex.value =
-        (currentIndex.value - 1 + books.value.length) % books.value.length;
-}
-
-// 直接选择书籍
-function selectBook(index) {
-    currentIndex.value = index;
+function prevBook(): void {
+  currentIndex.value = (currentIndex.value - 1 + books.value.length) % books.value.length
 }
 </script>
 
 <template>
-    <ShadowCard class="!p-[5px]">
-        <div class="book-showcase-container">
-            <div class="book-card">
-                <!-- 书单标题 -->
-                <div class="book-header">
-                    <h2 class="section-title">我的书单📚</h2>
-                    <div class="book-count">
-                        <span>{{ currentIndex + 1 }}</span
-                        >/<span>{{ books.length }}</span>
-                    </div>
-                </div>
-
-                <!-- 书籍内容区域 -->
-                <div class="book-content">
-                    <!-- 书籍封面 -->
-                    <div class="book-cover-container">
-                        <img
-                            :src="currentBook.cover"
-                            :alt="currentBook.title"
-                            class="book-cover"
-                        />
-                    </div>
-
-                    <!-- 书籍信息 -->
-                    <div class="book-info">
-                        <h3 class="book-title">
-                            {{ currentBook.title }}
-                        </h3>
-                        <p class="book-author">
-                            {{ currentBook.author }}
-                        </p>
-                        <div class="book-description-container">
-                            <p class="book-description">
-                                {{ currentBook.description }}
-                            </p>
-                        </div>
-
-                        <!-- 书籍切换导航 -->
-                        <div class="book-navigation">
-                            <button class="nav-button" @click="prevBook">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                            </button>
-
-                            <div class="book-indicators">
-                                <span
-                                    v-for="(book, index) in books"
-                                    :key="book.id"
-                                    class="book-indicator"
-                                    :class="[
-                                        { active: index === currentIndex },
-                                    ]"
-                                    @click="selectBook(index)"
-                                />
-                            </div>
-
-                            <button class="nav-button" @click="nextBook">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <ShadowCard class="!p-[5px]">
+    <div class="book-card">
+      <div class="book-header">
+        <h2 class="section-title">
+          我的书单📚
+        </h2>
+        <div class="book-count">
+          <span>{{ currentIndex + 1 }}</span>/<span>{{ books.length }}</span>
         </div>
-    </ShadowCard>
+      </div>
+
+      <div class="book-content">
+        <div class="book-cover-container">
+          <img :src="currentBook.cover" :alt="currentBook.title" class="book-cover">
+        </div>
+
+        <div class="book-info">
+          <h3 class="book-title">
+            {{ currentBook.title }}
+          </h3>
+          <p class="book-author">
+            {{ currentBook.author }}
+          </p>
+          <div class="book-description-container">
+            <p class="book-description">
+              {{ currentBook.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 悬浮式左右切换按钮 -->
+      <button class="nav-button left-button" @click="prevBook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+
+      <button class="nav-button right-button" @click="nextBook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+  </ShadowCard>
 </template>
 
 <style scoped>
-.book-showcase-container {
-    @apply flex justify-center items-center;
-}
-
 .book-card {
-    @apply w-full max-w-[560px] h-[370px] flex flex-col
-         rounded-2xl overflow-hidden shadow-2xl
-         bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600
-         transition-all duration-300;
+  position: relative; /* 为悬浮按钮提供定位上下文 */
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #8b5cf6 100%);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  max-width: 560px;
+  margin: 0 auto;
 }
 
 .book-header {
-    @apply flex justify-between items-center px-6 pt-4 pb-2;
-    background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 .section-title {
-    @apply text-xl font-bold text-white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .book-count {
-    @apply bg-white/20 px-3 py-1 rounded-full text-white text-sm font-medium;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .book-content {
-    @apply flex flex-1 flex-col md:flex-row px-4 pb-4;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 }
 
 .book-cover-container {
-    @apply flex items-center justify-center p-4 w-full md:w-2/5;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
 }
 
 .book-cover {
-    @apply h-[200px] md:h-[240px] object-contain rounded-lg shadow-lg
-         transition-transform duration-300 hover:scale-105;
+  width: 140px;
+  height: 185px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.book-cover:hover {
+  transform: scale(1.03);
 }
 
 .book-info {
-    @apply flex flex-col p-4 w-full md:w-3/5 text-white;
+  padding: 16px 12px;
+  color: white;
+  text-align: center;
 }
 
 .book-title {
-    @apply text-lg md:text-xl font-bold mb-2 truncate;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.3;
 }
 
 .book-author {
-    @apply text-sm text-purple-100 mb-3;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 16px;
+  font-weight: 500;
 }
 
 .book-description-container {
-    @apply flex-1 overflow-y-auto mb-4 pr-2;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-}
-
-.book-description-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.book-description-container::-webkit-scrollbar-thumb {
-    @apply bg-white/30 rounded-full;
+  max-height: 140px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 0 8px;
 }
 
 .book-description {
-    @apply text-sm md:text-base leading-relaxed;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6; /* 限制最多显示6行 */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.book-navigation {
-    @apply flex items-center justify-between;
-}
-
+/* 悬浮式导航按钮 */
 .nav-button {
-    @apply p-2 rounded-full bg-white/20 hover:bg-white/30
-         transition-colors duration-200 flex items-center justify-center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15); /* 半透明背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0.8; /* 降低不透明度 */
+  z-index: 10; /* 确保按钮在内容之上 */
 }
 
-.book-indicators {
-    @apply flex space-x-2;
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.1);
+  opacity: 1; /* 悬停时变为不透明 */
 }
 
-.book-indicator {
-    @apply w-3 h-3 rounded-full bg-white/30 cursor-pointer
-         transition-all duration-300;
+.nav-button svg {
+  width: 24px;
+  height: 24px;
 }
 
-.book-indicator.active {
-    @apply bg-white w-6;
+.left-button {
+  left: 12px;
 }
 
-/* 响应式窄屏适配 */
+.right-button {
+  right: 12px;
+}
+
+/* 平板及以上尺寸的响应式设计 */
+@media (min-width: 640px) {
+  .book-content {
+    flex-direction: row;
+    padding: 20px;
+  }
+
+  .book-cover-container {
+    flex: 0 0 40%;
+    padding: 0;
+    align-items: center;
+  }
+
+  .book-cover {
+    width: 170px;
+    height: 220px;
+  }
+
+  .book-info {
+    flex: 0 0 60%;
+    padding: 0 0 0 24px;
+    text-align: left;
+  }
+
+  .book-title {
+    font-size: 1.35rem;
+  }
+
+  /* 桌面端按钮更大 */
+  .nav-button {
+    width: 56px;
+    height: 56px;
+  }
+
+  .nav-button svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* 移动端优化 */
 @media (max-width: 480px) {
-    .book-card {
-        @apply h-auto min-h-[370px];
-    }
+  .book-header {
+    padding: 14px 18px 10px;
+  }
 
-    .book-content {
-        @apply flex-col;
-    }
+  .section-title {
+    font-size: 1.05rem;
+  }
 
-    .book-cover {
-        @apply h-[180px];
-    }
+  .book-count {
+    font-size: 0.8rem;
+  }
 
-    .book-info {
-        @apply p-2;
-    }
+  .book-cover {
+    width: 130px;
+    height: 170px;
+  }
+
+  .book-title {
+    font-size: 1.15rem;
+  }
+
+  .book-author {
+    font-size: 0.85rem;
+  }
+
+  .book-description {
+    font-size: 0.86rem;
+    -webkit-line-clamp: 1; /* 移动端显示1行 */
+  }
+
+  /* 移动端按钮稍小 */
+  .nav-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .nav-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* 非常小的屏幕优化 */
+@media (max-width: 360px) {
+  .book-header {
+    padding: 12px 16px 8px;
+  }
+
+  .book-content {
+    padding: 12px;
+  }
+
+  .book-cover {
+    width: 110px;
+    height: 145px;
+  }
+
+  .book-title {
+    font-size: 1.1rem;
+  }
+
+  .book-author {
+    font-size: 0.8rem;
+  }
+
+  .book-description {
+    font-size: 0.82rem;
+    -webkit-line-clamp: 3; /* 超小屏幕显示3行 */
+  }
+
+  /* 超小屏幕按钮更小 */
+  .nav-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-button svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 </style>
