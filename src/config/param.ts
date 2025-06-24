@@ -62,6 +62,7 @@ export const bentoCommonComponentsCfg = [
   { id: 'Text2', x: 6, y: 2, width: 1, height: 1, index: 0 },
   { id: 'Text3', x: 6, y: 2, width: 2, height: 1, index: 0 },
   { id: 'Text4', x: 6, y: 2, width: 2, height: 1, index: 0 },
+  { id: 'Text5', x: 6, y: 2, width: 1, height: 1, index: 0 },
 ]
 
 /**
