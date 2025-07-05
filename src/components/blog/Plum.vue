@@ -157,7 +157,6 @@ const mask = computed(() => "radial-gradient(circle, transparent, black);");
         style="z-index: -1"
         :style="`mask-image: ${mask};--webkit-mask-image: ${mask};`"
     >
-        2333
         <canvas ref="el" width="400" height="400" />
     </div>
 </template>

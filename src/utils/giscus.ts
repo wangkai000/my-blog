@@ -57,6 +57,7 @@ export function registerGiscus(root: HTMLElement) {
         script.setAttribute("crossorigin", giscusSetting.crossorigin);
         script.setAttribute("async", "");
         root.appendChild(script);
+
         updateGiscusTheme();
     }
     return { root };

@@ -4,10 +4,10 @@ export const appDescription = "tianMiao Web App";
 export const navFilter = [
     { label: "首页", route: "/", children: [] },
     { label: "文章", route: "/blog", children: [] },
-    { label: "随笔", route: "/record", children: [] },
     { label: "项目", route: "/project", children: [] },
     { label: "关于", route: "/about", children: [] },
     { label: "Web3.0", route: "/web3", children: [] },
+    { label: "资源录", route: "/record", children: [] },
     { label: "友链", route: "/friend", children: [] },
     // { label: '更多', route: '/more', children: [] },
     // { label: 'README', route: '/README', children: [] },
