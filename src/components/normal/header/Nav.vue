@@ -1,204 +1,424 @@
-<!-- eslint-disable antfu/top-level-function -->
 <script setup lang="ts">
-import { navFilter } from "~/config";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { Icon } from "@iconify/vue";
 
+// 导航菜单配置（包含标题信息）
+const navFilter = [
+    { label: "首页", route: "/", icon: "🏠", children: [], title: "首页" },
+    {
+        label: "文章",
+        route: "/blog",
+        icon: "📝",
+        children: [],
+        title: "我的文章",
+    },
+    {
+        label: "项目",
+        route: "/project",
+        icon: "🎯",
+        children: [],
+        title: "项目展示",
+    },
+    {
+        label: "关于",
+        route: "/about",
+        icon: "🙂",
+        children: [],
+        title: "关于我",
+    },
+    {
+        label: "Web3.0",
+        route: "/web3",
+        icon: "💎",
+        children: [],
+        title: "Web3.0 探索",
+    },
+    {
+        label: "友链",
+        route: "/friend",
+        icon: "🔗",
+        children: [],
+        title: "友情链接",
+    },
+    {
+        label: "更多",
+        icon: "",
+        children: [
+            {
+                label: "资源收录",
+                route: "/record",
+                icon: "📚",
+                children: [],
+                title: "资源收录库",
+            },
+            {
+                label: "视频推荐",
+                route: "/video",
+                icon: "⏯️",
+                children: [],
+                title: "精选视频",
+            },
+            {
+                label: "每日一句",
+                route: "/sentence",
+                icon: "💪",
+                children: [],
+                title: "每日励志语录",
+            },
+        ],
+    },
+];
+
+// 路由与状态管理
 const route = useRoute();
-const appTitle = useTitle();
+const router = useRouter();
 const mobileNavBool = ref(false);
+const currentActiveIndex = ref(-1);
+const moreMenuOpen = ref(false);
+const moreMenuRef = ref(null);
+const isHovered = ref(false);
+const clickToggle = ref(false);
+let hideTimer: NodeJS.Timeout | null = null;
 
-const navFilterOptionBgMode = computed(() => {
-    if (isDark.value) return "unset";
-
-    return "difference";
-});
-
-const mobileNavClick = () => {
-    mobileNavBool.value = !mobileNavBool.value;
-};
-const mobileNavClickHide = () => {
-    mobileNavBool.value = false;
-};
-const navMenuClick = async () => {
-    await nextTick();
-    mobileNavBool.value = false;
-};
-// ------------------------------------data------------------------------------//
-// 每个 item 的宽高
+// 导航项样式配置
 const navItemOptions = {
-    width: 80,
-    height: 28,
-    padding: 5,
+    width: 90,
+    height: 36,
+    padding: 8,
 };
-// 0. 通过序号计算左右移动的位置
-const currentItemIndex = ref<number>(-2);
-// 1. 背景的样式，外面的盒子移动
-const outerBgStyles = computed(() => {
-    return {
-        width: `${navItemOptions.width}px`,
-        height: `${navItemOptions.height}px`,
-        transform: `
-      translate(
-        ${currentItemIndex.value * navItemOptions.width + navItemOptions.padding}px,
-        5px
-      )
-    `,
-    };
-});
-// 2. 背景的样式，里面的盒子跳动
-const bgInnerRef = ref<HTMLElement>();
-// ------------------------------------data------------------------------------//
 
-// ------------------------------------logic------------------------------------//
-// 1. 获取当前路由，设置动画
+// 计算属性：激活/默认状态样式
+const activeStyles = computed(() => ({
+    width: `${navItemOptions.width}px`,
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    backdropFilter: "blur(8px)",
+    boxShadow:
+        "0 0 0 2px rgba(59, 130, 246, 0.3), 0 4px 12px rgba(0, 0, 0, 0.08)",
+    color: "#333333",
+}));
+
+const normalStyles = computed(() => ({
+    width: `${navItemOptions.width}px`,
+}));
+
+// 获取当前激活项索引
+function getActiveIndex(path: string) {
+    for (let i = 0; i < navFilter.length; i++) {
+        if (navFilter[i].route === path) return i;
+        for (let j = 0; j < navFilter[i].children.length; j++) {
+            if (navFilter[i].children[j].route === path) return i * 100 + j;
+        }
+    }
+    return -1;
+}
+
+// 根据路由获取页面标题
+function getPageTitle(path: string): string {
+    for (const item of navFilter) {
+        if (item.route === path) return item.title || item.label;
+        for (const child of item.children) {
+            if (child.route === path) return child.title || child.label;
+        }
+    }
+    return "天渺studio的小站";
+}
+
+// 导航跳转处理
+async function navigateTo(path?: string) {
+    if (!path) return;
+    try {
+        await router.push(path);
+        mobileNavBool.value = false;
+        closeMenu();
+    } catch (error) {
+        console.error("导航错误:", error);
+    }
+}
+
+// 更多菜单切换
+function toggleMoreMenu(e: MouseEvent) {
+    e.stopPropagation();
+    clearTimeout(hideTimer as NodeJS.Timeout);
+    clickToggle.value = !clickToggle.value;
+    moreMenuOpen.value = clickToggle.value;
+    isHovered.value = clickToggle.value;
+}
+
+// 更多菜单鼠标事件
+function handleMouseEnter() {
+    clearTimeout(hideTimer as NodeJS.Timeout);
+    isHovered.value = true;
+    moreMenuOpen.value = true;
+}
+
+function handleMouseLeave() {
+    if (clickToggle.value) return;
+    hideTimer = setTimeout(() => {
+        isHovered.value = false;
+        moreMenuOpen.value = false;
+    }, 2000);
+}
+
+// 关闭更多菜单
+function closeMenu() {
+    moreMenuOpen.value = false;
+    isHovered.value = false;
+    clickToggle.value = false;
+    if (hideTimer) clearTimeout(hideTimer);
+}
+
+// 更新激活状态
+function updateActiveState(path: string) {
+    currentActiveIndex.value = getActiveIndex(path);
+}
+
+// 移动端导航切换
+function mobileNavClick() {
+    mobileNavBool.value = !mobileNavBool.value;
+}
+
+function mobileNavClickHide() {
+    mobileNavBool.value = false;
+}
+
+// 初始化与生命周期
 onMounted(() => {
-    const currentRoute = navFilter.find((item) => item.route === route.path);
-    if (currentRoute)
-        refreshActiveTab(currentRoute, navFilter.indexOf(currentRoute));
+    updateActiveState(route.path);
+    // 初始化页面标题
+    const initialTitle = getPageTitle(route.path);
+    document.title = `${initialTitle} - 天渺studio的小站`;
 });
 
+onUnmounted(() => {
+    if (hideTimer) clearTimeout(hideTimer);
+});
+
+// 监听路由变化（更新激活状态和页面标题）
 watch(
     () => route.path,
-    (val) => {
-        const currentRoute = navFilter.find(
-            (item) => item.route === route.path,
-        );
-        if (currentRoute)
-            refreshActiveTab(currentRoute, navFilter.indexOf(currentRoute));
-
-        const whiteList = navFilter.map((item) => item.route);
-        if (!whiteList.includes(val)) startJelloHideAnimate();
+    (newPath) => {
+        closeMenu();
+        updateActiveState(newPath);
+        // 更新页面标题
+        const currentTitle = getPageTitle(newPath);
+        document.title = `${currentTitle} - 天渺studio的小站`;
     },
 );
-
-// 2. 设置当前选中的 item 的背景
-function refreshActiveTab(item: (typeof navFilter)[0], index: number) {
-    // a. 设置标题
-    appTitle.value = item.label === "组件" ? "tianMiao" : item.label;
-
-    // b. 设置头部动画
-    currentItemIndex.value = index;
-    startJelloShowAnimate();
-}
-
-function startJelloShowAnimate() {
-    const jello = [
-        "scale3d(1, 1, 1)",
-        "scale3d(1.25, 0.75, 1)",
-        "scale3d(0.75, 1.25, 1)",
-        "scale3d(1.15, 0.85, 1)",
-        "scale3d(0.95, 1.05, 1)",
-        "scale3d(1.05, 0.95, 1)",
-        "scale3d(1, 1, 1)",
-    ];
-    const opacity = [1, 1];
-
-    if (bgInnerRef.value) {
-        const animation = bgInnerRef.value.animate(
-            { transform: jello, opacity },
-            { duration: 900, fill: "forwards" },
-        );
-        animation.onfinish = () => {};
-    }
-}
-function startJelloHideAnimate() {
-    const scale = [
-        "scale3d(1, 1, 1)",
-        "scale3d(1.25, 0.75, 1)",
-        "scale3d(0.75, 1.25, 1)",
-        "scale3d(1.15, 0.85, 1)",
-        "scale3d(0.95, 1.05, 1)",
-        "scale3d(1.05, 0.95, 1)",
-        "scale3d(0.97, 1.03, 1)",
-        "scale3d(0, 0, 1)",
-    ];
-
-    const opacity = [1, 0];
-
-    if (bgInnerRef.value) {
-        const animation = bgInnerRef.value.animate(
-            { transform: scale, opacity },
-            { duration: 900, fill: "forwards" },
-        );
-        animation.onfinish = () => {};
-    }
-}
-// ------------------------------------logic------------------------------------//
 </script>
 
 <template>
+    <!-- 桌面端导航 -->
     <div id="pc-nav" class="nav-container">
-        <!-- item -->
-
-        <div v-for="item in navFilter" :key="item.label">
-            <HoverCard :open-delay="0" :close-delay="0">
-                <HoverCardTrigger>
-                    <router-link
-                        :to="item.route"
-                        replace
-                        class="nav-item"
-                        :style="{
-                            height: `${navItemOptions.height}px`,
-                            width: `${navItemOptions.width}px`,
-                        }"
-                    >
-                        {{ item.label }}
-                    </router-link>
-                </HoverCardTrigger>
-                <HoverCardContent
-                    v-if="item?.children?.length > 0"
-                    :side-offset="15"
-                    class="w-[120px]! p-[4px]!"
+        <div
+            v-for="(item, index) in navFilter"
+            :key="item.label"
+            class="relative"
+        >
+            <template v-if="item.label !== '更多'">
+                <div
+                    class="nav-item flex items-center justify-center h-[36px] px-3 rounded-full transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 cursor-pointer"
+                    :class="[
+                        currentActiveIndex === index
+                            ? 'text-blue-600 dark:text-blue-400 active-item'
+                            : '',
+                    ]"
+                    :style="
+                        currentActiveIndex === index
+                            ? activeStyles
+                            : normalStyles
+                    "
+                    @click="navigateTo(item?.route)"
                 >
-                    <div
-                        class="flex flex-col items-center justify-start text-[14px]"
+                    <span class="mr-1.5">{{ item.icon }}</span>
+                    {{ item.label }}
+                    <span
+                        v-if="item.children.length > 0"
+                        class="ml-2 submenu-icon transition-transform duration-300"
+                        >▼</span
                     >
+                </div>
+
+                <!-- 子菜单 -->
+                <div
+                    v-if="item.children.length > 0"
+                    class="absolute top-full left-0 mt-2 w-[180px] rounded-lg shadow-md z-50 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 transition-all duration-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible"
+                >
+                    <div class="flex flex-col items-start p-2">
                         <div
-                            v-for="it in item.children"
-                            :key="(it as any).label"
-                            class="option-item h-10 w-full flex cursor-pointer items-center justify-center"
+                            v-for="(child, childIndex) in item.children"
+                            :key="child.label"
+                            class="option-item w-full py-2 px-3 rounded-md cursor-pointer transition-all duration-200 flex items-center text-gray-600 dark:text-gray-300"
+                            :class="[
+                                getActiveIndex(child.route) ===
+                                currentActiveIndex
+                                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 active'
+                                    : '',
+                            ]"
+                            @click="navigateTo(child.route)"
                         >
-                            {{ (it as any).label }}
+                            <span class="mr-1.5">{{ child.icon }}</span>
+                            {{ child.label }}
                         </div>
                     </div>
-                </HoverCardContent>
-            </HoverCard>
-        </div>
+                </div>
+            </template>
 
-        <!-- bg 外层移动，内层动画 -->
-        <div
-            :style="outerBgStyles"
-            class="pointer-events-none absolute left-0 top-0 transition-transform duration-300 ease-in-out"
-        >
-            <div
-                ref="bgInnerRef"
-                class="h-full w-full rounded-[50px] border border-solid border-blue-700"
-            />
+            <!-- 更多菜单（带三角指示器） -->
+            <template v-if="item.label === '更多'">
+                <div
+                    ref="moreMenuRef"
+                    class="relative"
+                    @mouseenter="handleMouseEnter"
+                    @mouseleave="handleMouseLeave"
+                >
+                    <div
+                        class="nav-item flex items-center justify-center h-[36px] px-3 rounded-full transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 cursor-pointer"
+                        :class="[
+                            currentActiveIndex === index
+                                ? 'text-blue-600 dark:text-blue-400'
+                                : '',
+                        ]"
+                        :style="
+                            currentActiveIndex === index
+                                ? activeStyles
+                                : normalStyles
+                        "
+                        @click="toggleMoreMenu"
+                    >
+                        <span class="mr-1.5">{{ item.icon }}</span>
+                        {{ item.label }}
+                        <span
+                            class="ml-2 submenu-icon transition-transform duration-300"
+                            :class="{ 'rotate-180': moreMenuOpen }"
+                            >▼</span
+                        >
+                    </div>
+
+                    <!-- 更多子菜单 -->
+                    <div
+                        v-if="moreMenuOpen"
+                        class="absolute top-full left-0 mt-2 w-[180px] rounded-lg shadow-md z-50 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 transition-all duration-200"
+                        @mouseenter="handleMouseEnter"
+                        @mouseleave="handleMouseLeave"
+                    >
+                        <!-- 三角指示器 -->
+                        <div class="triangle-indicator" />
+
+                        <div class="flex flex-col items-start p-2">
+                            <div
+                                v-for="(child, childIndex) in item.children"
+                                :key="child.label"
+                                class="option-item w-full py-2 px-3 rounded-md cursor-pointer transition-all duration-200 flex items-center text-gray-600 dark:text-gray-300"
+                                :class="[
+                                    getActiveIndex(child.route) ===
+                                    currentActiveIndex
+                                        ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 active'
+                                        : '',
+                                ]"
+                                @click="navigateTo(child.route)"
+                            >
+                                <span class="mr-1.5">{{ child.icon }}</span>
+                                {{ child.label }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
         </div>
     </div>
+
+    <!-- 移动端导航触发器 -->
     <div id="mobile-nav" class="nav-container">
-        <div class="flex justify-end">
-            <div
-                class="flex-col items-center cursor-pointer relative"
-                @click="mobileNavClick"
-            >
-                ☰
+        <div class="flex justify-end items-center p-3">
+            <div class="cursor-pointer" @click="mobileNavClick">
+                <span class="text-xl">{{ mobileNavBool ? "✕" : "☰" }}</span>
             </div>
         </div>
     </div>
-    <div v-if="mobileNavBool" class="mobile-nav-div flex fixed">
-        <div class="flex-1 nav-menu">
-            <router-link
-                v-for="item in navFilter"
-                :key="item.label"
-                class="nav-menu-link"
-                replace
-                :to="item.route"
-                @click="navMenuClick"
+
+    <!-- 移动端导航菜单 -->
+    <div
+        v-if="mobileNavBool"
+        class="mobile-nav-div fixed inset-0 z-50 flex"
+        :class="{
+            'translate-x-0': mobileNavBool,
+            'translate-x-[100%]': !mobileNavBool,
+        }"
+        @keydown.escape="mobileNavClickHide"
+    >
+        <div
+            class="nav-menu w-4/5 bg-white dark:bg-gray-800 h-full shadow-2xl transform transition-all duration-300 ease-in-out"
+            :class="mobileNavBool ? 'translate-x-0' : 'translate-x-full'"
+        >
+            <div
+                class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center"
             >
-                {{ item.label }}
-            </router-link>
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+                    天渺studio的小站
+                </h3>
+                <button @click="mobileNavClickHide">
+                    <span class="text-xl"
+                        ><Icon icon="mdi:close" width="24" height="24"
+                    /></span>
+                </button>
+            </div>
+            <div class="py-4">
+                <div
+                    v-for="(item, index) in navFilter"
+                    :key="item.label"
+                    class="border-b border-gray-200 dark:border-gray-700"
+                >
+                    <div
+                        v-if="item.children.length > 0"
+                        class="nav-menu-link flex items-center py-3 px-4 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
+                        :class="{
+                            'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20':
+                                currentActiveIndex === index,
+                        }"
+                        @click.stop="navigateTo(item.route)"
+                    >
+                        <span class="mr-3">{{ item.icon }}</span>
+                        {{ item.label }}
+                        <span class="ml-auto text-gray-400"
+                            ><Icon icon="mdi:chevron-right"
+                        /></span>
+                    </div>
+                    <div
+                        v-else
+                        class="nav-menu-link flex items-center py-3 px-4 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
+                        :class="{
+                            'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20':
+                                currentActiveIndex === index,
+                        }"
+                        @click="navigateTo(item.route)"
+                    >
+                        <span class="mr-3">{{ item.icon }}</span>
+                        {{ item.label }}
+                    </div>
+                    <div v-if="item.children.length > 0" class="pl-8 py-2">
+                        <div
+                            v-for="(child, childIndex) in item.children"
+                            :key="child.label"
+                            class="flex items-center py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
+                            :class="{
+                                'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20':
+                                    getActiveIndex(child.route) ===
+                                    currentActiveIndex,
+                            }"
+                            @click="navigateTo(child.route)"
+                        >
+                            <span class="mr-2">{{ child.icon }}</span>
+                            {{ child.label }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="flex-1 opacity-0" @click="mobileNavClickHide" />
+        <div
+            class="flex-1 bg-black/50 backdrop-blur-sm"
+            @click="mobileNavClickHide"
+        />
     </div>
 </template>
 
@@ -207,71 +427,145 @@ function startJelloHideAnimate() {
     position: relative;
     display: flex;
     font-size: 14px;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    user-select: none;
-    box-shadow: var(--ui-second-box-shadow);
-    overflow-x: auto;
-}
-.nav-item {
-    position: relative;
-    cursor: pointer;
-    border-radius: 50px;
-    -webkit-box-align: center;
-    padding: 0px 16px;
-    transition: opacity 0.3s ease 0s;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    user-select: none;
-    /* color: var(--nav-text); */
-    color: var(--text-color);
-    mix-blend-mode: v-bind(navFilterOptionBgMode);
+    z-index: 2;
+    padding: 0;
 }
 
 #mobile-nav {
     display: none;
-    width: 100%;
 }
-@media (max-width: 600px) {
+
+@media (max-width: 768px) {
     #pc-nav {
         display: none;
     }
     #mobile-nav {
-        display: block;
-        width: 100%;
+        display: flex;
+        flex: 1;
+        justify-content: end;
     }
 }
+
 .mobile-nav-div {
     width: 100vw;
     top: 0;
     left: 0;
     height: 100vh;
-    /* background-color: #d3d2d2; */
-    /* opacity: 0.6; */
+    z-index: 50;
 }
-@media (min-width: 600px) {
+
+@media (min-width: 768px) {
     .mobile-nav-div {
         display: none;
     }
 }
-.nav-menu {
-    background-color: #ddd;
+
+.nav-item {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    z-index: 1;
+    margin: 0 2px;
+    transition: all 0.3s ease;
+    border-radius: 18px;
+    color: rgba(30, 30, 30, 0.9);
+    text-shadow: -1px 0px 1px rgba(236, 234, 234, 0.3);
 }
 
-.nav-menu-link {
-    height: 56px;
-    line-height: 56px;
-    padding: 0 10px;
-    display: block;
+.nav-item:hover {
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: #333333;
+    text-shadow: none;
 }
-.nav-menu-link:active {
-    background: #ffffff;
+
+.active-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    box-shadow:
+        0 0 0 2px rgba(59, 130, 246, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    color: #333333;
+    text-shadow: none;
+}
+
+.dark .nav-item {
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.dark .nav-item:hover {
+    color: #ffffff;
+    text-shadow: none;
+}
+
+.submenu-icon {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.nav-item:hover .submenu-icon,
+.active-item .submenu-icon {
+    transform: rotate(180deg);
+}
+
+.option-item {
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.option-item:hover {
+    background-color: rgba(59, 130, 246, 0.08);
+    transform: translateX(2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.option-item.active {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    transform: translateX(2px);
+}
+
+/* 三角指示器样式 */
+.triangle-indicator {
+    position: absolute;
+    top: -6px;
+    left: 24px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid white;
+    z-index: 1;
+}
+
+.dark .triangle-indicator {
+    border-bottom-color: #2d3748;
+}
+
+.mobile-nav-div {
+    justify-content: flex-end;
+}
+
+.mobile-nav-div .nav-menu {
+    transform-origin: right center;
+}
+
+.mobile-nav-div .nav-menu {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav-div .nav-menu,
+.mobile-nav-div {
+    transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 </style>

@@ -1,5 +1,4 @@
 import path, { basename, dirname, resolve } from 'node:path'
-import { Buffer } from 'node:buffer'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import generateSitemap from 'vite-ssg-sitemap'

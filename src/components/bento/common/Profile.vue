@@ -12,8 +12,7 @@ function handleSwitch() {
     clearAllSetTimeout();
     avatarImgRef.value?.classList.add("expanding-avatar-circle");
     setTimeout(() => {
-        currentAvatar.value =
-            currentAvatar.value === "Arvin" ? "Arvin2" : "Arvin";
+        currentAvatar.value = currentAvatar.value === "kai" ? "kai2" : "kai";
         avatarBgRef.value?.classList.add("expanding-bg-circle");
         setTimeout(() => {
             avatarBgRef.value?.classList.remove("expanding-bg-circle");
@@ -82,7 +81,7 @@ async function typeSentence1() {
                     class="avatar-img absolute left-0 top-0 z-20 mb-8 h-[96px] w-[96px] rounded-full dark:bg-[var(--header-avatar-bg)]"
                 >
                     <Icon
-                        v-if="currentAvatar === 'Arvin'"
+                        v-if="currentAvatar === 'kai'"
                         icon="fluent-emoji:partying-face"
                         class="h-full w-full"
                     />
@@ -91,7 +90,7 @@ async function typeSentence1() {
                         v-else
                         ref="avatarImgRef"
                         class="h-full w-full rounded-full"
-                        src="https://s21.ax1x.com/2024/12/22/pAXAGEn.jpg"
+                        :src="SITE.avatar"
                         alt=""
                     />
                 </div>
@@ -108,7 +107,7 @@ async function typeSentence1() {
                     ref="iconRef"
                     class="icon"
                     :class="
-                        currentAvatar === 'Arvin'
+                        currentAvatar === 'kai'
                             ? 'icon_rotate_one'
                             : 'icon_rotate_two'
                     "

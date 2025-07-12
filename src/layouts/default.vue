@@ -63,7 +63,7 @@ useEventListener("click", async (e) => {
         <Header v-show="!isLargeScreen || !isNoneLayout" />
         <RouterView v-slot="{ Component }">
             <Transition :name="currentTransitionName || 'page'" mode="out-in">
-                <keep-alive>
+                <keep-alive max="3">
                     <component :is="Component" />
                 </keep-alive>
             </Transition>

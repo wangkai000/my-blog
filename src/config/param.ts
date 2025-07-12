@@ -1,21 +1,28 @@
 export const appName = "tianMiao";
 export const appDescription = "tianMiao Web App";
 
-export const navFilter = [
-    { label: "首页", route: "/", children: [] },
-    { label: "文章", route: "/blog", children: [] },
-    { label: "项目", route: "/project", children: [] },
-    { label: "关于", route: "/about", children: [] },
-    { label: "Web3.0", route: "/web3", children: [] },
-    { label: "资源录", route: "/record", children: [] },
-    { label: "友链", route: "/friend", children: [] },
-    // { label: '更多', route: '/more', children: [] },
-    // { label: 'README', route: '/README', children: [] },
-];
+// export const navFilter = [
+//   { label: '首页', route: '/', children: [] },
+//   { label: '文章', route: '/blog', children: [] },
+//   { label: '项目', route: '/project', children: [] },
+//   { label: '关于', route: '/about', children: [] },
+//   { label: 'Web3.0', route: '/web3', children: [] },
+//   { label: '资源录', route: '/record', children: [] },
+//   {
+//     label: '友链',
+//     route: '/friend',
+//     children: [],
+//   },
+//   { label: '更多', children: [
+//     { label: '更多', route: '/more1', children: [] },
+//     { label: '更多', route: '/more2', children: [] },
+//   ] },
+// ]
 
 export const SITE = {
     title: "天渺studio的小站",
     author: "天渺studio的小站",
+    avatar: "https://s21.ax1x.com/2024/12/22/pAXAGEn.jpg",
     description: "记录 kai 的history",
     profileContent:
         "我是kai，曾创过业。喜欢 Vue、React、Android、Flutter、Nodejs。目前在从事Node全栈，Android开发的工作。",

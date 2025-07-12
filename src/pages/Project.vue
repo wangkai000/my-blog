@@ -38,7 +38,7 @@ function openModal(_item: (typeof PROJECTS)[0]) {
                     </div>
                     <!-- 标题 -->
                     <div
-                        class="pointer-events-auto absolute bottom-0 left-0 z-[10] w-full flex items-center justify-between p-[10px] text-[16px] text-[var(--project-card-text)] leading-7"
+                        class="pointer-events-auto absolute bottom-0 left-0 z-[1] w-full flex items-center justify-between p-[10px] text-[16px] text-[var(--project-card-text)] leading-7"
                     >
                         <a
                             :href="project.demoUrl"

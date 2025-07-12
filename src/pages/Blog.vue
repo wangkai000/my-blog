@@ -10,7 +10,10 @@ import BlogTextList from "~/components/blog/TextList.vue";
             >
                 <BlogTextList />
             </div>
-            <!-- <iframe style="width:100vw;height:100vh;" src="https://hexo.fluid-dev.com/" /> -->
+            <!-- <iframe
+                style="width: 100vw; height: 100vh"
+                src="https://hexo.fluid-dev.com/"
+            /> -->
         </Suspense>
     </div>
 </template>

@@ -49,6 +49,13 @@ const friends = ref([
         avatarFailed: false,
     },
     {
+        title: "张洪Heo",
+        description: "分享设计与科技生活",
+        avatar: "https://img.zhheo.com/i/67d8fa75943e4.webp",
+        url: "https://blog.zhheo.com/",
+        avatarFailed: false,
+    },
+    {
         title: "echeverra",
         description: "let's go, together!",
         avatar: "https://echeverra.cn/favicon.jpg",
@@ -137,6 +144,14 @@ const friends = ref([
         description: "喜欢的东西就努力去追求，万一成功了呢!",
         avatar: "https://bu.dusays.com/2025/03/02/67c4531250141.jpg",
         url: "https://blog.hikki.site",
+        avatarFailed: false,
+    },
+
+    {
+        title: "冬七のBLOG",
+        description: "",
+        avatar: "http://snows-l.site/comm/icon.png",
+        url: "http://snows-l.site",
         avatarFailed: false,
     },
 ]);
