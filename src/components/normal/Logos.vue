@@ -2,7 +2,7 @@
     <div inline-flex cursor-default text-2xl font-300>
         <div flex flex-col children:mx-auto>
             <img inline-block h-18 w-18 src="/logo.svg" />
-            <span mt--2 text-green5>Arvin</span>
+            <span mt--2 text-green5>天渺studio</span>
         </div>
         <div
             text="3xl gray4"

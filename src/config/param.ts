@@ -27,10 +27,7 @@ export const SITE = {
     profileContent:
         "我是kai，曾创过业。喜欢 Vue、React、Android、Flutter、Nodejs。目前在从事Node全栈，Android开发的工作。",
     keywords: "kai, Blog, 前端, Vue, 博客",
-    coordinate: [113.84835620042, 22.63484765642],
-    icon: "https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/imageslogo.svg",
-    pic: "https://cdn.fliggy.coblogPagem/upic/2XFNGI.png",
-    cv: "https://baidu.com/",
+    cv: "404",
     justin: "https://juejin.cn/user/1169536102179325/posts",
     mail: "mailto:1071231288@qq.com",
     homePage: "/",
@@ -39,7 +36,7 @@ export const SITE = {
     twitterUrl: "https://twitter.com/",
     githubId: "pinky-pig",
     githubHome: "https://github.com/wangkai000",
-    weeklyUrl: "https://baidu.com",
+    weeklyUrl: "https://snake.timeline.ink",
     repo: "pinky-pig/what-is-my-astro-blog",
     notion: "https://www.notion.com/",
     weibo: "https://weibo.com/u/5507083242",
@@ -87,10 +84,10 @@ export const bentoCustomComponentsCfg = [
 export const PROJECTS = [
     {
         name: "test001",
-        desc: "个人网站...",
-        cover: "https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/x.png",
-        demoUrl: "baidu.com",
-        repoUrl: "baidu.com",
+        desc: "测试",
+        cover: "",
+        demoUrl: "404",
+        repoUrl: "404",
     },
     // {
     //   name: 'Superellipse SVG',
