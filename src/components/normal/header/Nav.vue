@@ -37,20 +37,11 @@ const navFilter: NavItem = [
     title: '项目展示',
     target: '_self',
   },
-  //   {
-  //     label: '外部链接', // 测试新标签页跳转
-  //     route: 'https://github.com',
-  //     icon: '🔗',
-  //     children: [],
-  //     title: 'GitHub',
-  //     target: '_blank', // 新标签页打开
-  //   },
   {
     label: 'AI',
     route: '/ai',
     icon: '🤖️',
-    children: [
-    ],
+    children: [],
     title: 'AI探索',
   },
   {
@@ -71,7 +62,7 @@ const navFilter: NavItem = [
   },
   {
     label: '更多',
-    icon: '',
+    icon: '✨',
     children: [
       {
         label: '资源收录',
@@ -119,7 +110,7 @@ let hideTimer: NodeJS.Timeout | null = null
 
 // 导航项样式配置
 const navItemOptions = {
-  width: 90,
+  width: 95,
   height: 36,
   padding: 8,
 }
@@ -130,7 +121,7 @@ const activeStyles = computed(() => ({
   backgroundColor: 'rgba(255, 255, 255, 0.8)',
   backdropFilter: 'blur(8px)',
   boxShadow:
-    '0 0 0 2px rgba(59, 130, 246, 0.3), 0 4px 12px rgba(0, 0, 0, 0.08)',
+        '0 0 0 2px rgba(59, 130, 246, 0.3), 0 4px 12px rgba(0, 0, 0, 0.08)',
   color: '#333333',
 }))
 
@@ -253,7 +244,8 @@ function closeAllMenus() {
 function closeMenu() {
   moreMenuOpen.value = false
   isHovered.value = false
-  if (!clickToggle.value) { // 如果不是点击打开的，才清空标记
+  if (!clickToggle.value) {
+    // 如果不是点击打开的，才清空标记
     clickToggle.value = false
   }
   if (hideTimer)
@@ -325,15 +317,19 @@ watch(
               ? activeStyles
               : normalStyles
           "
-          @click="item.children.length > 0 ? toggleSubmenu(index) : navigateTo(item)"
+          @click="
+            item.children.length > 0
+              ? toggleSubmenu(index)
+              : navigateTo(item)
+          "
           @mouseenter="handleSubmenuMouseEnter(index)"
           @mouseleave="handleSubmenuMouseLeave(index)"
         >
-          <span class="mr-1.5">{{ item.icon }}</span>
+          <span class="mr-1.5 text-lg">{{ item.icon }}</span>
           {{ item.label }}
           <span
             v-if="item.children.length > 0"
-            class="ml-2 submenu-icon transition-transform duration-300"
+            class="ml-1/3 submenu-icon transition-transform duration-300"
             :class="{ 'rotate-180': submenuOpenMap[index] }"
           >▼</span>
         </div>
@@ -351,13 +347,14 @@ watch(
               :key="child.label"
               class="option-item w-full py-2 px-3 rounded-md cursor-pointer transition-all duration-200 flex items-center text-gray-600 dark:text-gray-300"
               :class="[
-                getActiveIndex(child.route) === currentActiveIndex
+                getActiveIndex(child.route)
+                  === currentActiveIndex
                   ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 active'
                   : '',
               ]"
               @click="navigateTo(child)"
             >
-              <span class="mr-1.5">{{ child.icon }}</span>
+              <span class="mr-1.5 text-lg">{{ child.icon }}</span>
               {{ child.label }}
             </div>
           </div>
@@ -386,7 +383,7 @@ watch(
             "
             @click="toggleMoreMenu"
           >
-            <span class="mr-1.5">{{ item.icon }}</span>
+            <span class="mr-1.5 text-lg">{{ item.icon }}</span>
             {{ item.label }}
             <span
               class="ml-2 submenu-icon transition-transform duration-300"
@@ -410,13 +407,14 @@ watch(
                 :key="child.label"
                 class="option-item w-full py-2 px-3 rounded-md cursor-pointer transition-all duration-200 flex items-center text-gray-600 dark:text-gray-300"
                 :class="[
-                  getActiveIndex(child.route) === currentActiveIndex
+                  getActiveIndex(child.route)
+                    === currentActiveIndex
                     ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 active'
                     : '',
                 ]"
                 @click="navigateTo(child)"
               >
-                <span class="mr-1.5">{{ child.icon }}</span>
+                <span class="mr-1.5 text-lg">{{ child.icon }}</span>
                 {{ child.label }}
               </div>
             </div>
@@ -430,7 +428,7 @@ watch(
   <div id="mobile-nav" class="nav-container">
     <div class="flex justify-end items-center p-3">
       <div class="cursor-pointer" @click="mobileNavClick">
-        <span class="text-xl">{{ mobileNavBool ? "✕" : "☰" }}</span>
+        <span class="text-xl text-white">{{ mobileNavBool ? "✕" : "☰" }}</span>
       </div>
     </div>
   </div>
@@ -503,12 +501,13 @@ watch(
               class="flex items-center py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
               :class="{
                 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20':
-                  getActiveIndex(child.route) === currentActiveIndex,
+                  getActiveIndex(child.route)
+                  === currentActiveIndex,
               }"
               @click="navigateTo(child)"
             >
               <span class="mr-2">{{ child.icon }}</span>
-              {{ child.label }}
+              <span class="text-gray-700 dark:text-white">{{ child.label }}</span>
             </div>
           </div>
         </div>
@@ -571,7 +570,7 @@ watch(
   margin: 0 2px;
   transition: all 0.3s ease;
   border-radius: 18px;
-  color: rgba(30, 30, 30, 0.9);
+  color: #f9fafb;
   text-shadow: -1px 0px 1px rgba(236, 234, 234, 0.3);
 }
 
@@ -598,7 +597,7 @@ watch(
 }
 
 .dark .nav-item:hover {
-  color: #ffffff;
+  color: #333333;
   text-shadow: none;
 }
 

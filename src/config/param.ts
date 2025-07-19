@@ -119,3 +119,7 @@ export const giscusSetting = {
 //   mapLightStyle = 'mapbox://styles/pinky-pig/clgc32u1e004g01n2bitvj86a',
 //   mapDarkStyle = 'mapbox://styles/pinky-pig/clft35kll000o01osk8svnlfg',
 // }
+
+// 默认壁纸
+export const defaultImageUrl =
+    "https://s3.bmp.ovh/imgs/2025/07/19/7b8405ee444d930d.jpg";

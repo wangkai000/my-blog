@@ -85,7 +85,7 @@ onActivated(() => {
     <main
         id="blog-root"
         style="font-family: LXGW WenKai Screen R"
-        class="relative z-[1] mx-auto max-w-[760px] w-full rounded-[10px] border-unset bg-transparent px-2 pt-[10px] text-start md:border md:border-[var(--blog--border)] md:border-solid md:bg-[var(--blog-bg)] md:p-10 md:px-[36px]"
+        class="relative z-[1] mx-auto max-w-[760px] w-full rounded-[10px] border-unset bg-[var(--blog-bg)] px-4 md:px-2 pt-[10px] text-start md:border md:border-[var(--blog--border)] md:border-solid md:p-10"
     >
         <ClientOnly v-if="frontmatter.plum">
             <Plum />

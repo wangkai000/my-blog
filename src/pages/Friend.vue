@@ -154,6 +154,13 @@ const friends = ref([
         url: "http://snows-l.site",
         avatarFailed: false,
     },
+    {
+        title: "POETIZE",
+        description: "这是一个 Vue2 Vue3 与 SpringBoot 结合的产物～",
+        avatar: "https://s1.ax1x.com/2022/11/10/z9E7X4.jpg",
+        url: "https://poetize.cn",
+        avatarFailed: false,
+    },
 ]);
 
 // 我的网站信息

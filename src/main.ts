@@ -10,6 +10,7 @@ import "@shikijs/twoslash/style-rich.css";
 import "shiki-magic-move/style.css";
 import type { UserModule } from "./types";
 import "./styles/global.css";
+import { backgroundTool, getCurrentWallpaper } from "./utils/backgroundHandler";
 
 const routes = autoRoutes.map((i: { path: string }) => {
     return {
@@ -20,7 +21,7 @@ const routes = autoRoutes.map((i: { path: string }) => {
 
 // 判断字符串是否包含中文
 function hasChinese(str: string) {
-    return /[\u4E00-\u9FA5]+/g.test(str);
+    return /[\u4E00-\u9FA5]+/.test(str);
 }
 
 // https://github.com/antfu/vite-ssg
@@ -80,3 +81,7 @@ export const createApp = ViteSSG(
         // ctx.app.use(createRouter({ history: createWebHistory(), routes}))
     },
 );
+
+backgroundTool.set({
+    imageUrl: getCurrentWallpaper().url,
+});
