@@ -53,17 +53,16 @@ const navFilter: NavItem = [
     target: '_self',
   },
   {
-    label: '友链',
-    route: '/friend',
-    icon: '🔗',
-    children: [],
-    title: '友情链接',
-    target: '_self',
-  },
-  {
     label: '更多',
     icon: '✨',
     children: [
+      {
+        label: '友链',
+        route: '/friend',
+        icon: '🔗',
+        title: '友情链接',
+        target: '_self',
+      },
       {
         label: '资源收录',
         route: '/record',
@@ -110,7 +109,7 @@ let hideTimer: NodeJS.Timeout | null = null
 
 // 导航项样式配置
 const navItemOptions = {
-  width: 95,
+  width: 100,
   height: 36,
   padding: 8,
 }
@@ -325,7 +324,7 @@ watch(
           @mouseenter="handleSubmenuMouseEnter(index)"
           @mouseleave="handleSubmenuMouseLeave(index)"
         >
-          <span class="mr-1.5 text-lg">{{ item.icon }}</span>
+          <span class="mr-1.5 ">{{ item.icon }}</span>
           {{ item.label }}
           <span
             v-if="item.children.length > 0"
@@ -354,7 +353,7 @@ watch(
               ]"
               @click="navigateTo(child)"
             >
-              <span class="mr-1.5 text-lg">{{ child.icon }}</span>
+              <span class="mr-1.5 ">{{ child.icon }}</span>
               {{ child.label }}
             </div>
           </div>
@@ -383,7 +382,7 @@ watch(
             "
             @click="toggleMoreMenu"
           >
-            <span class="mr-1.5 text-lg">{{ item.icon }}</span>
+            <span class="mr-1.5 ">{{ item.icon }}</span>
             {{ item.label }}
             <span
               class="ml-2 submenu-icon transition-transform duration-300"
@@ -414,7 +413,9 @@ watch(
                 ]"
                 @click="navigateTo(child)"
               >
-                <span class="mr-1.5 text-lg">{{ child.icon }}</span>
+                <span class="mr-1.5 ">{{
+                  child.icon
+                }}</span>
                 {{ child.label }}
               </div>
             </div>
@@ -428,7 +429,9 @@ watch(
   <div id="mobile-nav" class="nav-container">
     <div class="flex justify-end items-center p-3">
       <div class="cursor-pointer" @click="mobileNavClick">
-        <span class="text-xl text-white">{{ mobileNavBool ? "✕" : "☰" }}</span>
+        <span class="text-xl text-white">{{
+          mobileNavBool ? "✕" : "☰"
+        }}</span>
       </div>
     </div>
   </div>
@@ -450,7 +453,7 @@ watch(
       <div
         class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center"
       >
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+        <h3 class=" font-semibold text-gray-800 dark:text-white">
           天渺studio的小站
         </h3>
         <button @click="mobileNavClickHide">
@@ -507,7 +510,9 @@ watch(
               @click="navigateTo(child)"
             >
               <span class="mr-2">{{ child.icon }}</span>
-              <span class="text-gray-700 dark:text-white">{{ child.label }}</span>
+              <span class="text-gray-700 dark:text-white">{{
+                child.label
+              }}</span>
             </div>
           </div>
         </div>

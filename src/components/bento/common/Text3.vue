@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 
-const backgroundUrl = ref("https://s21.ax1x.com/2025/06/22/pVZaYzF.jpg");
+const backgroundUrl = ref("https://s21.ax1x.com/2025/07/22/pV84sC4.jpg");
 </script>
 
 <template>

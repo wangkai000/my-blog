@@ -161,6 +161,13 @@ const friends = ref([
         url: "https://poetize.cn",
         avatarFailed: false,
     },
+    {
+        title: "唐志远",
+        description: "立志成为一名架构师",
+        avatar: "https://bu.dusays.com/2022/05/02/626f92e193879.jpg",
+        url: "https://fe32.top/",
+        avatarFailed: false,
+    },
 ]);
 
 // 我的网站信息
