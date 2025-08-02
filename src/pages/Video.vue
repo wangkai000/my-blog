@@ -98,6 +98,14 @@ const videos: Video[] = [
         reason: "枫丹音乐鉴赏...",
         tags: ["音乐"],
     },
+    {
+        bvid: "BV1Bb4y1t7y3",
+        title: "假如我生活在前苏联，我能玩什么电子游戏？",
+        author: "33不是山山",
+        url: "https://www.bilibili.com/video/BV1Bb4y1t7y3",
+        reason: "苏联的仿制机本打算试一下自己编游戏的，结果发现不行，没修好本来还打算去买苏联的主机游戏看下的，然后发现没钱买，穷成狗了，属于是破防...",
+        tags: ["社会人文"],
+    },
 ];
 
 // 状态管理

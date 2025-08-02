@@ -1,22 +1,22 @@
 {
-  "name": "getUser",
-  "version": "1.0.0",
-  "description": "netlify functions:create - scheduled function in TypeScript",
-  "main": "getUser.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "netlify",
-    "serverless",
-    "typescript",
-    "schedule"
-  ],
-  "author": "Netlify",
-  "license": "MIT",
-  "dependencies": {
-    "@netlify/functions": "^3.0.4",
-    "@types/node": "^22.0.0",
-    "typescript": "^4.5.5"
-  }
+    "name": "getUser",
+    "version": "1.0.0",
+    "description": "netlify functions:create - scheduled function in TypeScript",
+    "main": "getUser.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "netlify",
+        "serverless",
+        "typescript",
+        "schedule"
+    ],
+    "author": "Netlify",
+    "license": "MIT",
+    "dependencies": {
+        "@netlify/functions": "^3.0.4",
+        "@types/node": "^22.0.0",
+        "typescript": "^4.5.5"
+    }
 }
