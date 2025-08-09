@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { registerGiscus } from '~/utils/giscus'
 
-// 友情链接数据 - 包含新提供的三条数据
 // 友情链接数据
 const friends = ref([
   {
@@ -206,46 +205,40 @@ const friends = ref([
     avatarFailed: false,
   },
 ])
-
 // 我的网站信息
 const mySite = ref({
   title: '天渺studio',
   description: '天渺工作室的小站',
   url: 'https://tianmiao.site',
   avatar: 'https://s21.ax1x.com/2024/12/22/pAXtJat.jpg',
+  rss: 'https://blog.tianmiao.site/feed.xml',
 })
 
-// 复制状态管理
+// 复制JSON功能
 const isCopied = ref(false)
-
-// 复制JSON内容
 function copyJson() {
   const jsonStr = JSON.stringify(mySite.value, null, 2)
   navigator.clipboard.writeText(jsonStr).then(() => {
     isCopied.value = true
-    setTimeout(() => {
-      isCopied.value = false
-    }, 2000)
+    setTimeout(() => isCopied.value = false, 2000)
   })
 }
 
-// 头像加载完成处理
+// 头像加载处理
 function handleAvatarLoad(friend: any) {
   friend.avatarLoaded = true
-  const imgElement = document.querySelector(`img[src="${friend.avatar}"]`)
-  if (imgElement) {
-    imgElement.classList.add('opacity-100')
-  }
+  const img = document.querySelector(`img[src="${friend.avatar}"]`)
+  if (img)
+    img.classList.add('opacity-100')
 }
 
-// 头像加载失败处理
 function handleAvatarError(friend: any) {
   friend.avatarFailed = true
   friend.avatarLoaded = false
 }
 
+// 评论区
 const giscusRootRef = ref<HTMLElement | null>(null)
-
 watchOnce(giscusRootRef, (root) => {
   if (root && root instanceof HTMLElement)
     registerGiscus(root)
@@ -257,9 +250,7 @@ watchOnce(giscusRootRef, (root) => {
     <div class="mx-auto max-w-6xl px-4 py-8">
       <!-- 标题区域 -->
       <div class="mb-10 text-center">
-        <h1
-          class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2"
-        >
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">
           友情链接
         </h1>
         <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -267,25 +258,22 @@ watchOnce(giscusRootRef, (root) => {
         </p>
       </div>
 
-      <!-- 友情链接网格 - 统一卡片高度 -->
-      <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6 mb-16"
-      >
+      <!-- 友情链接网格 -->
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6 mb-16">
         <a
           v-for="(friend, index) in friends"
           :key="index"
           :href="friend.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="friend-card group flex flex items-center rounded-xl bg-white dark:bg-gray-800 p-4 shadow-sm shadow-sm transition-all duration-200 border border-gray-100 dark:border-gray-700"
-          :style="{ minHeight: '120px' }"
+          class="friend-card group flex items-center rounded-xl bg-white dark:bg-gray-800 p-4 shadow-sm transition-all duration-200 border border-gray-100 dark:border-gray-700"
         >
-          <!-- 头像容器（带加载效果） -->
-          <div class="relative flex-shrink-0">
-            <!-- 头像骨架屏（加载中显示） -->
+          <!-- 头像容器 -->
+          <div class="relative flex-shrink-0 avatar-container">
+            <!-- 骨架屏（加载中） -->
             <div
               v-if="!friend.avatarLoaded && !friend.avatarFailed"
-              class="avatar-skeleton h-12 w-12 rounded-full md:h-16 md:w-16 border-2 border-blue-100 dark:border-gray-700 animate-pulse"
+              class="avatar-skeleton rounded-full border-2 border-blue-100 dark:border-gray-700 animate-pulse"
             />
 
             <!-- 实际头像 -->
@@ -293,53 +281,37 @@ watchOnce(giscusRootRef, (root) => {
               v-if="!friend.avatarFailed"
               :src="friend.avatar"
               :alt="friend.title"
-              class="h-12 w-12 rounded-full object-cover md:h-16 md:w-16 border-2 border-blue-100 dark:border-gray-700 opacity-0 transition-opacity duration-500"
+              class="avatar-image rounded-full object-cover border-2 border-blue-100 dark:border-gray-700 opacity-0 transition-opacity duration-500"
               loading="lazy"
-              :width="48"
-              :height="48"
               @load="handleAvatarLoad(friend)"
               @error="handleAvatarError(friend)"
             >
 
-            <!-- 头像加载失败时显示的图标 -->
+            <!-- 加载失败占位符 -->
             <div
               v-else
-              class="avatar-fallback h-12 w-12 rounded-full md:h-16 md:w-16 border-2 border-blue-100 dark:border-gray-700 flex items-center justify-center bg-blue-50 dark:bg-gray-700"
+              class="avatar-fallback rounded-full border-2 border-blue-100 dark:border-gray-700 flex items-center justify-center bg-blue-50 dark:bg-gray-700"
             >
-              <Icon
-                icon="mdi:link-variant"
-                class="text-blue-400 dark:text-blue-300 text-2xl"
-              />
+              <Icon icon="mdi:link-variant" class="text-blue-400 dark:text-blue-300 text-2xl" />
             </div>
           </div>
 
           <div class="ml-4 flex-1 flex flex-col justify-center">
-            <h2
-              class="text-lg font-medium text-gray-800 dark:text-gray-100 md:text-xl"
-            >
+            <h2 class="text-lg font-medium text-gray-800 dark:text-gray-100 md:text-xl">
               {{ friend.title }}
             </h2>
-            <p
-              class="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 flex-grow"
-            >
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 flex-grow">
               {{ friend.description || "暂无描述" }}
             </p>
           </div>
         </a>
       </div>
 
-      <!-- 互换友链区块（深色JSON代码块） -->
-      <div
-        class="friend-request-card p-6 md:p-8 mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 border border-blue-100 dark:border-gray-700 rounded-xl shadow-sm"
-      >
+      <!-- 互换友链区块 -->
+      <div class="friend-request-card p-6 md:p-8 mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 border border-blue-100 dark:border-gray-700 rounded-xl shadow-sm">
         <div class="flex-1">
-          <h2
-            class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center"
-          >
-            <Icon
-              icon="mdi:handshake"
-              class="mr-3 text-blue-500 text-2xl"
-            />
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+            <Icon icon="mdi:handshake" class="mr-3 text-blue-500 text-2xl" />
             互换友链
           </h2>
 
@@ -347,20 +319,13 @@ watchOnce(giscusRootRef, (root) => {
             欢迎互换友链！以下是本站信息：
           </p>
 
-          <!-- 深色JSON代码块展示区域 -->
+          <!-- JSON代码块 -->
           <div class="relative rounded-xl overflow-hidden mb-6 group">
-            <!-- 代码块头部 -->
-            <div
-              class="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700"
-            >
+            <div class="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
               <div class="flex space-x-2">
                 <div class="w-3 h-3 rounded-full bg-red-500" />
-                <div
-                  class="w-3 h-3 rounded-full bg-yellow-500"
-                />
-                <div
-                  class="w-3 h-3 rounded-full bg-green-500"
-                />
+                <div class="w-3 h-3 rounded-full bg-yellow-500" />
+                <div class="w-3 h-3 rounded-full bg-green-500" />
               </div>
               <div class="flex items-center">
                 <span class="text-gray-400 text-sm mr-2">site-info.json</span>
@@ -369,59 +334,38 @@ watchOnce(giscusRootRef, (root) => {
                   :title="isCopied ? '已复制' : '复制'"
                   @click="copyJson"
                 >
-                  <Icon
-                    :icon="
-                      isCopied
-                        ? 'mdi:check'
-                        : 'mdi:content-copy'
-                    "
-                    class="w-4 h-4"
-                  />
+                  <Icon :icon="isCopied ? 'mdi:check' : 'mdi:content-copy'" class="w-4 h-4" />
                 </button>
               </div>
             </div>
-
-            <!-- JSON内容区域 -->
-            <div
-              class="bg-gray-900 p-4 md:p-6 font-mono text-sm md:text-base overflow-x-auto"
-            >
+            <div class="bg-gray-900 p-4 md:p-6 font-mono text-sm md:text-base overflow-x-auto">
               <pre class="text-gray-300 leading-relaxed m-0">
 <span class="text-blue-400">{</span>
   <span class="text-yellow-300">"title"</span>: <span class="text-green-400">"{{ mySite.title }}"</span>,
   <span class="text-yellow-300">"description"</span>: <span class="text-green-400">"{{ mySite.description }}"</span>,
   <span class="text-yellow-300">"url"</span>: <span class="text-green-400">"{{ mySite.url }}"</span>,
   <span class="text-yellow-300">"avatar"</span>: <span class="text-green-400">"{{ mySite.avatar }}"</span>
+  <span class="text-yellow-300">"RSS"</span>: <span class="text-green-400">"{{ mySite.rss }}"</span>
 <span class="text-blue-400">}</span>
               </pre>
             </div>
           </div>
 
-          <h3
-            class="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center"
-          >
-            <Icon
-              icon="mdi:check-circle"
-              class="mr-2 text-blue-500"
-            />
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
+            <Icon icon="mdi:check-circle" class="mr-2 text-blue-500" />
             互换要求：
           </h3>
           <div class="space-y-3">
             <div class="flex items-center">
-              <span
-                class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3"
-              >1</span>
+              <span class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3">1</span>
               <span class="text-gray-700 dark:text-gray-300">网站需部署 HTTPS</span>
             </div>
             <div class="flex items-center">
-              <span
-                class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3"
-              >2</span>
+              <span class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3">2</span>
               <span class="text-gray-700 dark:text-gray-300">网站长期维护，内容积极健康</span>
             </div>
             <div class="flex items-center">
-              <span
-                class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3"
-              >3</span>
+              <span class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3">3</span>
               <span class="text-gray-700 dark:text-gray-300">申请前请将本网站添加为友链</span>
             </div>
           </div>
@@ -429,35 +373,20 @@ watchOnce(giscusRootRef, (root) => {
       </div>
 
       <!-- 讨论区 -->
-      <div
-        class="comment-section overflow-hidden border border-gray-200 dark:border-gray-700 rounded-xl"
-      >
-        <div
-          class="comment-header p-4 md:p-6 bg-gray-50 dark:bg-gray-800"
-        >
+      <div class="comment-section overflow-hidden border border-gray-200 dark:border-gray-700 rounded-xl">
+        <div class="comment-header p-4 md:p-6 bg-gray-50 dark:bg-gray-800">
           <div class="flex items-center">
-            <div
-              class="discuss-icon w-12 h-12 rounded-full flex items-center justify-center mr-3 bg-gradient-to-r from-blue-500 to-indigo-600"
-            >
-              <Icon
-                icon="mdi:forum"
-                class="text-white text-2xl"
-              />
+            <div class="discuss-icon w-12 h-12 rounded-full flex items-center justify-center mr-3 bg-gradient-to-r from-blue-500 to-indigo-600">
+              <Icon icon="mdi:forum" class="text-white text-2xl" />
             </div>
             <div>
-              <h3
-                class="text-xl font-bold text-gray-800 dark:text-white"
-              >
+              <h3 class="text-xl font-bold text-gray-800 dark:text-white">
                 友链申请讨论区
               </h3>
             </div>
           </div>
         </div>
-
-        <!-- GitHub评论组件容器 -->
-        <div
-          class="github-comments-container bg-white dark:bg-gray-900 p-6 min-h-[300px] flex items-center justify-center"
-        >
+        <div class="github-comments-container bg-white dark:bg-gray-900 p-6 min-h-[300px] flex items-center justify-center">
           <div class="text-center">
             <div id="giscusRoot" ref="giscusRootRef" />
           </div>
@@ -468,7 +397,7 @@ watchOnce(giscusRootRef, (root) => {
 </template>
 
 <style scoped>
-/* 自定义行数限制 */
+/* 基础样式 */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -477,14 +406,10 @@ watchOnce(giscusRootRef, (root) => {
 }
 
 .friend-card {
+  min-height: 120px;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-}
-
-/* 统一卡片高度，避免内容过少导致的高度不一致 */
-.friend-card {
-  min-height: 120px; /* 基础高度，可根据需要调整 */
 }
 
 .friend-card:hover {
@@ -497,53 +422,60 @@ watchOnce(giscusRootRef, (root) => {
   background-color: rgba(30, 41, 59, 0.5);
 }
 
-.requirement-badge {
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border: 1px solid #bbf7d0;
-  color: #15803d;
+/* 头像容器（关键修复） */
+.avatar-container {
+  width: 48px;
+  height: 48px;
+  /* 确保容器不会被内容撑开 */
+  overflow: hidden;
+  position: relative;
 }
 
-.dark .requirement-badge {
-  background: linear-gradient(135deg, #1a3a2c 0%, #1c4a34 100%);
-  border: 1px solid #2d7a5a;
-  color: #bbf7d0;
+/* 头像相关元素统一样式 */
+.avatar-skeleton,
+.avatar-image,
+.avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: block; /* 消除行内元素间隙 */
+  object-fit: cover; /* 图片自适应 */
 }
 
-.discuss-icon {
-  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
-}
-
-/* 头像加载样式 */
+/* 骨架屏 */
 .avatar-skeleton {
   background-color: #e5e7eb;
 }
-
 .dark .avatar-skeleton {
   background-color: #374151;
 }
 
+/* 头像图片（修复加载显示） */
+.avatar-image {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  /* 确保图片可点击（a标签内） */
+  pointer-events: none;
+}
+/* 加载完成后显示 */
+.avatar-image.opacity-100 {
+  opacity: 1;
+}
+
+/* 加载失败占位符 */
 .avatar-fallback {
   background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
 }
-
 .dark .avatar-fallback {
   background: linear-gradient(135deg, #1a2d3e 0%, #1a2844 100%);
-}
-
-.friend-card:hover .avatar-fallback {
-  border-color: #3b82f6;
-  transform: scale(1.05);
 }
 
 /* 加载动画 */
 .animate-pulse {
   animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-
 @keyframes pulse {
   0%,
   100% {
@@ -554,11 +486,25 @@ watchOnce(giscusRootRef, (root) => {
   }
 }
 
-/* JSON代码块样式 */
+/* 其他样式（保持不变） */
+.requirement-badge {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+.dark .requirement-badge {
+  background: linear-gradient(135deg, #1a3a2c 0%, #1c4a34 100%);
+  border: 1px solid #2d7a5a;
+  color: #bbf7d0;
+}
+
+.discuss-icon {
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+}
+
 pre {
   tab-size: 2;
 }
-
 .text-blue-400 {
   color: #60a5fa;
 }
@@ -572,20 +518,21 @@ pre {
   color: #d1d5db;
 }
 
-/* 响应式调整 */
+/* 响应式 */
 @media (max-width: 768px) {
+  .friend-card {
+    min-height: 100px;
+  }
   .friend-request-card {
     padding: 1.5rem;
-  }
-  .comment-section {
-    margin-top: 1rem;
-  }
-  .friend-card {
-    min-height: 100px; /* 移动端稍低的高度 */
   }
 }
 
 @media (min-width: 769px) {
+  .avatar-container {
+    width: 64px;
+    height: 64px;
+  }
   :deep(.giscus) iframe {
     width: 560px;
     min-height: 150px;
