@@ -1,0 +1,1 @@
+import{A as s,r as a,o as e,g as t,G as r,b as n,I as o}from"../assets/index-D89HlP09.js";const u=s({},[["render",function(s,u){const d=a("RouterView");return e(),t(o,null,{default:r((()=>[n(d)])),_:1})}]]);export{u as default};

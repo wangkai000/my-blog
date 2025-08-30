@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, watch } from "vue";
 
-// 深色模式状态
 const isDark = useDark();
 // 初始化深色模式状态
 onMounted(() => {
-    // 检查系统偏好设置
-    const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-    ).matches;
-    document.documentElement.classList.toggle("dark", prefersDark);
+    // 根据系统偏好设置设置 documentElement 的 class
+    if (isDark.value) {
+        document.documentElement.classList.add("dark");
+    } else {
+        document.documentElement.classList.remove("dark");
+    }
 });
 </script>
 
