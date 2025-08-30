@@ -1,1 +1,0 @@
-import{d as s,o as a,g as e,G as t,e as l,b as d,a3 as o,I as n,A as c}from"../assets/index-D89HlP09.js";const u={class:"mx-auto block min-h-screen w-full flex items-center justify-center px-6"},f=c(s({__name:"Blog",setup:s=>(s,c)=>(a(),e(n,null,{default:t((()=>[l("div",u,[d(o)])])),_:1}))}),[["__scopeId","data-v-5d5d923a"]]);export{f as default};

@@ -1,1 +1,0 @@
-import{d as a,a8 as s,ab as t,t as e,f as o}from"../assets/index-D89HlP09.js";const n=a({__name:"Vote",async setup(a){let n,r;const{data:d}=([n,r]=s((()=>t("/api/vote"))),n=await n,r(),n);return(a,s)=>e(o(d))}});export{n as default};
