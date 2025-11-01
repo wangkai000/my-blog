@@ -408,7 +408,7 @@ export function getCurrentWallpaper(): Wallpaper {
           description: '终于可以卸下疲惫，好好享受夜晚啦',
         },
         {
-          url: 'https://s3.bmp.ovh/imgs/2025/08/09/d6e8f0d156fe9439.jpg',
+          url: 'https://s3.bmp.ovh/imgs/2025/09/21/fb9c34dac9d7435f.jpg',
           description: '周末前夜的天空，连星星都提前开始庆祝',
         },
       ],
