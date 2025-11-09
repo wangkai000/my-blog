@@ -253,7 +253,7 @@ async function typeSentence1() {
             </a>
             <!-- Email -->
             <a
-                title="GitHub"
+                title="Email"
                 class="detail-arrow"
                 :href="SITE.mail"
                 target="_blank"

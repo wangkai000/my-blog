@@ -1,55 +1,78 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, h, onMounted, ref } from "vue";
+import { NAvatar, NNotificationProvider, useNotification } from "naive-ui";
+import { Icon } from "@iconify/vue";
 
-// 定义组件属性
+// 1. 先定义接口（关键修复：必须在 withDefaults 之前）
 interface Props {
     message?: string;
     gradient?: string;
+    duration?: number; // 通知显示时长(毫秒)
+    icon?: string; // 可自定义图标
 }
 
+// 2. 再使用接口定义 props（顺序修复）
 const props = withDefaults(defineProps<Props>(), {
-    message: "公告：来自远方的朋友,你好呀！",
+    message: "来自远方的朋友,你好呀！",
     gradient: "from-blue-500 to-indigo-600",
+    duration: 3000,
+    meta: "2025-5-27 15:11",
+    icon: "mdi:bell-outline",
 });
+
+// 初始化通知实例
+const notification = useNotification();
 
 // 响应式状态
-const showModal = ref(false);
 const showExpandIndicator = ref(false);
+const isNotifying = ref(false);
 
-// 计算渐变类
-const gradientClass = computed(() => {
-    return `bg-gradient-to-br ${props.gradient}`;
-});
+// 计算渐变样式
+const gradientClass = computed(() => `bg-gradient-to-br ${props.gradient}`);
 
-// 打开模态框
-function openModal() {
-    showModal.value = true;
-    // 阻止背景滚动
-    document.body.style.overflow = "hidden";
+// 显示推送通知
+function showNotice() {
+    if (isNotifying.value) return;
+    isNotifying.value = true;
+
+    const notice = notification.create({
+        title: "公告",
+        // description: 'From the Beach Boys',
+        content: props.message,
+        meta: props.meta,
+        duration: 0,
+        closable: true,
+        avatar: () =>
+            h(NAvatar, {
+                size: "small",
+                round: true,
+                src: "/logo.png",
+            }),
+        onClose: () => {
+            isNotifying.value = false;
+        },
+    });
+
+    // 自动关闭
+    setTimeout(() => {
+        notice.destroy();
+        isNotifying.value = false;
+    }, props.duration);
 }
 
-// 关闭模态框
-function closeModal() {
-    showModal.value = false;
-    // 恢复背景滚动
-    document.body.style.overflow = "";
-}
-
-// 检测是否需要显示展开指示器
+// 检测展开提示
 onMounted(() => {
-    // 简单检测：如果消息超过30个字符，显示展开指示器
     showExpandIndicator.value = props.message.length > 30;
 });
 </script>
 
 <template>
-    <ShadowCard class="!p-[5px]">
+    <ShadowCard class="!p-[5px] cursor-pointer" @click="showNotice">
         <div class="relative w-full h-full">
             <!-- 公告卡片 -->
             <div
-                class="announcement-box relative overflow-hidden cursor-pointer"
+                class="announcement-box relative overflow-hidden"
                 :class="gradientClass"
-                @click="openModal"
             >
                 <!-- 装饰元素 -->
                 <div
@@ -77,7 +100,7 @@ onMounted(() => {
                     </p>
                 </div>
 
-                <!-- 查看更多提示 -->
+                <!-- 查看提示 -->
                 <div
                     v-if="showExpandIndicator"
                     class="absolute bottom-3 left-0 right-0 z-20 flex justify-center"
@@ -85,93 +108,14 @@ onMounted(() => {
                     <div
                         class="flex items-center px-3 py-1 bg-black/20 backdrop-blur-sm rounded-full animate-pulse"
                     >
-                        <span class="text-xs text-white/90 mr-1"
-                            >点击查看更多</span
-                        >
-                        <i class="fas fa-expand-alt text-white text-xs" />
+                        <span class="text-xs text-white/90 mr-1">点击查看</span>
+                        <Icon
+                            icon="ic:round-chevron-right"
+                            class="text-white text-xs"
+                        />
                     </div>
                 </div>
             </div>
-
-            <!-- 模态框 - 全局居中 -->
-            <teleport to="body">
-                <transition name="modal">
-                    <div
-                        v-if="showModal"
-                        class="fixed inset-0 z-[100] flex items-center justify-center p-4"
-                        @click.self="closeModal"
-                    >
-                        <div class="modal-overlay fixed inset-0" />
-                        <div
-                            class="modal-content relative z-10 bg-white rounded-2xl w-full max-w-2xl flex flex-col shadow-2xl"
-                        >
-                            <!-- 模态框头部 -->
-                            <div
-                                class="p-5 border-b flex items-center justify-between"
-                            >
-                                <div class="flex items-center">
-                                    <div
-                                        class="w-9 h-9 rounded-full flex items-center justify-center mr-3"
-                                        :class="gradientClass"
-                                    >
-                                        <i
-                                            class="fas fa-bullhorn text-white text-sm"
-                                        />
-                                    </div>
-                                    <h3 class="text-xl font-bold text-gray-800">
-                                        网站公告
-                                    </h3>
-                                </div>
-                                <button
-                                    class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors"
-                                    @click="closeModal"
-                                >
-                                    <i class="fas fa-times" />
-                                </button>
-                            </div>
-
-                            <!-- 模态框内容 -->
-                            <div
-                                class="p-6 flex-grow overflow-y-auto max-h-[70vh]"
-                            >
-                                <p
-                                    class="text-gray-700 leading-relaxed whitespace-pre-wrap"
-                                >
-                                    {{ message }}
-                                </p>
-
-                                <div
-                                    v-if="message.length > 500"
-                                    class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-100 flex items-start"
-                                >
-                                    <i
-                                        class="fas fa-info-circle text-blue-500 mt-1 mr-2"
-                                    />
-                                    <p class="text-sm text-blue-700">
-                                        以上是完整的公告内容，您可以滚动查看更多信息
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- 模态框底部 -->
-                            <div class="p-5 border-t flex justify-end">
-                                <button
-                                    class="px-5 py-2.5 rounded-lg hover:opacity-90 transition-opacity flex items-center shadow-md"
-                                    :class="gradientClass"
-                                    @click="closeModal"
-                                >
-                                    <i
-                                        class="fas fa-check-circle mr-2 text-white"
-                                    />
-                                    <span class="text-white font-medium"
-                                        >我知道了</span
-                                    >
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </transition>
-            </teleport>
         </div>
     </ShadowCard>
 </template>
@@ -195,7 +139,6 @@ onMounted(() => {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* 文字遮罩效果 */
 .text-fade {
     mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
@@ -217,44 +160,7 @@ onMounted(() => {
     z-index: 1;
 }
 
-/* 模态框样式 */
-.modal-overlay {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-}
-
-.modal-content {
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* 模态框动画 */
-.modal-enter-active,
-.modal-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-    opacity: 0;
-}
-
-.modal-enter-active .modal-content,
-.modal-leave-active .modal-content {
-    transition:
-        transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-        opacity 0.4s ease;
-}
-
-.modal-enter-from .modal-content,
-.modal-leave-to .modal-content {
-    transform: translateY(20px) scale(0.95);
-    opacity: 0;
-}
-
-/* 查看更多提示动画 */
+/* 动画 */
 @keyframes pulse {
     0%,
     100% {

@@ -27,7 +27,7 @@ export const SITE = {
     profileContent:
         "我是kai，曾创过业。喜欢 Vue、React、Android、Flutter、Nodejs。目前在从事Node全栈，Android开发的工作。",
     keywords: "kai, Blog, 前端, Vue, 博客",
-    cv: "404",
+    cv: "https://cv.tianmiao.site",
     justin: "https://juejin.cn/user/1169536102179325/posts",
     mail: "mailto:1071231288@qq.com",
     homePage: "/",

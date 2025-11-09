@@ -688,11 +688,20 @@ const resources = ref<any[][]>([
     '专业的中文区块链技术博客,技术问答社区,区块链视频,系统区块链技术的最佳网站。',
     'https://learnblockchain.cn/',
     ['Web3.0'],
-    'https://learnblockchain.cn//favicon.ico',
-    gradients[8],
+    'https://learnblockchain.cn/favicon.ico',
+    gradients[2],
     false,
   ],
-
+  [
+    69,
+    'Magic UI',
+    '一个很酷的UI库',
+    'https://magicui.design/',
+    ['UI组件库'],
+    'https://magicui.design/favicon.ico',
+    gradients[3],
+    false,
+  ],
 ])
 
 // 当前选中的标签

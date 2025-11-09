@@ -1,1 +1,0 @@
-import{d as s,o as a,g as e,G as t,e as l,b as o,a3 as d,I as c,A as n}from"../assets/app-Dm_z91Ia.js";const p={class:"mx-auto block min-h-screen w-full flex items-center justify-center px-6"},u=n(s({__name:"Blog",setup:s=>(s,n)=>(a(),e(c,null,{default:t((()=>[l("div",p,[o(d)])])),_:1}))}),[["__scopeId","data-v-5d5d923a"]]);export{u as default};
