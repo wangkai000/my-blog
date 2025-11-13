@@ -212,6 +212,22 @@ const friends = ref([
     url: 'https://www.qzq.at/',
     avatarFailed: false,
   },
+  {
+    title: 'Dale',
+    description:
+            'Wir müssen wissen ! Wir werden wissen !',
+    avatar: 'https://picscdn.dalechu.cn/dale_avt.png',
+    url: 'https://www.dalechu.cn',
+    avatarFailed: false,
+  },
+  {
+    title: '小鹿的个人网站',
+    description:
+            '跳吧，在无比宏大的星系！',
+    avatar: 'https://www.siena.zone/favicon_compressed.png',
+    url: 'https://www.siena.zone',
+    avatarFailed: false,
+  },
 ])
 // 我的网站信息
 const mySite = ref({
