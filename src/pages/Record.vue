@@ -702,6 +702,26 @@ const resources = ref<any[][]>([
     gradients[3],
     false,
   ],
+  [
+    70,
+    'AITOP100大赛平台',
+    'AITOP100大赛平台专注人工智能工具导航与AI赛事资讯 ',
+    'https://www.aitop100.cn',
+    ['AI', '导航'],
+    'https://www.aitop100.cn/favicon.ico',
+    gradients[4],
+    false,
+  ],
+  [
+    71,
+    '区块链网址导航',
+    '这里收录了全世界最优质区块链以及各类钱包和交易所网址，包括比特币交易平台网址，数字货币网址... ',
+    'https://www.coinnavs.com/',
+    ['Web3.0'],
+    'https://www.coinnavs.com/wp-content/uploads/2024/05/1c0fc288cf6678d-32x32.png',
+    gradients[5],
+    false,
+  ],
 ])
 
 // 当前选中的标签

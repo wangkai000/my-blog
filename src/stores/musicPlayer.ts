@@ -7,7 +7,7 @@ export const useMusicPlayerStore = defineStore('musicPlayer', () => {
   const currentTrack = ref(0)
   const volume = ref(0.5)
 
-  // 音乐列表 - 使用网络音乐链接
+  // 音乐列表 - 使用本地音乐文件
   const tracks = ref([
     {
       title: '甘露花海',
@@ -19,16 +19,16 @@ export const useMusicPlayerStore = defineStore('musicPlayer', () => {
       artist: '陈致逸/HOYO-MiX',
       url: '/music/_陈致逸HOYOMiX云海之上AbovetheSeaofClouds.mp3',
     },
-    // {
-    //   title: '永恒绿洲-媲美原版的翻唱（人声+竖琴+长笛）',
-    //   artist: '翔宇Tristan',
-    //   url: 'https://m704.music.126.net/20251116150017/a29b6018f540362701795194d0a28d30/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/25283889809/093f/a4bc/bc89/cd1ff39a51b72c34341a8541753aabed.m4a?vuutv=/cRNzqCndzDdf2FlHE7BrOOywPCZFoJIAy2Ry6FhJb/a9UE4WyVOF8wbYPWb90Z8TO4ik4UFKDHVJidDzXOgfQtWJkcdVlRMkimIihYFlpM=&authSecret=0000019a8b6005fd1b310a3b1dce16c3',
-    // },
-    // {
-    //   title: '时暮的思眷',
-    //   artist: 'HOYO-MiX',
-    //   url: 'https://m804.music.126.net/20251116144956/3a5348a8861514fac8298c84df148b3d/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/30605255274/a072/4965/99c6/61d6f4735d687855dd335a24241444b7.m4a?vuutv=GZL1++1X9dQ+B/osxjapIN61kTgygl7yaAS6y4S2QAKFlyFb3Hi1RQ23C4vZwpCuGkkSTIbSpp4TqSnnmDUwUIPT9jIvb0zFPaY/B498nRo=&authSecret=0000019a8b568b3215490aaf623e0006',
-    // },
+    {
+      title: '永恒绿洲-媲美原版的翻唱（人声+竖琴+长笛）',
+      artist: '翔宇Tristan',
+      url: '/music/_翔宇Tristan永恒绿洲-媲美原版的翻唱（人声+竖琴+长笛）.mp3',
+    },
+    {
+      title: '时暮的思眷',
+      artist: 'HOYO-MiX',
+      url: '/music/_HOYOMiX时暮的思眷.mp3',
+    },
   ])
 
   // Howler实例
