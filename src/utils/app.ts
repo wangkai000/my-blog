@@ -1,5 +1,6 @@
 import { SITE } from "~/config";
 import "~/components/normal/lit-components";
+import { onMounted } from "vue";
 
 export function AppSetup() {
     onMounted(() => {

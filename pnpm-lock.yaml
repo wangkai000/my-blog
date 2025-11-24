@@ -77,6 +77,9 @@ importers:
       typed.js:
         specifier: ^2.1.0
         version: 2.1.0
+      update-notify-js:
+        specifier: ~1.1.0
+        version: 1.1.0
       v3-bento:
         specifier: latest
         version: 0.0.2-alpha.6.19
@@ -6108,6 +6111,9 @@ packages:
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
+
+  update-notify-js@1.1.0:
+    resolution: {integrity: sha512-WUwEiy3THdTRSLyMkEQfKhNhCyn3FapQQCUo9p4YnFs7ZFlZGVhpML8ZMVy2ugTtwu7dpCf9eul/O3XM2PdmEw==}
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -13203,6 +13209,8 @@ snapshots:
       browserslist: 4.23.2
       escalade: 3.1.2
       picocolors: 1.0.1
+
+  update-notify-js@1.1.0: {}
 
   uri-js@4.4.1:
     dependencies:

@@ -46,6 +46,7 @@
     "shiki-magic-move": "^0.3.7",
     "three": "^0.163.0",
     "typed.js": "^2.1.0",
+    "update-notify-js": "~1.1.0",
     "v3-bento": "latest",
     "vue": "^3.4.23",
     "vue-demi": "^0.14.7",

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { NNotificationProvider } from 'naive-ui'
-import { AppSetup } from './utils/app'
+import { NNotificationProvider } from "naive-ui";
+import { AppSetup } from "./utils/app";
 
-AppSetup()
+AppSetup();
 </script>
 
 <template>
-  <NNotificationProvider>
-    <RouterView />
-  </NNotificationProvider>
+    <NNotificationProvider>
+        <RouterView />
+    </NNotificationProvider>
 </template>

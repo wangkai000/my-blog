@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, h, onMounted, ref } from "vue";
-import { NAvatar, NNotificationProvider, useNotification } from "naive-ui";
+// 导入naive-ui的默认导出，然后解构出需要的组件和函数
+import { NAvatar, useNotification } from "naive-ui";
 import { Icon } from "@iconify/vue";
 
 // 1. 先定义接口（关键修复：必须在 withDefaults 之前）

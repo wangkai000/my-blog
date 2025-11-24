@@ -5,6 +5,10 @@ import { setupLayouts } from "virtual:generated-layouts";
 import autoRoutes from "pages-generated";
 import NProgress from "nprogress";
 import { setupRouterScroller } from "vue-router-better-scroller";
+import {
+    type UpdateNotifierOptions,
+    createUpdateNotifier,
+} from "update-notify-js";
 import App from "./App.vue";
 import "@shikijs/twoslash/style-rich.css";
 import "shiki-magic-move/style.css";
@@ -85,3 +89,17 @@ export const createApp = ViteSSG(
 backgroundTool.set({
     imageUrl: getCurrentWallpaper().url,
 });
+
+// 仅生产环境和客户端启用
+if (import.meta.env.PROD && typeof window !== "undefined") {
+    const options: UpdateNotifierOptions = {
+        pollingInterval: 60000,
+        immediate: true,
+        //   notifyType: 'confirm',
+        promptMessage: "发现新版本，是否立即刷新？",
+        onDetected: () => {
+            //   console.log('检测到新版本')
+        },
+    };
+    createUpdateNotifier(options);
+}
