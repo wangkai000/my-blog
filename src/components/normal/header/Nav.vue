@@ -34,7 +34,7 @@ const navFilter: NavItem[] = [
             },
             {
                 label: "随笔",
-                route: "https://blog.tianmiao.site",
+                route: "https://notes.tianmiao.site",
                 title: "随笔杂谈",
                 target: "_self",
                 icon: "😴",
