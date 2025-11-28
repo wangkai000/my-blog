@@ -1,0 +1,666 @@
+import { I as t } from "./iconify-DqZr0ymk.js";
+import { r as a } from "./giscus-Du40nkAs.js";
+import {
+    d as e,
+    i as r,
+    $ as s,
+    o as l,
+    c as i,
+    e as o,
+    F as n,
+    m as d,
+    b as c,
+    f as p,
+    v,
+    t as g,
+    U as u,
+    y as m,
+    z as x,
+    q as h,
+    A as b,
+} from "../assets/app-C1iy-c1N.js";
+import "./dark-DZf-Ed9p.js";
+const w = (t) => (m("data-v-c741537a"), (t = t()), x(), t),
+    y = { class: "min-h-screen" },
+    f = { class: "mx-auto max-w-6xl px-4 py-8" },
+    k = w(() =>
+        o(
+            "div",
+            { class: "mb-10 text-center" },
+            [
+                o(
+                    "h1",
+                    {
+                        class: "text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2",
+                    },
+                    " 友情链接 ",
+                ),
+                o(
+                    "p",
+                    {
+                        class: "text-gray-600 dark:text-gray-300 max-w-2xl mx-auto",
+                    },
+                    " 与志同道合的朋友们一起分享知识和经验 ",
+                ),
+            ],
+            -1,
+        ),
+    ),
+    F = {
+        class: "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6 mb-16",
+    },
+    q = ["href"],
+    j = { class: "relative flex-shrink-0 avatar-container" },
+    z = {
+        key: 0,
+        class: "avatar-skeleton rounded-full border-2 border-blue-100 dark:border-gray-700 animate-pulse",
+    },
+    L = ["src", "alt", "onLoad", "onError"],
+    _ = {
+        key: 2,
+        class: "avatar-fallback rounded-full border-2 border-blue-100 dark:border-gray-700 flex items-center justify-center bg-blue-50 dark:bg-gray-700",
+    },
+    S = { class: "ml-4 flex-1 flex flex-col justify-center" },
+    A = {
+        class: "text-lg font-medium text-gray-800 dark:text-gray-100 md:text-xl",
+    },
+    E = {
+        class: "mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 flex-grow",
+    },
+    I = {
+        class: "friend-request-card p-6 md:p-8 mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 border border-blue-100 dark:border-gray-700 rounded-xl shadow-sm",
+    },
+    M = { class: "flex-1" },
+    W = {
+        class: "text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center",
+    },
+    T = w(() =>
+        o(
+            "p",
+            { class: "text-gray-700 dark:text-gray-300 mb-6" },
+            " 欢迎互换友链！以下是本站信息： ",
+            -1,
+        ),
+    ),
+    B = { class: "relative rounded-xl overflow-hidden mb-6 group" },
+    H = {
+        class: "bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700",
+    },
+    G = w(() =>
+        o(
+            "div",
+            { class: "flex space-x-2" },
+            [
+                o("div", { class: "w-3 h-3 rounded-full bg-red-500" }),
+                o("div", { class: "w-3 h-3 rounded-full bg-yellow-500" }),
+                o("div", { class: "w-3 h-3 rounded-full bg-green-500" }),
+            ],
+            -1,
+        ),
+    ),
+    J = { class: "flex items-center" },
+    O = w(() =>
+        o(
+            "span",
+            { class: "text-gray-400 text-sm mr-2" },
+            "site-info.json",
+            -1,
+        ),
+    ),
+    P = ["title"],
+    R = {
+        class: "bg-gray-900 p-4 md:p-6 font-mono text-sm md:text-base overflow-x-auto",
+    },
+    N = { class: "text-gray-300 leading-relaxed m-0" },
+    V = w(() => o("span", { class: "text-blue-400" }, "{", -1)),
+    Z = w(() => o("span", { class: "text-yellow-300" }, '"title"', -1)),
+    C = { class: "text-green-400" },
+    K = w(() => o("span", { class: "text-yellow-300" }, '"description"', -1)),
+    Q = { class: "text-green-400" },
+    U = w(() => o("span", { class: "text-yellow-300" }, '"url"', -1)),
+    X = { class: "text-green-400" },
+    Y = w(() => o("span", { class: "text-yellow-300" }, '"avatar"', -1)),
+    $ = { class: "text-green-400" },
+    D = w(() => o("span", { class: "text-yellow-300" }, '"RSS"', -1)),
+    tt = { class: "text-green-400" },
+    at = w(() => o("span", { class: "text-blue-400" }, "}", -1)),
+    et = {
+        class: "text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center",
+    },
+    rt = u(
+        '<div class="space-y-3" data-v-c741537a><div class="flex items-center" data-v-c741537a><span class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3" data-v-c741537a>1</span><span class="text-gray-700 dark:text-gray-300" data-v-c741537a>网站需部署 HTTPS</span></div><div class="flex items-center" data-v-c741537a><span class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3" data-v-c741537a>2</span><span class="text-gray-700 dark:text-gray-300" data-v-c741537a>网站长期维护，内容积极健康</span></div><div class="flex items-center" data-v-c741537a><span class="requirement-badge px-3 py-1 rounded-full text-sm font-medium mr-3" data-v-c741537a>3</span><span class="text-gray-700 dark:text-gray-300" data-v-c741537a>申请前请将本网站添加为友链</span></div></div>',
+        1,
+    ),
+    st = {
+        class: "comment-section overflow-hidden border border-gray-200 dark:border-gray-700 rounded-xl",
+    },
+    lt = { class: "comment-header p-4 md:p-6 bg-gray-50 dark:bg-gray-800" },
+    it = { class: "flex items-center" },
+    ot = {
+        class: "discuss-icon w-12 h-12 rounded-full flex items-center justify-center mr-3 bg-gradient-to-r from-blue-500 to-indigo-600",
+    },
+    nt = w(() =>
+        o(
+            "div",
+            null,
+            [
+                o(
+                    "h3",
+                    {
+                        class: "text-xl font-bold text-gray-800 dark:text-white",
+                    },
+                    " 友链申请讨论区 ",
+                ),
+            ],
+            -1,
+        ),
+    ),
+    dt = {
+        class: "github-comments-container bg-white dark:bg-gray-900 p-6 min-h-[300px] flex items-center justify-center",
+    },
+    ct = { class: "text-center" },
+    pt = b(
+        e({
+            __name: "Friend",
+            setup(e) {
+                const u = r([
+                        {
+                            title: "十年之约",
+                            description:
+                                "一个人的寂寞，一群人的狂欢。十年之约是一个记录、展示独立博客的平台，即从加入这个活动起，我们的博客10年不关闭或者更久，保持更新和活力。把博客从爱好变成一种习惯，坚持10年，是一项很有意义的活动，我们希望更多的博主加入！",
+                            avatar: "https://www.foreverblog.cn/favicon.ico",
+                            url: "https://www.foreverblog.cn/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "dev-zuo",
+                            description: "dev-zuo 技术日常",
+                            avatar: "http://food.zuo11.com/logo.png",
+                            url: "http://www.zuo11.com/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "博客录",
+                            description: "一个个人博客收集平台",
+                            avatar: "https://boke.lu/博客录新图标透明底圆底(1).png",
+                            url: "https://boke.lu/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "有余",
+                            description: "手执烟火以谋生,心怀诗意至远方~",
+                            avatar: "https://image.dongping.link/imageupload/3022db7803924133aeed921cb73822c9.png",
+                            url: "https://dongping.link",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "Zkeq",
+                            description: "永远安定于美好事物",
+                            avatar: "https://img.onmicrosoft.cn/Avatar.jpg",
+                            url: "https://icodeq.com/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "张洪Heo",
+                            description: "分享设计与科技生活",
+                            avatar: "https://img.zhheo.com/i/67d8fa75943e4.webp",
+                            url: "https://blog.zhheo.com/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "echeverra",
+                            description: "let's go, together!",
+                            avatar: "https://echeverra.cn/favicon.jpg",
+                            url: "https://echeverra.cn",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "宇阳",
+                            description: "记录所学知识，缩短和大神的差距！",
+                            avatar: "https://q1.qlogo.cn/g?b=qq&nk=3311118881&s=640",
+                            url: "https://liuyuyang.net",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "Nibbles 尼布",
+                            description: "向着终生成长者迈进！",
+                            avatar: "https://studio.nibbles.cn/avatar.jpg",
+                            url: "https://nibbles.cn/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "Minsp·隅",
+                            description: "在纷扰中寻得宁静，于思索里洞察真意。",
+                            avatar: "https://img.minsp.org/images/2024/public/logo.jpeg",
+                            url: " https://www.minsp.org",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "小张的个人博客",
+                            description:
+                                "比起有一百个朋友，不如有个比一百人还要重要的真心朋友。",
+                            avatar: "http://img.mrzym.top/FsjKJtHwnWCvmbk9V4MWcZrSKhm-",
+                            url: "http://mrzym.top/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "WQG",
+                            description: "A SIMPLE BLOG.",
+                            avatar: "https://cdn.wqg.life/common/logo.jpg",
+                            url: "https://wqg.life/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "拾光",
+                            description: "给未来写封信,愿你未来不负所期",
+                            avatar: "https://www.timeletters.cn/favicon.ico",
+                            url: "https://www.timeletters.cn/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "MoyuqLのBlog",
+                            description: "MoyquL与你同在~",
+                            avatar: "https://bu.dusays.com/2023/07/29/64c4f45ee421b.jpg",
+                            url: "https://blog.moyuql.top",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "leorain",
+                            description:
+                                "一个对技术和生活充满热爱的文艺型技术青年~",
+                            avatar: "https://www.leorain.cn/images/logo.png",
+                            url: "https://www.leorain.cn",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "I Am I",
+                            description: "永远相信美好的事情即将发生",
+                            avatar: "https://cdn.jsdelivr.net/gh/5ime/img/avatar.jpg",
+                            url: "https://5ime.cn",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "慕雪的寒舍",
+                            description: "爱折腾的代码初学者",
+                            avatar: "https://blog.musnow.top/favicon.jpg",
+                            url: "https://blog.musnow.top/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "snows_l's BLOG",
+                            description: "渔得鱼心满意足，樵得樵眼笑眉舒！",
+                            avatar: "https://q1.qlogo.cn/g?b=qq&nk=37523953&s=640",
+                            url: "http://snows-l.site",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "POETIZE",
+                            description:
+                                "这是一个 Vue2 Vue3 与 SpringBoot 结合的产物～",
+                            avatar: "https://s1.ax1x.com/2022/11/10/z9E7X4.jpg",
+                            url: "https://poetize.cn",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "唐志远",
+                            description: "立志成为一名架构师",
+                            avatar: "https://bu.dusays.com/2022/05/02/626f92e193879.jpg",
+                            url: "https://fe32.top/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: " Levi's space",
+                            description:
+                                "一个有意思的Blog，工作记录，日常分享，欢迎访问",
+                            avatar: "https://i.postimg.cc/cJmdWqkn/Snipaste-2024-04-24-16-54-57.png",
+                            url: "https://leviqin.top",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "Yeppioo",
+                            description: "梦想成为庄稼地里的读书人.....",
+                            avatar: "https://blog.yeppioo.vip/static/img/avatar.png",
+                            url: "https://blog.yeppioo.vip/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "Anyeの小站",
+                            description: "Always Nurturing Your Enthusiasm",
+                            avatar: "https://www.anye.xyz/upload/Anye-logo-white.webp",
+                            url: "https://www.anye.xyz/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "泽若",
+                            description: "酌贪泉而觉爽，处涸辙以犹欢。",
+                            avatar: "https://www.zeruo.net/wp-content/uploads/2025/07/1753778958-IMG_7458.jpeg",
+                            url: "https://www.zeruo.net",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "我不是咕咕鸽",
+                            description:
+                                "定期分享一些好玩的东西，包括但不局限于服务器、Web3等相关知识。",
+                            avatar: "https://gao.ee/gugu",
+                            url: "https://blog.laoda.de",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "数字游牧人（大佬）",
+                            description: "数字游牧人samuel的博客",
+                            avatar: "https://www.qzq.at/Hero.jpeg",
+                            url: "https://www.qzq.at/",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "Dale",
+                            description:
+                                "Wir müssen wissen ! Wir werden wissen !",
+                            avatar: "https://picscdn.dalechu.cn/dale_avt.png",
+                            url: "https://www.dalechu.cn",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "小鹿的个人网站",
+                            description: "跳吧，在无比宏大的星系！",
+                            avatar: "https://www.siena.zone/favicon_compressed.png",
+                            url: "https://www.siena.zone",
+                            avatarFailed: !1,
+                        },
+                        {
+                            title: "若海の技术写真",
+                            description: "一个全栈攻城狮的纯技术干货分享",
+                            avatar: "https://www.rehiy.com/logo.png",
+                            url: "https://www.rehiy.com",
+                            avatarFailed: !1,
+                        },
+                    ]),
+                    m = r({
+                        title: "天渺studio",
+                        description: "天渺工作室的小站",
+                        url: "https://tianmiao.site",
+                        avatar: "https://s21.ax1x.com/2024/12/22/pAXtJat.jpg",
+                        rss: "https://blog.tianmiao.site/feed.xml",
+                    }),
+                    x = r(!1);
+                function b() {
+                    const t = JSON.stringify(m.value, null, 2);
+                    navigator.clipboard.writeText(t).then(() => {
+                        ((x.value = !0), setTimeout(() => (x.value = !1), 2e3));
+                    });
+                }
+                const w = r(null);
+                return (
+                    s(w, (t) => {
+                        t && t instanceof HTMLElement && a(t);
+                    }),
+                    (a, e) => (
+                        l(),
+                        i("div", y, [
+                            o("div", f, [
+                                k,
+                                o("div", F, [
+                                    (l(!0),
+                                    i(
+                                        n,
+                                        null,
+                                        d(
+                                            u.value,
+                                            (a, e) => (
+                                                l(),
+                                                i(
+                                                    "a",
+                                                    {
+                                                        key: e,
+                                                        href: a.url,
+                                                        target: "_blank",
+                                                        rel: "noopener noreferrer",
+                                                        class: "friend-card group flex items-center rounded-xl bg-white dark:bg-gray-800 p-4 shadow-sm transition-all duration-200 border border-gray-100 dark:border-gray-700",
+                                                    },
+                                                    [
+                                                        o("div", j, [
+                                                            a.avatarLoaded ||
+                                                            a.avatarFailed
+                                                                ? h("", !0)
+                                                                : (l(),
+                                                                  i("div", z)),
+                                                            a.avatarFailed
+                                                                ? (l(),
+                                                                  i("div", _, [
+                                                                      c(p(t), {
+                                                                          icon: "mdi:link-variant",
+                                                                          class: "text-blue-400 dark:text-blue-300 text-2xl",
+                                                                      }),
+                                                                  ]))
+                                                                : (l(),
+                                                                  i(
+                                                                      "img",
+                                                                      {
+                                                                          key: 1,
+                                                                          src: a.avatar,
+                                                                          alt: a.title,
+                                                                          class: "avatar-image rounded-full object-cover border-2 border-blue-100 dark:border-gray-700 opacity-0 transition-opacity duration-500",
+                                                                          loading:
+                                                                              "lazy",
+                                                                          onLoad: (
+                                                                              t,
+                                                                          ) =>
+                                                                              (function (
+                                                                                  t,
+                                                                              ) {
+                                                                                  t.avatarLoaded =
+                                                                                      !0;
+                                                                                  const a =
+                                                                                      document.querySelector(
+                                                                                          `img[src="${t.avatar}"]`,
+                                                                                      );
+                                                                                  a &&
+                                                                                      a.classList.add(
+                                                                                          "opacity-100",
+                                                                                      );
+                                                                              })(
+                                                                                  a,
+                                                                              ),
+                                                                          onError:
+                                                                              (
+                                                                                  t,
+                                                                              ) =>
+                                                                                  (function (
+                                                                                      t,
+                                                                                  ) {
+                                                                                      ((t.avatarFailed =
+                                                                                          !0),
+                                                                                          (t.avatarLoaded =
+                                                                                              !1));
+                                                                                  })(
+                                                                                      a,
+                                                                                  ),
+                                                                      },
+                                                                      null,
+                                                                      40,
+                                                                      L,
+                                                                  )),
+                                                        ]),
+                                                        o("div", S, [
+                                                            o(
+                                                                "h2",
+                                                                A,
+                                                                g(a.title),
+                                                                1,
+                                                            ),
+                                                            o(
+                                                                "p",
+                                                                E,
+                                                                g(
+                                                                    a.description ||
+                                                                        "暂无描述",
+                                                                ),
+                                                                1,
+                                                            ),
+                                                        ]),
+                                                    ],
+                                                    8,
+                                                    q,
+                                                )
+                                            ),
+                                        ),
+                                        128,
+                                    )),
+                                ]),
+                                o("div", I, [
+                                    o("div", M, [
+                                        o("h2", W, [
+                                            c(p(t), {
+                                                icon: "mdi:handshake",
+                                                class: "mr-3 text-blue-500 text-2xl",
+                                            }),
+                                            v(" 互换友链 "),
+                                        ]),
+                                        T,
+                                        o("div", B, [
+                                            o("div", H, [
+                                                G,
+                                                o("div", J, [
+                                                    O,
+                                                    o(
+                                                        "button",
+                                                        {
+                                                            class: "text-gray-400 hover:text-white transition-colors p-1",
+                                                            title: x.value
+                                                                ? "已复制"
+                                                                : "复制",
+                                                            onClick: b,
+                                                        },
+                                                        [
+                                                            c(
+                                                                p(t),
+                                                                {
+                                                                    icon: x.value
+                                                                        ? "mdi:check"
+                                                                        : "mdi:content-copy",
+                                                                    class: "w-4 h-4",
+                                                                },
+                                                                null,
+                                                                8,
+                                                                ["icon"],
+                                                            ),
+                                                        ],
+                                                        8,
+                                                        P,
+                                                    ),
+                                                ]),
+                                            ]),
+                                            o("div", R, [
+                                                o("pre", N, [
+                                                    v(""),
+                                                    V,
+                                                    v("\n  "),
+                                                    Z,
+                                                    v(": "),
+                                                    o(
+                                                        "span",
+                                                        C,
+                                                        '"' +
+                                                            g(m.value.title) +
+                                                            '"',
+                                                        1,
+                                                    ),
+                                                    v(",\n  "),
+                                                    K,
+                                                    v(": "),
+                                                    o(
+                                                        "span",
+                                                        Q,
+                                                        '"' +
+                                                            g(
+                                                                m.value
+                                                                    .description,
+                                                            ) +
+                                                            '"',
+                                                        1,
+                                                    ),
+                                                    v(",\n  "),
+                                                    U,
+                                                    v(": "),
+                                                    o(
+                                                        "span",
+                                                        X,
+                                                        '"' +
+                                                            g(m.value.url) +
+                                                            '"',
+                                                        1,
+                                                    ),
+                                                    v(",\n  "),
+                                                    Y,
+                                                    v(": "),
+                                                    o(
+                                                        "span",
+                                                        $,
+                                                        '"' +
+                                                            g(m.value.avatar) +
+                                                            '"',
+                                                        1,
+                                                    ),
+                                                    v("\n  "),
+                                                    D,
+                                                    v(": "),
+                                                    o(
+                                                        "span",
+                                                        tt,
+                                                        '"' +
+                                                            g(m.value.rss) +
+                                                            '"',
+                                                        1,
+                                                    ),
+                                                    v("\n"),
+                                                    at,
+                                                    v("\n              "),
+                                                ]),
+                                            ]),
+                                        ]),
+                                        o("h3", et, [
+                                            c(p(t), {
+                                                icon: "mdi:check-circle",
+                                                class: "mr-2 text-blue-500",
+                                            }),
+                                            v(" 互换要求： "),
+                                        ]),
+                                        rt,
+                                    ]),
+                                ]),
+                                o("div", st, [
+                                    o("div", lt, [
+                                        o("div", it, [
+                                            o("div", ot, [
+                                                c(p(t), {
+                                                    icon: "mdi:forum",
+                                                    class: "text-white text-2xl",
+                                                }),
+                                            ]),
+                                            nt,
+                                        ]),
+                                    ]),
+                                    o("div", dt, [
+                                        o("div", ct, [
+                                            o(
+                                                "div",
+                                                {
+                                                    id: "giscusRoot",
+                                                    ref_key: "giscusRootRef",
+                                                    ref: w,
+                                                },
+                                                null,
+                                                512,
+                                            ),
+                                        ]),
+                                    ]),
+                                ]),
+                            ]),
+                        ])
+                    )
+                );
+            },
+        }),
+        [["__scopeId", "data-v-c741537a"]],
+    );
+export { pt as default };

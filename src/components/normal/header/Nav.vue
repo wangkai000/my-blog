@@ -6,13 +6,13 @@ import { Icon } from "@iconify/vue";
 // 导航菜单配置（新增target属性：_self当前页，_blank新标签页）
 interface NavItem {
     label: string;
-    route: string;
+    route?: string;
     icon: string;
-    children?: NavItem[]; // 可选属性，支持无子菜单的项
+    children: NavItem[]; // 必须有children属性
     title?: string; // 可选属性
     target?: "" | "_self" | "_blank"; // 可选属性，默认 ''
 }
-const navFilter: NavItem = [
+const navFilter: NavItem[] = [
     {
         label: "首页",
         route: "/",
@@ -22,11 +22,26 @@ const navFilter: NavItem = [
     },
     {
         label: "文章",
-        route: "https://blog.tianmiao.site",
         icon: "📝",
-        children: [],
+        children: [
+            {
+                label: "技术文章",
+                route: "https://blog.tianmiao.site",
+                title: "技术博客",
+                target: "_self",
+                icon: "📝",
+                children: [],
+            },
+            {
+                label: "随笔",
+                route: "https://blog.tianmiao.site",
+                title: "非技术文章",
+                target: "_self",
+                icon: "💭",
+                children: [],
+            },
+        ],
         title: "我的文章",
-        target: "_self",
     },
     {
         label: "动态",
@@ -65,24 +80,28 @@ const navFilter: NavItem = [
                 route: "/friend",
                 icon: "🔗",
                 title: "友情链接",
+                children: [],
             },
             {
                 label: "资源收录",
                 route: "/record",
                 icon: "📚",
                 title: "资源收录库",
+                children: [],
             },
             {
                 label: "视频推荐",
                 route: "/video",
                 icon: "⏯️",
                 title: "精选视频",
+                children: [],
             },
             {
                 label: "每日名言",
                 route: "/sentence",
                 icon: "💬",
                 title: "每日一句",
+                children: [],
             },
             {
                 label: "Web3.0",
@@ -247,16 +266,7 @@ function closeAllMenus() {
     if (hideTimer) clearTimeout(hideTimer);
 }
 
-// 关闭更多菜单
-function closeMenu() {
-    moreMenuOpen.value = false;
-    isHovered.value = false;
-    if (!clickToggle.value) {
-        // 如果不是点击打开的，才清空标记
-        clickToggle.value = false;
-    }
-    if (hideTimer) clearTimeout(hideTimer);
-}
+// 移动端导航菜单收起
 
 // 更新激活状态
 function updateActiveState(path: string) {
@@ -334,7 +344,7 @@ watch(
                     {{ item.label }}
                     <span
                         v-if="item.children.length > 0"
-                        class="ml-1/3 submenu-icon transition-transform duration-300"
+                        class="ml-2 submenu-icon transition-transform duration-300"
                         :class="{ 'rotate-180': submenuOpenMap[index] }"
                         >▼</span
                     >
@@ -349,11 +359,11 @@ watch(
                 >
                     <div class="flex flex-col items-start p-2">
                         <div
-                            v-for="(child, childIndex) in item.children"
+                            v-for="child in item?.children || []"
                             :key="child.label"
                             class="option-item w-full py-2 px-3 rounded-md cursor-pointer transition-all duration-200 flex items-center text-gray-600 dark:text-gray-300"
                             :class="[
-                                getActiveIndex(child.route) ===
+                                getActiveIndex(child.route || '') ===
                                 currentActiveIndex
                                     ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 active'
                                     : '',
@@ -362,6 +372,15 @@ watch(
                         >
                             <span class="mr-1.5">{{ child.icon }}</span>
                             {{ child.label }}
+                            <!-- 外部链接标识 -->
+                            <span
+                                v-if="
+                                    child.route &&
+                                    /^https?:\/\//.test(child.route)
+                                "
+                                class="ml-auto w-4 h-4 opacity-70 flex items-center justify-center"
+                                >⤴</span
+                            >
                         </div>
                     </div>
                 </div>
@@ -410,11 +429,11 @@ watch(
 
                         <div class="flex flex-col items-start p-2">
                             <div
-                                v-for="(child, childIndex) in item.children"
+                                v-for="child in item?.children || []"
                                 :key="child.label"
                                 class="option-item w-full py-2 px-3 rounded-md cursor-pointer transition-all duration-200 flex items-center text-gray-600 dark:text-gray-300"
                                 :class="[
-                                    getActiveIndex(child.route) ===
+                                    getActiveIndex(child.route || '') ===
                                     currentActiveIndex
                                         ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 active'
                                         : '',
@@ -423,6 +442,15 @@ watch(
                             >
                                 <span class="mr-1.5">{{ child.icon }}</span>
                                 {{ child.label }}
+                                <!-- 外部链接标识 -->
+                                <span
+                                    v-if="
+                                        child.route &&
+                                        /^https?:\/\//.test(child.route)
+                                    "
+                                    class="ml-auto w-4 h-4 opacity-70 flex items-center justify-center"
+                                    >⤴</span
+                                >
                             </div>
                         </div>
                     </div>
@@ -508,12 +536,12 @@ watch(
                         class="pl-8 py-2"
                     >
                         <div
-                            v-for="(child, childIndex) in item.children"
+                            v-for="child in item?.children || []"
                             :key="child.label"
                             class="flex items-center py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
                             :class="{
                                 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20':
-                                    getActiveIndex(child.route) ===
+                                    getActiveIndex(child.route || '') ===
                                     currentActiveIndex,
                             }"
                             @click="navigateTo(child)"
@@ -522,6 +550,15 @@ watch(
                             <span class="text-gray-700 dark:text-white">{{
                                 child.label
                             }}</span>
+                            <!-- 外部链接标识 -->
+                            <span
+                                v-if="
+                                    child.route &&
+                                    /^https?:\/\//.test(child.route)
+                                "
+                                class="ml-auto w-4 h-4 opacity-70 flex items-center justify-center"
+                                >⤴</span
+                            >
                         </div>
                     </div>
                 </div>

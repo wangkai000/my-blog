@@ -73,7 +73,7 @@ const posts = ref([
         author: defaultAuthor,
         timestamp: 1764074400000, // 2小时前
         location: "深圳大鹏新区坝光白沙湾",
-        content: "三水线徒步路线挑战结束，只完成了80%",
+        content: "三水线徒步路线挑战结束，只完成了85%",
         images: [
             "https://s21.ax1x.com/2025/11/23/pZktM0H.jpg",
             "https://s21.ax1x.com/2025/11/23/pZktKne.jpg",

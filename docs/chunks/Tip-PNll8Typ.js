@@ -1,0 +1,568 @@
+import { U as e } from "./ShadowCard-CjdMbykC.js";
+import { I as o } from "./iconify-DqZr0ymk.js";
+import {
+    aV as r,
+    a3 as t,
+    aN as n,
+    b1 as a,
+    aP as s,
+    bc as l,
+    aK as i,
+    bd as d,
+    aR as c,
+    d as u,
+    aU as v,
+    i as f,
+    a4 as g,
+    j as b,
+    be as h,
+    aX as p,
+    k as m,
+    N as x,
+    O as y,
+    w as z,
+    ab as O,
+    bf as j,
+    bg as F,
+    b5 as C,
+    o as k,
+    g as S,
+    G as B,
+    e as R,
+    n as w,
+    t as L,
+    c as P,
+    b as T,
+    f as E,
+    q as $,
+    y as M,
+    z as _,
+    A as H,
+} from "../assets/app-C1iy-c1N.js";
+import { o as A, a as I, r as N, b as U } from "./utils-F5OOw9cw.js";
+const V = {
+    color: Object,
+    type: { type: String, default: "default" },
+    round: Boolean,
+    size: { type: String, default: "medium" },
+    closable: Boolean,
+    disabled: { type: Boolean, default: void 0 },
+};
+Object.assign(Object.assign(Object.assign({}, r.props), V), {
+    bordered: { type: Boolean, default: void 0 },
+    checked: Boolean,
+    checkable: Boolean,
+    strong: Boolean,
+    triggerClickOnClose: Boolean,
+    onClose: [Array, Function],
+    onMouseenter: Function,
+    onMouseleave: Function,
+    "onUpdate:checked": Function,
+    onUpdateChecked: Function,
+    internalCloseFocusable: { type: Boolean, default: !0 },
+    internalCloseIsButtonTag: { type: Boolean, default: !0 },
+    onCheckedChange: Function,
+});
+const W = t("n-tag");
+const X = {
+        name: "Avatar",
+        common: n,
+        self: function (e) {
+            const {
+                borderRadius: o,
+                avatarColor: r,
+                cardColor: t,
+                fontSize: n,
+                heightTiny: s,
+                heightSmall: l,
+                heightMedium: i,
+                heightLarge: d,
+                heightHuge: c,
+                modalColor: u,
+                popoverColor: v,
+            } = e;
+            return {
+                borderRadius: o,
+                fontSize: n,
+                border: `2px solid ${t}`,
+                heightTiny: s,
+                heightSmall: l,
+                heightMedium: i,
+                heightLarge: d,
+                heightHuge: c,
+                color: a(t, r),
+                colorModal: a(u, r),
+                colorPopover: a(v, r),
+            };
+        },
+    },
+    q = t("n-avatar-group"),
+    D = s(
+        "avatar",
+        "\n width: var(--n-merged-size);\n height: var(--n-merged-size);\n color: #FFF;\n font-size: var(--n-font-size);\n display: inline-flex;\n position: relative;\n overflow: hidden;\n text-align: center;\n border: var(--n-border);\n border-radius: var(--n-border-radius);\n --n-merged-color: var(--n-color);\n background-color: var(--n-merged-color);\n transition:\n border-color .3s var(--n-bezier),\n background-color .3s var(--n-bezier),\n color .3s var(--n-bezier);\n",
+        [
+            l(i("&", "--n-merged-color: var(--n-color-modal);")),
+            d(i("&", "--n-merged-color: var(--n-color-popover);")),
+            i("img", "\n width: 100%;\n height: 100%;\n "),
+            c(
+                "text",
+                "\n white-space: nowrap;\n display: inline-block;\n position: absolute;\n left: 50%;\n top: 50%;\n ",
+            ),
+            s(
+                "icon",
+                "\n vertical-align: bottom;\n font-size: calc(var(--n-merged-size) - 6px);\n ",
+            ),
+            c("text", "line-height: 1.25"),
+        ],
+    ),
+    G = u({
+        name: "Avatar",
+        props: Object.assign(Object.assign({}, r.props), {
+            size: [String, Number],
+            src: String,
+            circle: { type: Boolean, default: void 0 },
+            objectFit: String,
+            round: { type: Boolean, default: void 0 },
+            bordered: { type: Boolean, default: void 0 },
+            onError: Function,
+            fallbackSrc: String,
+            intersectionObserverOptions: Object,
+            lazy: Boolean,
+            onLoad: Function,
+            renderPlaceholder: Function,
+            renderFallback: Function,
+            imgProps: Object,
+            color: String,
+        }),
+        slots: Object,
+        setup(e) {
+            const { mergedClsPrefixRef: o, inlineThemeDisabled: t } = v(e),
+                n = f(!1);
+            let a = null;
+            const s = f(null),
+                l = f(null),
+                i = g(q, null),
+                d = b(() => {
+                    const { size: o } = e;
+                    if (o) return o;
+                    const { size: r } = i || {};
+                    return r || "medium";
+                }),
+                c = r("Avatar", "-avatar", D, X, e, o),
+                u = g(W, null),
+                O = b(() => {
+                    if (i) return !0;
+                    const { round: o, circle: r } = e;
+                    return void 0 !== o || void 0 !== r
+                        ? o || r
+                        : !!u && u.roundRef.value;
+                }),
+                j = b(() => !!i || e.bordered || !1),
+                F = b(() => {
+                    const o = d.value,
+                        r = O.value,
+                        t = j.value,
+                        { color: n } = e,
+                        {
+                            self: {
+                                borderRadius: a,
+                                fontSize: s,
+                                color: l,
+                                border: i,
+                                colorModal: u,
+                                colorPopover: v,
+                            },
+                            common: { cubicBezierEaseInOut: f },
+                        } = c.value;
+                    let g;
+                    return (
+                        (g =
+                            "number" == typeof o
+                                ? `${o}px`
+                                : c.value.self[h("height", o)]),
+                        {
+                            "--n-font-size": s,
+                            "--n-border": t ? i : "none",
+                            "--n-border-radius": r ? "50%" : a,
+                            "--n-color": n || l,
+                            "--n-color-modal": n || u,
+                            "--n-color-popover": n || v,
+                            "--n-bezier": f,
+                            "--n-merged-size": `var(--n-avatar-size-override, ${g})`,
+                        }
+                    );
+                }),
+                C = t
+                    ? p(
+                          "avatar",
+                          b(() => {
+                              const o = d.value,
+                                  r = O.value,
+                                  t = j.value,
+                                  { color: n } = e;
+                              let a = "";
+                              return (
+                                  o &&
+                                      (a +=
+                                          "number" == typeof o
+                                              ? `a${o}`
+                                              : o[0]),
+                                  r && (a += "b"),
+                                  t && (a += "c"),
+                                  n &&
+                                      (a += (function (e) {
+                                          return e.replace(
+                                              /#|\(|\)|,|\s|\./g,
+                                              "_",
+                                          );
+                                      })(n)),
+                                  a
+                              );
+                          }),
+                          F,
+                          e,
+                      )
+                    : void 0,
+                k = f(!e.lazy);
+            (m(() => {
+                if (e.lazy && e.intersectionObserverOptions) {
+                    let o;
+                    const r = x(() => {
+                        (null == o || o(),
+                            (o = void 0),
+                            e.lazy &&
+                                (o = A(
+                                    l.value,
+                                    e.intersectionObserverOptions,
+                                    k,
+                                )));
+                    });
+                    y(() => {
+                        (r(), null == o || o());
+                    });
+                }
+            }),
+                z(
+                    () => {
+                        var o;
+                        return (
+                            e.src ||
+                            (null === (o = e.imgProps) || void 0 === o
+                                ? void 0
+                                : o.src)
+                        );
+                    },
+                    () => {
+                        n.value = !1;
+                    },
+                ));
+            const S = f(!e.lazy);
+            return {
+                textRef: s,
+                selfRef: l,
+                mergedRoundRef: O,
+                mergedClsPrefix: o,
+                fitTextTransform: () => {
+                    const { value: e } = s;
+                    if (e && (null === a || a !== e.innerHTML)) {
+                        a = e.innerHTML;
+                        const { value: o } = l;
+                        if (o) {
+                            const { offsetWidth: r, offsetHeight: t } = o,
+                                { offsetWidth: n, offsetHeight: a } = e,
+                                s = 0.9,
+                                l = Math.min((r / n) * s, (t / a) * s, 1);
+                            e.style.transform = `translateX(-50%) translateY(-50%) scale(${l})`;
+                        }
+                    }
+                },
+                cssVars: t ? void 0 : F,
+                themeClass: null == C ? void 0 : C.themeClass,
+                onRender: null == C ? void 0 : C.onRender,
+                hasLoadError: n,
+                shouldStartLoading: k,
+                loaded: S,
+                mergedOnError: (o) => {
+                    if (!k.value) return;
+                    n.value = !0;
+                    const { onError: r, imgProps: { onError: t } = {} } = e;
+                    (null == r || r(o), null == t || t(o));
+                },
+                mergedOnLoad: (o) => {
+                    const { onLoad: r, imgProps: { onLoad: t } = {} } = e;
+                    (null == r || r(o), null == t || t(o), (S.value = !0));
+                },
+            };
+        },
+        render() {
+            var e, o;
+            const {
+                $slots: r,
+                src: t,
+                mergedClsPrefix: n,
+                lazy: a,
+                onRender: s,
+                loaded: l,
+                hasLoadError: i,
+                imgProps: d = {},
+            } = this;
+            let c;
+            null == s || s();
+            const u =
+                !l &&
+                !i &&
+                (this.renderPlaceholder
+                    ? this.renderPlaceholder()
+                    : null === (o = (e = this.$slots).placeholder) ||
+                        void 0 === o
+                      ? void 0
+                      : o.call(e));
+            return (
+                (c = this.hasLoadError
+                    ? this.renderFallback
+                        ? this.renderFallback()
+                        : I(r.fallback, () => [
+                              O("img", {
+                                  src: this.fallbackSrc,
+                                  style: { objectFit: this.objectFit },
+                              }),
+                          ])
+                    : N(r.default, (e) => {
+                          if (e)
+                              return O(
+                                  j,
+                                  { onResize: this.fitTextTransform },
+                                  {
+                                      default: () =>
+                                          O(
+                                              "span",
+                                              {
+                                                  ref: "textRef",
+                                                  class: `${n}-avatar__text`,
+                                              },
+                                              e,
+                                          ),
+                                  },
+                              );
+                          if (t || d.src) {
+                              const e = this.src || d.src;
+                              return O(
+                                  "img",
+                                  Object.assign(Object.assign({}, d), {
+                                      loading:
+                                          U &&
+                                          !this.intersectionObserverOptions &&
+                                          a
+                                              ? "lazy"
+                                              : "eager",
+                                      src:
+                                          a && this.intersectionObserverOptions
+                                              ? this.shouldStartLoading
+                                                  ? e
+                                                  : void 0
+                                              : e,
+                                      "data-image-src": e,
+                                      onLoad: this.mergedOnLoad,
+                                      onError: this.mergedOnError,
+                                      style: [
+                                          d.style || "",
+                                          { objectFit: this.objectFit },
+                                          u
+                                              ? {
+                                                    height: "0",
+                                                    width: "0",
+                                                    visibility: "hidden",
+                                                    position: "absolute",
+                                                }
+                                              : "",
+                                      ],
+                                  }),
+                              );
+                          }
+                      })),
+                O(
+                    "span",
+                    {
+                        ref: "selfRef",
+                        class: [`${n}-avatar`, this.themeClass],
+                        style: this.cssVars,
+                    },
+                    c,
+                    a && u,
+                )
+            );
+        },
+    });
+const K = (e) => (M("data-v-4cc30e68"), (e = e()), _(), e),
+    Q = { class: "relative w-full h-full" },
+    Y = K(() =>
+        R(
+            "div",
+            { class: "decorative-circle w-[60px] h-[60px] -top-4 -left-4" },
+            null,
+            -1,
+        ),
+    ),
+    J = K(() =>
+        R(
+            "div",
+            { class: "decorative-circle w-[40px] h-[40px] -bottom-3 -right-3" },
+            null,
+            -1,
+        ),
+    ),
+    Z = K(() =>
+        R(
+            "div",
+            {
+                class: "decorative-corner top-3 left-3 border-r-0 border-b-0 rounded-tl-[12px]",
+            },
+            null,
+            -1,
+        ),
+    ),
+    ee = K(() =>
+        R(
+            "div",
+            {
+                class: "decorative-corner bottom-3 right-3 border-l-0 border-t-0 rounded-br-[12px]",
+            },
+            null,
+            -1,
+        ),
+    ),
+    oe = {
+        class: "absolute inset-0 flex items-center justify-center p-4 z-10",
+    },
+    re = {
+        key: 0,
+        class: "absolute bottom-3 left-0 right-0 z-20 flex justify-center",
+    },
+    te = {
+        class: "flex items-center px-3 py-1 bg-black/20 backdrop-blur-sm rounded-full animate-pulse",
+    },
+    ne = K(() =>
+        R("span", { class: "text-xs text-white/90 mr-1" }, "点击查看", -1),
+    ),
+    ae = H(
+        u({
+            __name: "Tip",
+            props: {
+                message: { default: "来自远方的朋友,你好呀！" },
+                gradient: { default: "from-blue-500 to-indigo-600" },
+                duration: { default: 3e3 },
+                icon: { default: "mdi:bell-outline" },
+            },
+            setup(r) {
+                const t = r,
+                    n = (function () {
+                        const e = g(F, null);
+                        return (
+                            null === e &&
+                                C(
+                                    "use-notification",
+                                    "No outer `n-notification-provider` found.",
+                                ),
+                            e
+                        );
+                    })(),
+                    a = f(!1),
+                    s = f(!1),
+                    l = b(() => `bg-gradient-to-br ${t.gradient}`);
+                function i() {
+                    if (s.value) return;
+                    s.value = !0;
+                    const e = n.create({
+                        title: "公告",
+                        content: t.message,
+                        meta: t.meta,
+                        duration: 0,
+                        closable: !0,
+                        avatar: () =>
+                            O(G, {
+                                size: "small",
+                                round: !0,
+                                src: "/logo.png",
+                            }),
+                        onClose: () => {
+                            s.value = !1;
+                        },
+                    });
+                    setTimeout(() => {
+                        (e.destroy(), (s.value = !1));
+                    }, t.duration);
+                }
+                return (
+                    m(() => {
+                        a.value = t.message.length > 30;
+                    }),
+                    (r, t) => {
+                        const n = e;
+                        return (
+                            k(),
+                            S(
+                                n,
+                                {
+                                    class: "!p-[5px] cursor-pointer",
+                                    onClick: i,
+                                },
+                                {
+                                    default: B(() => [
+                                        R("div", Q, [
+                                            R(
+                                                "div",
+                                                {
+                                                    class: w([
+                                                        "announcement-box relative overflow-hidden",
+                                                        l.value,
+                                                    ]),
+                                                },
+                                                [
+                                                    Y,
+                                                    J,
+                                                    Z,
+                                                    ee,
+                                                    R("div", oe, [
+                                                        R(
+                                                            "p",
+                                                            {
+                                                                class: w([
+                                                                    "message text-white text-center font-medium leading-relaxed",
+                                                                    {
+                                                                        "text-fade":
+                                                                            a.value,
+                                                                    },
+                                                                ]),
+                                                            },
+                                                            L(r.message),
+                                                            3,
+                                                        ),
+                                                    ]),
+                                                    a.value
+                                                        ? (k(),
+                                                          P("div", re, [
+                                                              R("div", te, [
+                                                                  ne,
+                                                                  T(E(o), {
+                                                                      icon: "ic:round-chevron-right",
+                                                                      class: "text-white text-xs",
+                                                                  }),
+                                                              ]),
+                                                          ]))
+                                                        : $("", !0),
+                                                ],
+                                                2,
+                                            ),
+                                        ]),
+                                    ]),
+                                    _: 1,
+                                },
+                            )
+                        );
+                    }
+                );
+            },
+        }),
+        [["__scopeId", "data-v-4cc30e68"]],
+    );
+export { ae as default };

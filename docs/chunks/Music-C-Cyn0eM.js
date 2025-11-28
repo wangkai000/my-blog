@@ -1,0 +1,256 @@
+import { I as e } from "./iconify-DqZr0ymk.js";
+import { u as t } from "./musicPlayer-B76I5vQU.js";
+import {
+    d as a,
+    i as s,
+    k as l,
+    o as i,
+    c,
+    t as n,
+    q as r,
+    e as o,
+    f as u,
+    b as d,
+    n as v,
+    g as f,
+    v as h,
+    s as m,
+    y as b,
+    z as k,
+    A as p,
+} from "../assets/app-C1iy-c1N.js";
+const x = {
+        class: "music-bento-component p-3 h-full flex flex-col justify-center",
+    },
+    y = ((e) => (b("data-v-3fc2fd82"), (e = e()), k(), e))(() =>
+        o(
+            "h3",
+            { class: "text-sm font-bold mb-3 text-center" },
+            "音乐播放器",
+            -1,
+        ),
+    ),
+    g = { key: 0, class: "text-red-500 text-xs text-center mb-2" },
+    w = { class: "flex flex-col gap-3" },
+    T = { class: "flex items-center justify-between" },
+    j = {
+        class: "track-title text-sm whitespace-nowrap overflow-hidden text-ellipsis text-center",
+    },
+    C = { key: 0, class: "track-artist text-xs text-gray-300" },
+    P = { class: "flex items-center justify-between" },
+    V = { class: "w-24 h-1 bg-gray-600 rounded-full overflow-hidden" },
+    _ = p(
+        a({
+            __name: "Music",
+            setup(a) {
+                const b = t(),
+                    k = s(!1),
+                    p = s(null);
+                function _() {
+                    p.value = "播放失败，请检查网络连接";
+                }
+                return (
+                    l(() => {
+                        !(function () {
+                            try {
+                                (k.value ||
+                                    (b.ensureInitialized(), (k.value = !0)),
+                                    (p.value = null));
+                            } catch (e) {
+                                ((p.value = "播放器初始化失败"),
+                                    console.error(
+                                        "Music player initialization error:",
+                                        e,
+                                    ));
+                            }
+                        })();
+                    }),
+                    (t, a) => {
+                        var s, l;
+                        return (
+                            i(),
+                            c("div", x, [
+                                y,
+                                p.value
+                                    ? (i(), c("div", g, n(p.value), 1))
+                                    : r("", !0),
+                                o("div", w, [
+                                    o("div", T, [
+                                        o(
+                                            "button",
+                                            {
+                                                class: "control-btn",
+                                                onClick:
+                                                    a[0] ||
+                                                    (a[0] = (...e) =>
+                                                        u(b).prevTrack &&
+                                                        u(b).prevTrack(...e)),
+                                            },
+                                            [
+                                                d(u(e), {
+                                                    icon: "carbon:caret-left",
+                                                    width: "16",
+                                                    height: "16",
+                                                }),
+                                            ],
+                                        ),
+                                        o(
+                                            "button",
+                                            {
+                                                class: "play-btn flex-shrink-0",
+                                                onClick:
+                                                    a[1] ||
+                                                    (a[1] = (...e) =>
+                                                        u(b).togglePlay &&
+                                                        u(b).togglePlay(...e)),
+                                                onError: _,
+                                            },
+                                            [
+                                                o(
+                                                    "div",
+                                                    {
+                                                        class: v({
+                                                            "animate-slow-spin":
+                                                                u(b).isPlaying,
+                                                        }),
+                                                    },
+                                                    [
+                                                        u(b).isPlaying
+                                                            ? (i(),
+                                                              f(u(e), {
+                                                                  key: 0,
+                                                                  icon: "carbon:stop-filled",
+                                                                  width: "20",
+                                                                  height: "20",
+                                                              }))
+                                                            : (i(),
+                                                              f(u(e), {
+                                                                  key: 1,
+                                                                  icon: "carbon:play-filled",
+                                                                  width: "20",
+                                                                  height: "20",
+                                                              })),
+                                                    ],
+                                                    2,
+                                                ),
+                                            ],
+                                            32,
+                                        ),
+                                        o(
+                                            "button",
+                                            {
+                                                class: "control-btn",
+                                                onClick:
+                                                    a[2] ||
+                                                    (a[2] = (...e) =>
+                                                        u(b).nextTrack &&
+                                                        u(b).nextTrack(...e)),
+                                            },
+                                            [
+                                                d(u(e), {
+                                                    icon: "carbon:caret-right",
+                                                    width: "16",
+                                                    height: "16",
+                                                }),
+                                            ],
+                                        ),
+                                    ]),
+                                    o("div", j, [
+                                        h(
+                                            n(
+                                                (null ==
+                                                (s =
+                                                    u(b).tracks[
+                                                        u(b).currentTrack
+                                                    ])
+                                                    ? void 0
+                                                    : s.title) || "未知曲目",
+                                            ) + " ",
+                                            1,
+                                        ),
+                                        (
+                                            null ==
+                                            (l = u(b).tracks[u(b).currentTrack])
+                                                ? void 0
+                                                : l.artist
+                                        )
+                                            ? (i(),
+                                              c(
+                                                  "div",
+                                                  C,
+                                                  n(
+                                                      u(b).tracks[
+                                                          u(b).currentTrack
+                                                      ].artist,
+                                                  ),
+                                                  1,
+                                              ))
+                                            : r("", !0),
+                                    ]),
+                                    o("div", P, [
+                                        o(
+                                            "button",
+                                            {
+                                                class: "volume-btn",
+                                                onClick:
+                                                    a[3] ||
+                                                    (a[3] = (...e) =>
+                                                        u(b).decreaseVolume &&
+                                                        u(b).decreaseVolume(
+                                                            ...e,
+                                                        )),
+                                            },
+                                            [
+                                                d(u(e), {
+                                                    icon: "carbon:volume-down",
+                                                    width: "16",
+                                                    height: "16",
+                                                }),
+                                            ],
+                                        ),
+                                        o("div", V, [
+                                            o(
+                                                "div",
+                                                {
+                                                    class: "h-full bg-pink-500",
+                                                    style: m({
+                                                        width:
+                                                            100 * u(b).volume +
+                                                            "%",
+                                                    }),
+                                                },
+                                                null,
+                                                4,
+                                            ),
+                                        ]),
+                                        o(
+                                            "button",
+                                            {
+                                                class: "volume-btn",
+                                                onClick:
+                                                    a[4] ||
+                                                    (a[4] = (...e) =>
+                                                        u(b).increaseVolume &&
+                                                        u(b).increaseVolume(
+                                                            ...e,
+                                                        )),
+                                            },
+                                            [
+                                                d(u(e), {
+                                                    icon: "carbon:volume-up",
+                                                    width: "16",
+                                                    height: "16",
+                                                }),
+                                            ],
+                                        ),
+                                    ]),
+                                ]),
+                            ])
+                        );
+                    }
+                );
+            },
+        }),
+        [["__scopeId", "data-v-3fc2fd82"]],
+    );
+export { _ as default };

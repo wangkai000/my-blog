@@ -72,7 +72,7 @@ export default defineConfig({
 
         // 启用/禁用构建后的文件大小报告
         brotliSize: false, // 启用 Brotli 压缩大小报告
-        chunkSizeWarningLimit: 2000 // 警告的 chunk 大小限制（以 KB 为单位）
+        chunkSizeWarningLimit: 2000, // 警告的 chunk 大小限制（以 KB 为单位）
     },
 
     plugins: [
@@ -129,17 +129,17 @@ export default defineConfig({
                 "vue-i18n",
                 "@vueuse/head",
                 "@vueuse/core",
-                        // 正确使用VueRouterAutoImports
+                // 正确使用VueRouterAutoImports
                 VueRouterAutoImports,
                 // 正确的包导入配置格式
                 { from: "vue-router/auto", imports: ["useLink"] },
-                { 
-                    from: "naive-ui", 
+                {
+                    from: "naive-ui",
                     imports: [
                         { name: "useNotification", as: "useNotification" },
-                        { name: "default", as: "NaiveUI" }
-                    ] 
-                }
+                        { name: "default", as: "NaiveUI" },
+                    ],
+                },
             ],
             dts: "src/typings/auto-imports.d.ts",
             dirs: ["src/composables", "src/stores"],
@@ -303,7 +303,12 @@ export default defineConfig({
     ssr: {
         // TODO: workaround until they support native ESM
         // 添加naive-ui到noExternal配置，解决CommonJS模块导入问题
-        noExternal: ["workbox-window", /vue-i18n/ as const, "naive-ui", "vueuc"] as (string | RegExp)[],
+        noExternal: [
+            "workbox-window",
+            /vue-i18n/ as const,
+            "naive-ui",
+            "vueuc",
+        ] as (string | RegExp)[],
     },
 });
 

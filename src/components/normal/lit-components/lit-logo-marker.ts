@@ -75,7 +75,7 @@ export class LogoMarker extends LitElement {
         const anyThis = this as any;
 
         return html`
-            <div class="LogoMarker" @click="${this.onButtonClick}">
+            <div class="LogoMarker" @click=${this.onButtonClick}>
                 <img class="logo" src=${anyThis.name} alt="" />
             </div>
         `;
