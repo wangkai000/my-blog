@@ -65,11 +65,14 @@ async function getCustomComponents() {
 <script setup lang="ts">
 // eslint-disable-next-line import/first, import/order
 import { Bento } from 'v3-bento'
+import HomeContainer from '~/components/bento/common/HomeContainer.vue'
+import { computed, markRaw, ref, watch } from 'vue'
 
 const commonComponents = await getCommonComponents()
 const customComponents = await getCustomComponents()
 
-const bentoCellsInDesktop = [...commonComponents, ...customComponents]
+const filteredCommonComponents = commonComponents.filter(component => component.id !== 'StatusCard')
+const bentoCellsInDesktop = [...filteredCommonComponents, ...customComponents]
 
 const bentoCellsInMobile = bentoCellsInDesktop
 
@@ -99,7 +102,8 @@ if (document.body.clientWidth <= 768) {
   size.value = (document.body.clientWidth - 50) / 2
 }
 else {
-  maximumCells.value = 4
+  // 初始时也根据屏幕宽度计算 maximumCells
+  maximumCells.value = Math.min(Math.floor(document.body.clientWidth / (size.value + gap.value)), 6)
 }
 
 const { width } = useWindowSize()
@@ -120,9 +124,7 @@ watch(
       maximumCells.value = 6
     }
   },
-  {
-    immediate: true,
-  },
+  { flush: 'post', immediate: true },
 )
 </script>
 
@@ -149,7 +151,10 @@ watch(
             />
           </template>
         </Bento>
-        <div>233</div>
+        <!-- 单独显示HomeContainer组件在可拖拽容器底部，保持与Bento组件相同的宽度 -->
+        <div class="bento-container mt-4">
+          <HomeContainer />
+        </div>
       </client-only>
     </div>
   </div>
