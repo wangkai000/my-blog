@@ -178,8 +178,8 @@ const friends = ref([
   {
     title: 'Yeppioo',
     description: '梦想成为庄稼地里的读书人.....',
-    avatar: 'https://blog.yeppioo.vip/static/img/avatar.png',
-    url: 'https://blog.yeppioo.vip/',
+    avatar: 'https://blog.yik.at/static/img/avatar.png',
+    url: 'https://i.yik.at/',
     avatarFailed: false,
   },
   {

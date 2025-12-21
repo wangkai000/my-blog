@@ -1,20 +1,22 @@
 <script setup lang="ts">
-import Bento from "./Bento.vue";
-import Loading from "@/components/normal/Loading.vue";
+import Bento from './Bento.vue'
+import Loading from '@/components/normal/Loading.vue'
 </script>
 
 <template>
-    <div>
-        <Suspense>
-            <template #default>
-                <Bento />
-            </template>
+  <div>
+    <Suspense>
+      <template #default>
+        <div>
+          <Bento />
+        </div>
+      </template>
 
-            <template #fallback>
-                <Loading />
-            </template>
-        </Suspense>
-    </div>
+      <template #fallback>
+        <Loading />
+      </template>
+    </Suspense>
+  </div>
 </template>
 
 <style scoped></style>
