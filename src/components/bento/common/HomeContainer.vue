@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div class="w-full bg-gray-800 h-[300px] text-white flex items-center justify-center">
-    花有重开日，人无再少年。
+  <div class="w-full h-[300px] text-white flex items-center justify-center">
+    🌅 🌹 花有重开日，人无再少年 🌟 ⏳
   </div>
 </template>
 
