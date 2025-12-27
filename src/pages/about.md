@@ -45,7 +45,7 @@
 
 ## 📖 博客来源
 
-这个博客源于对技术的热爱与分享的渴望。在这个信息爆炸的时代，我希望通过文字记录自己的学习历程、技术心得和生活感悟，为自己留下一份成长的印记，也为可能需要的朋友提供一点参考......
+这个博客源于对技术的热爱与分享的渴望。在这个信息爆炸的时代，我希望通过文字记录自己的一点历程、技术心得和生活感悟，为自己留下一份成长的印记，也为可能需要的朋友提供一点参考......
 
 ## 💰 支持与打赏
 
@@ -56,16 +56,11 @@
 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center my-4">
   <div class="text-center">
     <p class="font-medium mb-2">支付宝</p>
-    <img src="https://example.com/alipay-qr.jpg" alt="支付宝二维码" style="width:120px; border-radius: 8px;" />
+    <img src="https://s3.bmp.ovh/imgs/2025/12/28/d1de8421f5edb8aa.jpg" alt="支付宝二维码" style="width:120px; border-radius: 8px;" />
   </div>
   <div class="text-center">
     <p class="font-medium mb-2">微信</p>
-    <img src="https://example.com/wechat-qr.jpg" alt="微信二维码" style="width:120px; border-radius: 8px;" />
-  </div>
-  <div class="text-center">
-    <p class="font-medium mb-2">PayPal</p>
-    <img src="https://example.com/paypal-qr.jpg" alt="PayPal二维码" style="width:120px; border-radius: 8px;" />
-
+    <img src="https://s3.bmp.ovh/imgs/2025/12/28/3c199c1ddd797b28.jpg" alt="微信二维码" style="width:120px; border-radius: 8px;" />
   </div>
 </div>
 
@@ -74,15 +69,15 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
   <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
     <p class="font-medium text-sm mb-2">USDT (TRC20)</p>
-    <code class="text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded block overflow-x-auto">xxx</code>
+    <code class="text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded block overflow-x-auto">TK4UBS8yroSHaw4Byvby28d8ec74fofzRZ</code>
   </div>
   <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
     <p class="font-medium text-sm mb-2">以太坊 (ETH)</p>
-    <code class="text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded block overflow-x-auto">xxx</code>
+    <code class="text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded block overflow-x-auto">0x9f6e4537d09ADA1fa5ef7109F6bC25C1C833C502</code>
   </div>
   <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
     <p class="font-medium text-sm mb-2">比特币 (BTC)</p>
-    <code class="text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded block overflow-x-auto">xxx</code>
+    <code class="text-xs bg-gray-100 dark:bg-gray-700 p-2 rounded block overflow-x-auto">17ew94pWx92QiEJjGN47AMwiKdbV1Mhwpa</code>
   </div>
 </div>
 
@@ -101,7 +96,7 @@
   </div>
   <div class="flex flex-col items-center justify-center">
     <p class="font-medium mb-2 text-center">公众号：天miao的开发日志</p>
-    <img src="https://example.com/wechat-official-account.jpg" alt="微信公众号二维码" style="width:160px; border-radius: 8px;" />
+    <img src="https://s3.bmp.ovh/imgs/2025/12/28/728053c2ed38685a.jpg" alt="微信公众号二维码" style="width:160px; border-radius: 8px;" />
     <p class="text-sm text-gray-500 mt-2 text-center">扫码关注获取更多</p>
   </div>
 </div>

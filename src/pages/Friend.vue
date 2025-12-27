@@ -239,6 +239,13 @@ const friends = ref([
     url: 'https://www.qcqx.cn',
     avatarFailed: false,
   },
+  {
+    title: 'MuXiaoChen🍊',
+    description: '柴米油盐酱醋茶，般般都在别人家',
+    avatar: 'https://tuchuang.voooe.cn/images/2025/11/28/Mx_1761296939311296300.webp',
+    url: 'https://miraii.cn/',
+    avatarFailed: false,
+  },
 ])
 // 我的网站信息
 const mySite = ref({
