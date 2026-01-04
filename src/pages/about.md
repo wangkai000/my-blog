@@ -56,11 +56,11 @@
 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center my-4">
   <div class="text-center">
     <p class="font-medium mb-2">支付宝</p>
-    <img src="https://s3.bmp.ovh/imgs/2025/12/28/d1de8421f5edb8aa.jpg" alt="支付宝二维码" style="width:120px; border-radius: 8px;" />
+    <img src="/static/qrcode/alipay.jpg" alt="支付宝二维码" style="width:120px; border-radius: 8px;" />
   </div>
   <div class="text-center">
     <p class="font-medium mb-2">微信</p>
-    <img src="https://s3.bmp.ovh/imgs/2025/12/28/3c199c1ddd797b28.jpg" alt="微信二维码" style="width:120px; border-radius: 8px;" />
+    <img src="/static/qrcode/wx.jpg" alt="微信二维码" style="width:120px; border-radius: 8px;" />
   </div>
 </div>
 
@@ -96,7 +96,7 @@
   </div>
   <div class="flex flex-col items-center justify-center">
     <p class="font-medium mb-2 text-center">公众号：天miao的开发日志</p>
-    <img src="https://s3.bmp.ovh/imgs/2025/12/28/728053c2ed38685a.jpg" alt="微信公众号二维码" style="width:160px; border-radius: 8px;" />
+    <img src="/static/qrcode/gongzhonghao.jpg" alt="微信公众号二维码" style="width:160px; border-radius: 8px;" />
     <p class="text-sm text-gray-500 mt-2 text-center">扫码关注获取更多</p>
   </div>
 </div>
