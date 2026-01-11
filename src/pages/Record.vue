@@ -812,6 +812,16 @@ const resources = ref<any[][]>([
     gradients[8],
     false,
   ],
+  [
+    81,
+    '8bitUI',
+    '一个像素UI库',
+    'https://www.8bitcn.com/',
+    ['UI组件库'],
+    'https://www.8bitcn.com/favicon.ico',
+    gradients[8],
+    false,
+  ],
 ])
 
 // 当前选中的标签
@@ -942,60 +952,58 @@ function nextPage() {
         :key="resource[ResourceFields.id]"
         class="h-full"
       >
-        <transition name="fade">
-          <a
-            :href="resource[ResourceFields.url]"
-            target="_blank"
-            class="block w-full h-full rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 transition-all hover:shadow-xl hover:-translate-y-1 active:scale-98"
-            :style="{
-              background:
-                resource[ResourceFields.bgGradient]
-                || 'var(--default-glass-bg)',
-            }"
-          >
-            <div class="p-6 h-full flex flex-col">
-              <div class="flex items-start mb-3">
-                <div
-                  class="flex-shrink-0 w-14 h-14 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center"
+        <a
+          :href="resource[ResourceFields.url]"
+          target="_blank"
+          class="block w-full h-full rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 transition-all hover:shadow-xl hover:-translate-y-1 active:scale-98"
+          :style="{
+            background:
+              resource[ResourceFields.bgGradient]
+              || 'var(--default-glass-bg)',
+          }"
+        >
+          <div class="p-6 h-full flex flex-col">
+            <div class="flex items-start mb-3">
+              <div
+                class="flex-shrink-0 w-14 h-14 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center"
+              >
+                <img
+                  v-if="
+                    !resource[ResourceFields.imageError]
+                  "
+                  :src="resource[ResourceFields.imageUrl]"
+                  class="w-full h-full object-contain p-2"
+                  loading="lazy"
+                  @error="handleImageError(resource)"
                 >
-                  <img
-                    v-if="
-                      !resource[ResourceFields.imageError]
-                    "
-                    :src="resource[ResourceFields.imageUrl]"
-                    class="w-full h-full object-contain p-2"
-                    loading="lazy"
-                    @error="handleImageError(resource)"
-                  >
-                  <Icon
-                    v-else
-                    icon="mdi:link-variant"
-                    class="text-2xl text-blue-500"
-                  />
-                </div>
-                <div class="ml-4 flex-1">
-                  <h3
-                    class="text-xl font-bold text-white line-clamp-2"
-                  >
-                    {{ resource[ResourceFields.title] }}
-                  </h3>
-                </div>
+                <Icon
+                  v-else
+                  icon="mdi:link-variant"
+                  class="text-2xl text-blue-500"
+                />
               </div>
-              <div class="flex flex-wrap mb-3">
-                <span
-                  v-for="tag in resource[ResourceFields.tags]"
-                  :key="tag"
-                  class="text-xs px-2 py-1 rounded mr-2 mb-1 bg-white/20 text-white"
+              <div class="ml-4 flex-1">
+                <h3
+                  class="text-xl font-bold text-white line-clamp-2"
                 >
-                  {{ tag }}
-                </span>
+                  {{ resource[ResourceFields.title] }}
+                </h3>
               </div>
-              <p class="text-white/90 flex-grow line-clamp-4">
-                {{ resource[ResourceFields.description] }}
-              </p>
             </div>
-          </a>
-        </transition>
+            <div class="flex flex-wrap mb-3">
+              <span
+                v-for="tag in resource[ResourceFields.tags]"
+                :key="tag"
+                class="text-xs px-2 py-1 rounded mr-2 mb-1 bg-white/20 text-white"
+              >
+                {{ tag }}
+              </span>
+            </div>
+            <p class="text-white/90 flex-grow line-clamp-4">
+              {{ resource[ResourceFields.description] }}
+            </p>
+          </div>
+        </a>
       </div>
     </div>
 
