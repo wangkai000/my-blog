@@ -246,11 +246,25 @@ const friends = ref([
     url: 'https://miraii.cn/',
     avatarFailed: false,
   },
+  {
+    title: '因卓诶Yinzhuoei',
+    description: '因卓诶的博客',
+    avatar: 'https://www.yinzhuoei.com/favicon.ico',
+    url: 'https://www.yinzhuoei.com/',
+    avatarFailed: false,
+  },
+  {
+    title: '因卓诶Yinzhuoei',
+    description: '因卓诶的博客',
+    avatar: 'https://www.yinzhuoei.com/favicon.ico',
+    url: 'https://www.yinzhuoei.com/',
+    avatarFailed: false,
+  },
 ])
 // 我的网站信息
 const mySite = ref({
   title: '天渺studio',
-  description: '天渺工作室的小站',
+  description: '天渺工作室的小站&日志记录',
   url: 'https://tianmiao.site',
   avatar: 'https://s21.ax1x.com/2024/12/22/pAXtJat.jpg',
   rss: 'https://blog.tianmiao.site/feed.xml',

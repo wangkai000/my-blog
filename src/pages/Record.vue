@@ -842,7 +842,7 @@ const filteredResources = computed<any[][]>(() => {
 const uniqueTags = computed<string[]>(() => {
   const tags = new Set<string>()
   resources.value.forEach((resource) => {
-    resource[ResourceFields.tags].forEach(tag => tags.add(tag))
+    resource[ResourceFields.tags].forEach((tag: string) => tags.add(tag))
   })
   return Array.from(tags).sort()
 })
