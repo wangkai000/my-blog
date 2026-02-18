@@ -254,10 +254,24 @@ const friends = ref([
     avatarFailed: false,
   },
   {
-    title: '因卓诶Yinzhuoei',
-    description: '因卓诶的博客',
-    avatar: 'https://www.yinzhuoei.com/favicon.ico',
-    url: 'https://www.yinzhuoei.com/',
+    title: 'Nebula Blog ',
+    description: ' Nebula.SYS',
+    avatar: 'https://img.scdn.io/i/692d847f79589_1764590719.webp',
+    url: 'https://www.996icu.eu.org',
+    avatarFailed: false,
+  },
+  {
+    title: '旧识桥',
+    description: '什么都略懂一点，生活更多彩一些',
+    avatar: 'https://img.167891.xyz/v2/3VHU8UR.png',
+    url: 'https://ailmel.top/',
+    avatarFailed: false,
+  },
+  {
+    title: '加密鲸拓',
+    description: 'B站web3up',
+    avatar: 'https://leapwhale.com/favicon.ico',
+    url: 'https://leapwhale.com/',
     avatarFailed: false,
   },
 ])
