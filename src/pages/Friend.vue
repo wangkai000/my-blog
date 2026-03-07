@@ -274,6 +274,13 @@ const friends = ref([
     url: 'https://leapwhale.com/',
     avatarFailed: false,
   },
+  {
+    title: 'YUAN的个人主页',
+    description: '去AI化的个人主页，手工打磨的网页与文字',
+    avatar: 'https://www.upyi.cn/images/icon.jpg',
+    url: 'https://www.upyi.cn',
+    avatarFailed: false,
+  },
 ])
 // 我的网站信息
 const mySite = ref({
