@@ -316,6 +316,13 @@ const friends = ref([
     url: 'https://ilaozhu.com',
     avatarFailed: false,
   },
+  {
+    title: '旺东自留地',
+    description: '爱生活、爱摸鱼',
+    avatar: 'https://wang618.cn/logo.gif',
+    url: 'https://wang618.cn/',
+    avatarFailed: false,
+  },
 ])
 // 我的网站信息
 const mySite = ref({
