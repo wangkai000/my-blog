@@ -17,7 +17,7 @@ const sites = ref([
   {
     title: '博客录',
     description: '一个个人博客收集平台',
-    avatar: 'https://boke.lu/博客录新图标透明底圆底 (1).png',
+    avatar: 'https://boke.lu/%E5%8D%9A%E5%AE%A2%E5%BD%95logo%E5…B%9B%E7%89%88%E5%8A%A0%E5%AE%BD%E7%89%881-70k.png',
     url: 'https://boke.lu/',
     avatarFailed: false,
     avatarLoaded: false,
@@ -286,14 +286,14 @@ const personalBlogs = ref([
     avatarFailed: false,
     avatarLoaded: false,
   },
-  {
-    title: '小鹿的个人网站',
-    description: '跳吧，在无比宏大的星系！',
-    avatar: 'https://www.siena.zone/favicon_compressed.png',
-    url: 'https://www.siena.zone',
-    avatarFailed: false,
-    avatarLoaded: false,
-  },
+  // {
+  //   title: '小鹿的个人网站',
+  //   description: '跳吧，在无比宏大的星系！',
+  //   avatar: 'https://www.siena.zone/favicon_compressed.png',
+  //   url: 'https://www.siena.zone',
+  //   avatarFailed: false,
+  //   avatarLoaded: false,
+  // },
   {
     title: '若海の技术写真',
     description: '一个全栈攻城狮的纯技术干货分享',
@@ -405,6 +405,14 @@ const personalBlogs = ref([
     avatarFailed: false,
     avatarLoaded: false,
   },
+  {
+    title: ' 2BROEAR',
+    description: '兴趣指引方向，会玩才会学',
+    avatar: 'https://imgs.2broear.com/2broear.png',
+    url: 'https://blog.2broear.com',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
 ])
 // 我的网站信息
 const mySite = ref({
@@ -464,19 +472,21 @@ watchOnce(giscusRootRef, (root) => {
     <div class="mx-auto max-w-6xl px-4 py-8">
       <!-- 站点类链接 -->
       <div class="mb-12">
-        <div class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-purple-50/60 to-slate-50 dark:from-gray-800 dark:via-purple-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm">
-          <h2
-            class="text-2xl md:text-3xl font-bold text-slate-700 dark:text-white mb-2 flex items-center justify-center"
-          >
-            <Icon
-              icon="mdi:web"
-              class="mr-3 text-purple-400 text-3xl"
-            />
-            站点导航
-          </h2>
-          <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm">
-            优质的综合性站点和资源平台
-          </p>
+        <div class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-purple-50/60 to-slate-50 dark:from-gray-800 dark:via-purple-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm max-w-2xl mx-auto">
+          <div class="mx-auto max-w-prose text-center">
+            <h2
+              class="text-xl md:text-2xl font-bold text-slate-700 dark:text-white mb-2 flex items-center justify-center"
+            >
+              <Icon
+                icon="mdi:web"
+                class="mr-3 text-purple-400 text-2xl"
+              />
+              站点导航
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm">
+              优质的综合性站点和资源平台
+            </p>
+          </div>
         </div>
 
         <div
@@ -537,19 +547,21 @@ watchOnce(giscusRootRef, (root) => {
 
       <!-- 个人博客链接 -->
       <div class="mb-16">
-        <div class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-blue-50/60 to-slate-50 dark:from-gray-800 dark:via-blue-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm">
-          <h2
-            class="text-2xl md:text-3xl font-bold text-slate-700 dark:text-white mb-2 flex items-center justify-center"
-          >
-            <Icon
-              icon="mdi:account-circle"
-              class="mr-3 text-blue-400 text-3xl"
-            />
-            个人博客
-          </h2>
-          <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm">
-            来自各位博主的个人技术博客与生活分享
-          </p>
+        <div class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-blue-50/60 to-slate-50 dark:from-gray-800 dark:via-blue-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm max-w-2xl mx-auto">
+          <div class="mx-auto max-w-prose text-center">
+            <h2
+              class="text-xl md:text-2xl font-bold text-slate-700 dark:text-white mb-2 flex items-center justify-center"
+            >
+              <Icon
+                icon="mdi:account-circle"
+                class="mr-3 text-blue-400 text-2xl"
+              />
+              个人博客
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm">
+              来自各位博主的个人技术博客与生活分享
+            </p>
+          </div>
         </div>
 
         <div
@@ -764,11 +776,13 @@ watchOnce(giscusRootRef, (root) => {
 .friend-card:hover {
   background-color: #eff6ff;
   transform: translateY(-3px);
+  opacity: 0.8;
   box-shadow: 0 8px 16px -4px rgba(59, 130, 246, 0.08);
 }
 
 .dark .friend-card:hover {
   background-color: #1e3a5f;
+  opacity: 0.8;
 }
 
 /* 站点卡片样式 */
@@ -784,11 +798,13 @@ watchOnce(giscusRootRef, (root) => {
 .site-card:hover {
   background-color: #f5f3ff;
   transform: translateY(-3px);
+  opacity: 0.9;
   box-shadow: 0 8px 16px -4px rgba(168, 85, 247, 0.08);
 }
 
 .dark .site-card:hover {
   background-color: #4c1d95;
+  opacity: 0.9;
 }
 
 /* 头像容器（关键修复） */
