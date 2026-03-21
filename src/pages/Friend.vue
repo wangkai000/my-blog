@@ -3,36 +3,76 @@ import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { registerGiscus } from '~/utils/giscus'
 
-// 友情链接数据
-const friends = ref([
+// 站点类链接（非个人博客）
+const sites = ref([
   {
     title: '十年之约',
     description:
-            '一个人的寂寞，一群人的狂欢。十年之约是一个记录、展示独立博客的平台，即从加入这个活动起，我们的博客10年不关闭或者更久，保持更新和活力。把博客从爱好变成一种习惯，坚持10年，是一项很有意义的活动，我们希望更多的博主加入！',
+            '一个人的寂寞，一群人的狂欢。十年之约是一个记录、展示独立博客的平台，即从加入这个活动起，我们的博客 10 年不关闭或者更久，保持更新和活力。把博客从爱好变成一种习惯，坚持 10 年，是一项很有意义的活动，我们希望更多的博主加入！',
     avatar: 'https://www.foreverblog.cn/favicon.ico',
     url: 'https://www.foreverblog.cn/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
+  {
+    title: '博客录',
+    description: '一个个人博客收集平台',
+    avatar: 'https://boke.lu/博客录新图标透明底圆底 (1).png',
+    url: 'https://boke.lu/',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
+  {
+    title: '拾光',
+    description: '给未来写封信，愿你未来不负所期',
+    avatar: 'https://www.timeletters.cn/favicon.ico',
+    url: 'https://www.timeletters.cn/',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
+  {
+    title: '拾趣博客导航',
+    description: '捡拾文字里的小乐趣！',
+    avatar: 'https://s7.fan/img/tubiao.png',
+    url: 'https://s7.fan/',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
+
+])
+
+// 个人博客链接
+const personalBlogs = ref([
+  // Deleted:  {
+  // Deleted:    title: '十年之约',
+  // Deleted:    description:
+  // Deleted:            '一个人的寂寞，一群人的狂欢。十年之约是一个记录、展示独立博客的平台，即从加入这个活动起，我们的博客 10 年不关闭或者更久，保持更新和活力。把博客从爱好变成一种习惯，坚持 10 年，是一项很有意义的活动，我们希望更多的博主加入！',
+  // Deleted:    avatar: 'https://www.foreverblog.cn/favicon.ico',
+  // Deleted:    url: 'https://www.foreverblog.cn/',
+  // Deleted:    avatarFailed: false,
+  // Deleted:  },
   {
     title: 'dev-zuo',
     description: 'dev-zuo 技术日常',
     avatar: 'http://food.zuo11.com/logo.png',
     url: 'http://www.zuo11.com/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
-  {
-    title: '博客录',
-    description: '一个个人博客收集平台',
-    avatar: 'https://boke.lu/博客录新图标透明底圆底(1).png',
-    url: 'https://boke.lu/',
-    avatarFailed: false,
-  },
+  // Deleted:  {
+  // Deleted:    title: '博客录',
+  // Deleted:    description: '一个个人博客收集平台',
+  // Deleted:    avatar: 'https://boke.lu/博客录新图标透明底圆底 (1).png',
+  // Deleted:    url: 'https://boke.lu/',
+  // Deleted:    avatarFailed: false,
+  // Deleted:  },
   {
     title: '有余',
-    description: '手执烟火以谋生,心怀诗意至远方~',
+    description: '手执烟火以谋生，心怀诗意至远方~',
     avatar: 'https://image.dongping.link/imageupload/3022db7803924133aeed921cb73822c9.png',
     url: 'https://dongping.link',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: 'Zkeq',
@@ -40,6 +80,7 @@ const friends = ref([
     avatar: 'https://img.onmicrosoft.cn/Avatar.jpg',
     url: 'https://icodeq.com/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   // {
   //   title: 'Liu Zijian\'s Blog',
@@ -49,11 +90,12 @@ const friends = ref([
   //   avatarFailed: false,
   // },
   {
-    title: '张洪Heo',
+    title: '张洪 Heo',
     description: '分享设计与科技生活',
     avatar: 'https://img.zhheo.com/i/67d8fa75943e4.webp',
     url: 'https://blog.zhheo.com/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: 'echeverra',
@@ -61,6 +103,7 @@ const friends = ref([
     avatar: 'https://echeverra.cn/favicon.jpg',
     url: 'https://echeverra.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '宇阳',
@@ -68,6 +111,7 @@ const friends = ref([
     avatar: 'https://q1.qlogo.cn/g?b=qq&nk=3311118881&s=640',
     url: 'https://liuyuyang.net',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: 'Nibbles 尼布',
@@ -75,6 +119,7 @@ const friends = ref([
     avatar: 'https://studio.nibbles.cn/avatar.jpg',
     url: 'https://nibbles.cn/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   // {
   //     title: "姚远",
@@ -89,6 +134,7 @@ const friends = ref([
     avatar: 'https://img.minsp.org/images/2024/public/logo.jpeg',
     url: ' https://www.minsp.org',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '小张的个人博客',
@@ -96,6 +142,7 @@ const friends = ref([
     avatar: 'http://img.mrzym.top/FsjKJtHwnWCvmbk9V4MWcZrSKhm-',
     url: 'http://mrzym.top/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: 'WQG',
@@ -103,14 +150,23 @@ const friends = ref([
     avatar: 'https://cdn.wqg.life/common/logo.jpg',
     url: 'https://wqg.life/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
-    title: '拾光',
-    description: '给未来写封信,愿你未来不负所期',
-    avatar: 'https://www.timeletters.cn/favicon.ico',
-    url: 'https://www.timeletters.cn/',
+    title: 'POETIZE',
+    description: '这是一个 Vue2 Vue3 与 SpringBoot 结合的产物～',
+    avatar: 'https://s1.ax1x.com/2022/11/10/z9E7X4.jpg',
+    url: 'https://poetize.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
+  // Deleted:  {
+  // Deleted:    title: '拾光',
+  // Deleted:    description: '给未来写封信，愿你未来不负所期',
+  // Deleted:    avatar: 'https://www.timeletters.cn/favicon.ico',
+  // Deleted:    url: 'https://www.timeletters.cn/',
+  // Deleted:    avatarFailed: false,
+  // Deleted:  },
   // {
   //   title: 'MoyuqLのBlog',
   //   description: 'MoyquL与你同在~',
@@ -124,6 +180,7 @@ const friends = ref([
     avatar: 'https://www.leorain.cn/images/logo.png',
     url: 'https://www.leorain.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: 'I Am I',
@@ -131,6 +188,7 @@ const friends = ref([
     avatar: 'https://cdn.jsdelivr.net/gh/5ime/img/avatar.jpg',
     url: 'https://5ime.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '慕雪的寒舍',
@@ -138,6 +196,7 @@ const friends = ref([
     avatar: 'https://blog.musnow.top/favicon.jpg',
     url: 'https://blog.musnow.top/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   //   {
   //     title: '小码同学',
@@ -153,27 +212,30 @@ const friends = ref([
     avatar: 'https://q1.qlogo.cn/g?b=qq&nk=37523953&s=640',
     url: 'http://snows-l.site',
     avatarFailed: false,
+    avatarLoaded: false,
   },
-  {
-    title: 'POETIZE',
-    description: '这是一个 Vue2 Vue3 与 SpringBoot 结合的产物～',
-    avatar: 'https://s1.ax1x.com/2022/11/10/z9E7X4.jpg',
-    url: 'https://poetize.cn',
-    avatarFailed: false,
-  },
-  {
-    title: '唐志远',
-    description: '立志成为一名架构师',
-    avatar: 'https://bu.dusays.com/2022/05/02/626f92e193879.jpg',
-    url: 'https://fe32.top/',
-    avatarFailed: false,
-  },
+  // Deleted:  {
+  // Deleted:    title: 'POETIZE',
+  // Deleted:    description: '这是一个 Vue2 Vue3 与 SpringBoot 结合的产物～',
+  // Deleted:    avatar: 'https://s1.ax1x.com/2022/11/10/z9E7X4.jpg',
+  // Deleted:    url: 'https://poetize.cn',
+  // Deleted:    avatarFailed: false,
+  // Deleted:  },
+  // {
+  //   title: '唐志远',
+  //   description: '立志成为一名架构师',
+  //   avatar: 'https://bu.dusays.com/2022/05/02/626f92e193879.jpg',
+  //   url: 'https://fe32.top/',
+  //   avatarFailed: false,
+  //   avatarLoaded: false,
+  // },
   {
     title: ' Levi\'s space',
-    description: '一个有意思的Blog，工作记录，日常分享，欢迎访问',
+    description: '一个有意思的 Blog，工作记录，日常分享，欢迎访问',
     avatar: 'https://i.postimg.cc/cJmdWqkn/Snipaste-2024-04-24-16-54-57.png',
     url: 'https://leviqin.top',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: 'Yeppioo',
@@ -181,35 +243,40 @@ const friends = ref([
     avatar: 'https://blog.yik.at/static/img/avatar.png',
     url: 'https://i.yik.at/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
-    title: 'Anyeの小站',
+    title: 'Anye の小站',
     description: 'Always Nurturing Your Enthusiasm',
     avatar: 'https://www.anye.xyz/upload/Anye-logo-white.webp',
     url: 'https://www.anye.xyz/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
-  {
-    title: '泽若',
-    description: '酌贪泉而觉爽，处涸辙以犹欢。',
-    avatar: 'https://www.zeruo.net/wp-content/uploads/2025/07/1753778958-IMG_7458.jpeg',
-    url: 'https://www.zeruo.net',
-    avatarFailed: false,
-  },
+  // {
+  //   title: '泽若',
+  //   description: '酌贪泉而觉爽，处涸辙以犹欢。',
+  //   avatar: 'https://www.zeruo.net/wp-content/uploads/2025/07/1753778958-IMG_7458.jpeg',
+  //   url: 'https://www.zeruo.net',
+  //   avatarFailed: false,
+  //   avatarLoaded: false,
+  // },
   {
     title: '我不是咕咕鸽',
     description:
-            '定期分享一些好玩的东西，包括但不局限于服务器、Web3等相关知识。',
+            '定期分享一些好玩的东西，包括但不局限于服务器、Web3 等相关知识。',
     avatar: 'https://gao.ee/gugu',
     url: 'https://blog.laoda.de',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '数字游牧人（大佬）',
-    description: '数字游牧人samuel的博客',
+    description: '数字游牧人 samuel 的博客',
     avatar: 'https://www.qzq.at/Hero.jpeg',
     url: 'https://www.qzq.at/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: 'Dale',
@@ -217,6 +284,7 @@ const friends = ref([
     avatar: 'https://picscdn.dalechu.cn/dale_avt.png',
     url: 'https://www.dalechu.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '小鹿的个人网站',
@@ -224,6 +292,7 @@ const friends = ref([
     avatar: 'https://www.siena.zone/favicon_compressed.png',
     url: 'https://www.siena.zone',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '若海の技术写真',
@@ -231,13 +300,15 @@ const friends = ref([
     avatar: 'https://www.rehiy.com/logo.png',
     url: 'https://www.rehiy.com',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
-    title: '轻笑Chuckle',
-    description: '漫天倾尘,风中轻笑',
+    title: '轻笑 Chuckle',
+    description: '漫天倾尘，风中轻笑',
     avatar: 'https://www.qcqx.cn/head.webp',
     url: 'https://www.qcqx.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: 'MuXiaoChen🍊',
@@ -245,13 +316,15 @@ const friends = ref([
     avatar: 'https://tuchuang.voooe.cn/images/2025/11/28/Mx_1761296939311296300.webp',
     url: 'https://miraii.cn/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
-    title: '因卓诶Yinzhuoei',
+    title: '因卓诶 Yinzhuoei',
     description: '因卓诶的博客',
     avatar: 'https://www.yinzhuoei.com/favicon.ico',
     url: 'https://www.yinzhuoei.com/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   // {
   //   title: 'Nebula Blog ',
@@ -262,10 +335,11 @@ const friends = ref([
   // },
   {
     title: 'CcoMm',
-    description: '你要吃C4吗？',
+    description: '你要吃 C4 吗？',
     avatar: 'https://avatars.githubusercontent.com/u/147143261',
     url: 'https://blog.ccomm.top',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '旧识桥',
@@ -273,20 +347,23 @@ const friends = ref([
     avatar: 'https://img.167891.xyz/v2/3VHU8UR.png',
     url: 'https://ailmel.top/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '加密鲸拓',
-    description: 'B站web3up',
+    description: 'B 站 web3up',
     avatar: 'https://leapwhale.com/favicon.ico',
     url: 'https://leapwhale.com/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
-    title: 'YUAN的个人主页',
-    description: '去AI化的个人主页，手工打磨的网页与文字',
+    title: 'YUAN 的个人主页',
+    description: '去 AI 化的个人主页，手工打磨的网页与文字',
     avatar: 'https://www.upyi.cn/images/icon.jpg',
     url: 'https://www.upyi.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '小元博客',
@@ -294,13 +371,15 @@ const friends = ref([
     avatar: 'https://reblog.cn/upload/img/web-user.jpeg',
     url: 'https://reblog.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '潘智祥',
-    description: '记录在Python、DevOps、SRE、大模型、投资等方面的经验',
+    description: '记录在 Python、DevOps、SRE、大模型、投资等方面的经验',
     avatar: 'https://panzhixiang.cn/images/avatar.jpg',
     url: 'https://panzhixiang.cn',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '皮普的数字花园',
@@ -308,6 +387,7 @@ const friends = ref([
     avatar: 'https://s3.pipu.studio/lsky/202507/ca39eaca9658ac1d840e72dd5ba77405.webp',
     url: 'https://pipuwong.com',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '老朱独立开发',
@@ -315,6 +395,7 @@ const friends = ref([
     avatar: 'https://ilaozhu.com/usr/themes/WaterDrop/static/images/avatar.jpg',
     url: 'https://ilaozhu.com',
     avatarFailed: false,
+    avatarLoaded: false,
   },
   {
     title: '旺东自留地',
@@ -322,6 +403,7 @@ const friends = ref([
     avatar: 'https://wang618.cn/logo.gif',
     url: 'https://wang618.cn/',
     avatarFailed: false,
+    avatarLoaded: false,
   },
 ])
 // 我的网站信息
@@ -343,17 +425,30 @@ function copyJson() {
   })
 }
 
-// 头像加载处理
-function handleAvatarLoad(friend: any) {
-  friend.avatarLoaded = true
-  const img = document.querySelector(`img[src="${friend.avatar}"]`)
+// 头像加载处理 - 站点类
+function handleSiteAvatarLoad(site: any) {
+  site.avatarLoaded = true
+  const img = document.querySelector(`img[src="${site.avatar}"]`)
   if (img)
     img.classList.add('opacity-100')
 }
 
-function handleAvatarError(friend: any) {
-  friend.avatarFailed = true
-  friend.avatarLoaded = false
+function handleSiteAvatarError(site: any) {
+  site.avatarFailed = true
+  site.avatarLoaded = false
+}
+
+// 头像加载处理 - 个人博客
+function handleAvatarLoad(blog: any) {
+  blog.avatarLoaded = true
+  const img = document.querySelector(`img[src="${blog.avatar}"]`)
+  if (img)
+    img.classList.add('opacity-100')
+}
+
+function handleAvatarError(blog: any) {
+  blog.avatarFailed = true
+  blog.avatarLoaded = false
 }
 
 // 评论区
@@ -367,92 +462,170 @@ watchOnce(giscusRootRef, (root) => {
 <template>
   <div class="min-h-screen">
     <div class="mx-auto max-w-6xl px-4 py-8">
-      <!-- 标题区域 -->
-      <div class="mb-10 text-center">
-        <h1
-          class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2"
+      <!-- 站点类链接 -->
+      <div class="mb-12">
+        <div class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-purple-50/60 to-slate-50 dark:from-gray-800 dark:via-purple-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm">
+          <h2
+            class="text-2xl md:text-3xl font-bold text-slate-700 dark:text-white mb-2 flex items-center justify-center"
+          >
+            <Icon
+              icon="mdi:web"
+              class="mr-3 text-purple-400 text-3xl"
+            />
+            站点导航
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm">
+            优质的综合性站点和资源平台
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 md:gap-4"
         >
-          友情链接
-        </h1>
-        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          与志同道合的朋友们一起分享知识和经验
-        </p>
+          <a
+            v-for="(site, index) in sites"
+            :key="`site-${index}`"
+            :href="site.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="site-card group flex flex-col items-center text-center rounded-xl bg-white dark:bg-gray-800 p-4 shadow-sm transition-all duration-300 border border-slate-200/60 dark:border-gray-700 hover:border-purple-300/60 dark:hover:border-purple-600/40"
+          >
+            <!-- 头像容器 -->
+            <div class="relative mb-3 avatar-container-site">
+              <!-- 骨架屏（加载中） -->
+              <div
+                v-if="!site.avatarLoaded && !site.avatarFailed"
+                class="avatar-skeleton-site rounded-full border-2 border-slate-200/60 dark:border-gray-700 animate-pulse"
+              />
+
+              <!-- 实际头像 -->
+              <img
+                v-if="!site.avatarFailed"
+                :src="site.avatar"
+                :alt="site.title"
+                class="avatar-image-site rounded-full object-cover border-2 border-slate-200/60 dark:border-gray-700 opacity-0 transition-opacity duration-500"
+                loading="lazy"
+                @load="handleSiteAvatarLoad(site)"
+                @error="handleSiteAvatarError(site)"
+              >
+
+              <!-- 加载失败占位符 -->
+              <div
+                v-else
+                class="avatar-fallback-site rounded-full border-2 border-slate-200/60 dark:border-gray-700 flex items-center justify-center bg-slate-50 dark:bg-gray-700"
+              >
+                <Icon
+                  icon="mdi:web"
+                  class="text-slate-400 dark:text-slate-400 text-2xl"
+                />
+              </div>
+            </div>
+
+            <h3
+              class="text-base font-medium text-gray-800 dark:text-gray-100 mb-2"
+            >
+              {{ site.title }}
+            </h3>
+            <p
+              class="text-xs text-gray-600 dark:text-gray-400 line-clamp-3"
+            >
+              {{ site.description || "暂无描述" }}
+            </p>
+          </a>
+        </div>
       </div>
 
-      <!-- 友情链接网格 -->
-      <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6 mb-16"
-      >
-        <a
-          v-for="(friend, index) in friends"
-          :key="index"
-          :href="friend.url"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="friend-card group flex items-center rounded-xl bg-white dark:bg-gray-800 p-4 shadow-sm transition-all duration-200 border border-gray-100 dark:border-gray-700"
-        >
-          <!-- 头像容器 -->
-          <div class="relative flex-shrink-0 avatar-container">
-            <!-- 骨架屏（加载中） -->
-            <div
-              v-if="!friend.avatarLoaded && !friend.avatarFailed"
-              class="avatar-skeleton rounded-full border-2 border-blue-100 dark:border-gray-700 animate-pulse"
+      <!-- 个人博客链接 -->
+      <div class="mb-16">
+        <div class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-blue-50/60 to-slate-50 dark:from-gray-800 dark:via-blue-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm">
+          <h2
+            class="text-2xl md:text-3xl font-bold text-slate-700 dark:text-white mb-2 flex items-center justify-center"
+          >
+            <Icon
+              icon="mdi:account-circle"
+              class="mr-3 text-blue-400 text-3xl"
             />
+            个人博客
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm">
+            来自各位博主的个人技术博客与生活分享
+          </p>
+        </div>
 
-            <!-- 实际头像 -->
-            <img
-              v-if="!friend.avatarFailed"
-              :src="friend.avatar"
-              :alt="friend.title"
-              class="avatar-image rounded-full object-cover border-2 border-blue-100 dark:border-gray-700 opacity-0 transition-opacity duration-500"
-              loading="lazy"
-              @load="handleAvatarLoad(friend)"
-              @error="handleAvatarError(friend)"
-            >
-
-            <!-- 加载失败占位符 -->
-            <div
-              v-else
-              class="avatar-fallback rounded-full border-2 border-blue-100 dark:border-gray-700 flex items-center justify-center bg-blue-50 dark:bg-gray-700"
-            >
-              <Icon
-                icon="mdi:link-variant"
-                class="text-blue-400 dark:text-blue-300 text-2xl"
+        <div
+          class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6"
+        >
+          <a
+            v-for="(blog, index) in personalBlogs"
+            :key="`blog-${index}`"
+            :href="blog.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="friend-card group flex items-center rounded-xl bg-white dark:bg-gray-800 p-4 shadow-sm transition-all duration-300 border border-slate-200/60 dark:border-gray-700 hover:border-blue-300/60 dark:hover:border-blue-600/40"
+          >
+            <!-- 头像容器 -->
+            <div class="relative flex-shrink-0 avatar-container">
+              <!-- 骨架屏（加载中） -->
+              <div
+                v-if="!blog.avatarLoaded && !blog.avatarFailed"
+                class="avatar-skeleton rounded-full border-2 border-slate-200/60 dark:border-gray-700 animate-pulse"
               />
-            </div>
-          </div>
 
-          <div class="ml-4 flex-1 flex flex-col justify-center">
-            <h2
-              class="text-lg font-medium text-gray-800 dark:text-gray-100 md:text-xl"
-            >
-              {{ friend.title }}
-            </h2>
-            <p
-              class="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 flex-grow"
-            >
-              {{ friend.description || "暂无描述" }}
-            </p>
-          </div>
-        </a>
+              <!-- 实际头像 -->
+              <img
+                v-if="!blog.avatarFailed"
+                :src="blog.avatar"
+                :alt="blog.title"
+                class="avatar-image rounded-full object-cover border-2 border-slate-200/60 dark:border-gray-700 opacity-0 transition-opacity duration-500"
+                loading="lazy"
+                @load="handleAvatarLoad(blog)"
+                @error="handleAvatarError(blog)"
+              >
+
+              <!-- 加载失败占位符 -->
+              <div
+                v-else
+                class="avatar-fallback rounded-full border-2 border-slate-200/60 dark:border-gray-700 flex items-center justify-center bg-slate-50 dark:bg-gray-700"
+              >
+                <Icon
+                  icon="mdi:link-variant"
+                  class="text-slate-400 dark:text-slate-400 text-2xl"
+                />
+              </div>
+            </div>
+
+            <div class="ml-4 flex-1 flex flex-col justify-center">
+              <h2
+                class="text-lg font-medium text-gray-800 dark:text-gray-100 md:text-xl"
+              >
+                {{ blog.title }}
+              </h2>
+              <p
+                class="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 flex-grow"
+              >
+                {{ blog.description || "暂无描述" }}
+              </p>
+            </div>
+          </a>
+        </div>
       </div>
 
       <!-- 互换友链区块 -->
       <div
-        class="friend-request-card p-6 md:p-8 mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 border border-blue-100 dark:border-gray-700 rounded-xl shadow-sm"
+        class="friend-request-card p-6 md:p-8 mb-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-slate-50 dark:from-gray-800 dark:via-blue-900/15 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 rounded-xl shadow-sm"
       >
         <div class="flex-1">
           <h2
-            class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center"
+            class="text-2xl font-bold text-slate-700 dark:text-white mb-6 flex items-center"
           >
             <Icon
               icon="mdi:handshake"
-              class="mr-3 text-blue-500 text-2xl"
+              class="mr-3 text-blue-400 text-2xl"
             />
             互换友链
           </h2>
 
-          <p class="text-gray-700 dark:text-gray-300 mb-6">
+          <p class="text-slate-600 dark:text-slate-300 mb-6">
             欢迎互换友链！以下是本站信息：
           </p>
 
@@ -583,19 +756,39 @@ watchOnce(giscusRootRef, (root) => {
 
 .friend-card {
   min-height: 120px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
 }
 
 .friend-card:hover {
-  background-color: #eef2ff;
+  background-color: #eff6ff;
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px -4px rgba(59, 130, 246, 0.08);
 }
 
 .dark .friend-card:hover {
-  background-color: rgba(30, 41, 59, 0.5);
+  background-color: #1e3a5f;
+}
+
+/* 站点卡片样式 */
+.site-card {
+  min-height: 140px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.site-card:hover {
+  background-color: #f5f3ff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px -4px rgba(168, 85, 247, 0.08);
+}
+
+.dark .site-card:hover {
+  background-color: #4c1d95;
 }
 
 /* 头像容器（关键修复） */
@@ -603,6 +796,14 @@ watchOnce(giscusRootRef, (root) => {
   width: 48px;
   height: 48px;
   /* 确保容器不会被内容撑开 */
+  overflow: hidden;
+  position: relative;
+}
+
+/* 站点类头像容器 */
+.avatar-container-site {
+  width: 56px;
+  height: 56px;
   overflow: hidden;
   position: relative;
 }
@@ -617,12 +818,22 @@ watchOnce(giscusRootRef, (root) => {
   object-fit: cover; /* 图片自适应 */
 }
 
+/* 站点类头像样式 */
+.avatar-skeleton-site,
+.avatar-image-site,
+.avatar-fallback-site {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 /* 骨架屏 */
 .avatar-skeleton {
-  background-color: #e5e7eb;
+  background-color: rgba(226, 232, 240, 0.6);
 }
 .dark .avatar-skeleton {
-  background-color: #374151;
+  background-color: rgba(55, 65, 81, 0.6);
 }
 
 /* 头像图片（修复加载显示） */
@@ -639,13 +850,21 @@ watchOnce(giscusRootRef, (root) => {
 
 /* 加载失败占位符 */
 .avatar-fallback {
-  background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(241, 245, 249, 0.8) 0%,
+    rgba(226, 232, 240, 0.6) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .dark .avatar-fallback {
-  background: linear-gradient(135deg, #1a2d3e 0%, #1a2844 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.5) 0%,
+    rgba(51, 65, 85, 0.4) 100%
+  );
 }
 
 /* 加载动画 */
@@ -664,18 +883,31 @@ watchOnce(giscusRootRef, (root) => {
 
 /* 其他样式（保持不变） */
 .requirement-badge {
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border: 1px solid #bbf7d0;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.06) 0%,
+    rgba(74, 222, 128, 0.04) 100%
+  );
+  border: 1px solid rgba(34, 197, 94, 0.15);
   color: #15803d;
 }
 .dark .requirement-badge {
-  background: linear-gradient(135deg, #1a3a2c 0%, #1c4a34 100%);
-  border: 1px solid #2d7a5a;
-  color: #bbf7d0;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.12) 0%,
+    rgba(74, 222, 128, 0.06) 100%
+  );
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: rgba(134, 239, 172, 0.85);
 }
 
 .discuss-icon {
-  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.85) 0%,
+    rgba(99, 102, 241, 0.85) 100%
+  );
 }
 
 pre {
@@ -699,6 +931,10 @@ pre {
   .friend-card {
     min-height: 100px;
   }
+  .site-card {
+    min-height: 120px;
+    padding: 0.75rem;
+  }
   .friend-request-card {
     padding: 1.5rem;
   }
@@ -712,6 +948,13 @@ pre {
   :deep(.giscus) iframe {
     width: 560px;
     min-height: 150px;
+  }
+}
+
+/* 移动端更小屏幕优化 */
+@media (max-width: 640px) {
+  .site-card {
+    min-height: 110px;
   }
 }
 </style>
