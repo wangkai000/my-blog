@@ -313,15 +313,11 @@ export function getCurrentWallpaper(): Wallpaper {
       lateNight: [
         {
           url: 'https://s3.bmp.ovh/2026/03/21/9lEeANt9.jpg',
-          description: '来自火星的问候，愿你的梦境如红色星球般神秘绚烂',
+          description: '星空浩瀚，愿你的梦境如宇宙般深邃绚烂',
         },
         {
           url: 'https://s3.bmp.ovh/2026/03/22/WlMQJA3r.jpg',
-          description: '星际穿越，马斯克的火星梦正在照进现实',
-        },
-        {
-          url: 'https://s3.bmp.ovh/2026/03/22/dVlkcFH1.jpg',
-          description: '深邃夜空，静谧而神秘，适合冥想与思考',
+          description: '仰望星空，每一颗星星都在为你闪烁',
         },
         {
           url: 'https://s3.bmp.ovh/2026/03/22/KHEJaZrl.jpg',
