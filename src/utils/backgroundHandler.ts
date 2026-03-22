@@ -219,7 +219,7 @@ interface DailyWallpapers {
   morning: Wallpaper[]
   afternoon: Wallpaper[]
   evening: Wallpaper[]
-  lateNight: Wallpaper
+  lateNight: Wallpaper[]
 }
 
 export function getCurrentWallpaper(): Wallpaper {
@@ -278,6 +278,10 @@ export function getCurrentWallpaper(): Wallpaper {
           url: 'https://s3.bmp.ovh/2026/03/21/MDeXSdE2.jpg',
           description: '慵懒的午后，适合发呆和做梦',
         },
+        {
+          url: 'https://s3.bmp.ovh/2026/03/22/eqwLNlh8.jpg',
+          description: '午后的惬意时光',
+        },
       ],
       evening: [
         {
@@ -301,11 +305,29 @@ export function getCurrentWallpaper(): Wallpaper {
           url: 'https://s3.bmp.ovh/2026/03/21/ilZsWzjb.jpg',
           description: '油画般的夜色，描绘城市的浪漫',
         },
+        {
+          url: 'https://s3.bmp.ovh/2026/03/22/KuCRXNub.jpg',
+          description: '晚霞染红了天边，为今天画上完美句点',
+        },
       ],
-      lateNight: {
-        url: 'https://s3.bmp.ovh/2026/03/21/9lEeANt9.jpg',
-        description: '来自火星的问候，愿你的梦境如红色星球般神秘绚烂',
-      },
+      lateNight: [
+        {
+          url: 'https://s3.bmp.ovh/2026/03/21/9lEeANt9.jpg',
+          description: '来自火星的问候，愿你的梦境如红色星球般神秘绚烂',
+        },
+        {
+          url: 'https://s3.bmp.ovh/2026/03/22/WlMQJA3r.jpg',
+          description: '星际穿越，马斯克的火星梦正在照进现实',
+        },
+        {
+          url: 'https://s3.bmp.ovh/2026/03/22/dVlkcFH1.jpg',
+          description: '深邃夜空，静谧而神秘，适合冥想与思考',
+        },
+        {
+          url: 'https://s3.bmp.ovh/2026/03/22/KHEJaZrl.jpg',
+          description: '夜的帷幕降临，让心灵在黑暗中寻找光明',
+        },
+      ],
     },
     // 周二
     {
@@ -366,10 +388,12 @@ export function getCurrentWallpaper(): Wallpaper {
           description: '周二的夜晚，静谧而美好',
         },
       ],
-      lateNight: {
-        url: 'https://s3.bmp.ovh/2026/03/21/O3USxWTt.jpg',
-        description: '深夜的宁静，属于思考者的时刻',
-      },
+      lateNight: [
+        {
+          url: 'https://s3.bmp.ovh/2026/03/21/O3USxWTt.jpg',
+          description: '深夜的宁静，属于思考者的时刻',
+        },
+      ],
     },
     // 周三
     {
@@ -412,10 +436,12 @@ export function getCurrentWallpaper(): Wallpaper {
           description: '夜色温柔，适合放下手机发会儿呆',
         },
       ],
-      lateNight: {
-        url: 'https://s21.ax1x.com/2025/07/20/pV8efRU.jpg',
-        description: '快睡吧，梦里有好风景',
-      },
+      lateNight: [
+        {
+          url: 'https://s21.ax1x.com/2025/07/20/pV8efRU.jpg',
+          description: '快睡吧，梦里有好风景',
+        },
+      ],
     },
     // 周四
     {
@@ -458,10 +484,12 @@ export function getCurrentWallpaper(): Wallpaper {
           description: '夜幕降临，城市点亮星光',
         },
       ],
-      lateNight: {
-        url: 'https://s3.bmp.ovh/imgs/2025/07/20/58fe51baac0e6faf.jpg',
-        description: '沙漠的夜很静，适合好好做梦，明天再努力也不迟',
-      },
+      lateNight: [
+        {
+          url: 'https://s3.bmp.ovh/imgs/2025/07/20/58fe51baac0e6faf.jpg',
+          description: '沙漠的夜很静，适合好好做梦，明天再努力也不迟',
+        },
+      ],
     },
     // 周五
     {
@@ -508,10 +536,12 @@ export function getCurrentWallpaper(): Wallpaper {
           description: '夜色中的都市，闪烁着梦想的光芒',
         },
       ],
-      lateNight: {
-        url: 'https://s3.bmp.ovh/imgs/2025/07/21/f8b24e04da6ebc42.jpg',
-        description: '夜再美也不如你的梦，晚安，好好休息呀',
-      },
+      lateNight: [
+        {
+          url: 'https://s3.bmp.ovh/imgs/2025/07/21/f8b24e04da6ebc42.jpg',
+          description: '夜再美也不如你的梦，晚安，好好休息呀',
+        },
+      ],
     },
     // 周六
     {
@@ -553,10 +583,12 @@ export function getCurrentWallpaper(): Wallpaper {
           description: '周六夜晚，浪漫而温馨',
         },
       ],
-      lateNight: {
-        url: 'https://s3.bmp.ovh/imgs/2025/07/27/5512f4d2508ca10f.jpg',
-        description: '周末的觉要睡够呀，星星会替你看好夜色的，晚安',
-      },
+      lateNight: [
+        {
+          url: 'https://s3.bmp.ovh/imgs/2025/07/27/5512f4d2508ca10f.jpg',
+          description: '周末的觉要睡够呀，星星会替你看好夜色的，晚安',
+        },
+      ],
     },
     // 周日
     {
@@ -598,10 +630,12 @@ export function getCurrentWallpaper(): Wallpaper {
           description: '周日傍晚，准备好迎接新的一周',
         },
       ],
-      lateNight: {
-        url: 'https://s3.bmp.ovh/imgs/2025/07/20/966dd8452edb17b1.jpg',
-        description: '森林都睡了，你也闭上眼睛吧，晚安，好梦',
-      },
+      lateNight: [
+        {
+          url: 'https://s3.bmp.ovh/imgs/2025/07/20/966dd8452edb17b1.jpg',
+          description: '森林都睡了，你也闭上眼睛吧，晚安，好梦',
+        },
+      ],
     },
   ]
 

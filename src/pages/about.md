@@ -90,12 +90,13 @@
     <ul class="space-y-2">
       <li><strong>邮箱</strong>：wangkai233@qq.com</li>
       <li><strong>微信</strong>：kaikang233</li>
+      <li><strong>Telegram</strong>：......</li>
       <li><strong>GitHub</strong>：<a href="https://github.com/wangkai000" target="_blank" rel="noopener noreferrer">github.com/wangkai000</a></li>
     </ul>
     <p class="text-sm text-gray-500 mt-4">添加微信好友请注明"博客读者"</p>
   </div>
   <div class="flex flex-col items-center justify-center">
-    <p class="font-medium mb-2 text-center">公众号：天miao的开发日志</p>
+    <p class="font-medium mb-2 text-center">公众号：天渺STU的开发日志</p>
     <img src="/static/qrcode/gongzhonghao.jpg" alt="微信公众号二维码" style="width:160px; border-radius: 8px;" />
     <p class="text-sm text-gray-500 mt-2 text-center">扫码关注获取更多</p>
   </div>

@@ -865,7 +865,8 @@ watchOnce(giscusRootRef, (root) => {
 }
 
 /* 加载失败占位符 */
-.avatar-fallback {
+.avatar-fallback,
+.avatar-fallback-site {
   background: linear-gradient(
     135deg,
     rgba(241, 245, 249, 0.8) 0%,
@@ -874,13 +875,31 @@ watchOnce(giscusRootRef, (root) => {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* 确保图标完全居中 */
+  text-align: center;
+  line-height: 1;
 }
-.dark .avatar-fallback {
+
+.dark .avatar-fallback,
+.dark .avatar-fallback-site {
   background: linear-gradient(
     135deg,
     rgba(30, 41, 59, 0.5) 0%,
     rgba(51, 65, 85, 0.4) 100%
   );
+}
+
+/* 确保站点头像占位符的图标居中 */
+.avatar-fallback-site {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-fallback-site .iconify {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 加载动画 */
