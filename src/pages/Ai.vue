@@ -45,7 +45,7 @@ function formatTime(date: Date): string {
   return date.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
 }
 
-function scrollToBottom() {
+function _scrollToBottom() {
   nextTick(() => {
     messagesEndRef.value?.scrollIntoView({ behavior: 'smooth' })
   })
@@ -122,27 +122,27 @@ function clearMessages() {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col items-center px-4 py-8 bg-gray-100 dark:bg-gray-800 rounded-xl" style="max-width: 85%; margin: 0 auto;">
-    <div class="w-full max-w-[70%] flex flex-col px-6" style="height: calc(100vh - 120px); min-height: 500px;">
+  <div class="min-h-screen flex flex-col items-center px-3 sm:px-4 py-6 sm:py-8 bg-gray-100 dark:bg-gray-800 rounded-xl max-w-full sm:max-w-[90%] md:max-w-[85%] lg:max-w-[80%] mx-auto">
+    <div class="w-full max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[70%] flex flex-col px-3 sm:px-4 md:px-6" style="height: calc(100vh - 100px); min-height: 400px;">
       <!-- 顶部标题栏 -->
-      <div class="flex items-center justify-between mb-4 px-1 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-md">
-            <Icon icon="carbon:bot" class="text-white text-xl" />
+      <div class="flex items-center justify-between mb-4 px-1 bg-gray-100 dark:bg-gray-800 p-3 sm:p-4 rounded-lg">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-md">
+            <Icon icon="carbon:bot" class="text-white text-sm sm:text-xl" />
           </div>
           <div>
-            <h1 class="text-lg font-bold text-gray-800 dark:text-gray-100 leading-tight">
+            <h1 class="text-base sm:text-lg font-bold text-gray-800 dark:text-gray-100 leading-tight">
               AI分身
             </h1>
-            <p class="text-xs text-gray-400 dark:text-gray-500">
+            <p class="text-xs text-gray-400 dark:text-gray-500 truncate max-w-[120px] sm:max-w-none">
               由 {{ selectedModel }} 驱动
             </p>
           </div>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1 sm:gap-2">
           <!-- 清空按钮 -->
-          <NButton size="small" type="error" @click="clearMessages">
-            清空对话
+          <NButton size="tiny" class="text-xs" type="error" @click="clearMessages">
+            清空
           </NButton>
         </div>
       </div>
@@ -150,19 +150,19 @@ function clearMessages() {
       <!-- 消息列表区域 -->
       <div
         class="flex-1 overflow-y-auto rounded-2xl border border-gray-100 dark:border-gray-700/60
-               bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm p-4 space-y-4"
+               bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm p-3 sm:p-4 space-y-3 sm:space-y-4"
       >
         <TransitionGroup name="msg">
           <div
             v-for="msg in messages"
             :key="msg.id"
-            class="flex gap-3" :class="[
+            class="flex gap-2 sm:gap-3" :class="[
               msg.role === 'user' ? 'flex-row-reverse' : 'flex-row',
             ]"
           >
             <!-- 头像 -->
             <div
-              class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm shadow-sm overflow-hidden" :class="[
+              class="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm shadow-sm overflow-hidden" :class="[
                 msg.role === 'user'
                   ? 'bg-gradient-to-br from-blue-500 to-cyan-500'
                   : msg.role === 'error'
@@ -179,14 +179,14 @@ function clearMessages() {
               <Icon
                 v-else
                 :icon="msg.role === 'user' ? 'carbon:user' : 'carbon:warning'"
-                class="text-base text-white"
+                class="text-xs sm:text-base text-white"
               />
             </div>
 
             <!-- 气泡 -->
-            <div class="max-w-[78%] flex flex-col" :class="[msg.role === 'user' ? 'items-end' : 'items-start']">
+            <div class="max-w-[85%] sm:max-w-[80%] md:max-w-[78%] flex flex-col" :class="[msg.role === 'user' ? 'items-end' : 'items-start']">
               <div
-                class="px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap break-words shadow-sm" :class="[
+                class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap break-words shadow-sm" :class="[
                   msg.role === 'user'
                     ? 'bg-gradient-to-br from-violet-500 to-indigo-600 text-white rounded-tr-sm'
                     : msg.role === 'error'
@@ -206,7 +206,7 @@ function clearMessages() {
       <!-- 输入区域 -->
       <div class="mt-3">
         <div
-          class="flex items-end gap-2 p-2 rounded-2xl border border-gray-200 dark:border-gray-700
+          class="flex flex-col sm:flex-row items-end gap-2 p-2 rounded-2xl border border-gray-200 dark:border-gray-700
                  bg-white dark:bg-gray-900 shadow-sm"
         >
           <NInput
@@ -215,17 +215,19 @@ function clearMessages() {
             placeholder="输入消息，Enter 发送，Shift+Enter 换行..."
             type="textarea"
             rows="1"
+            class="flex-1"
             @keydown="handleKeydown"
             @input="autoResize"
           />
           <NButton
             type="primary"
+            class="w-full sm:w-auto"
             @click="sendMessage"
           >
             发送
           </NButton>
         </div>
-        <p class="text-center text-xs text-gray-400 dark:text-gray-600 mt-2">
+        <p class="text-center text-xs text-gray-400 dark:text-gray-600 mt-2 px-2">
           AI 可能产生错误内容，请注意甄别
         </p>
       </div>
