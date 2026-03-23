@@ -691,6 +691,6 @@ export function getCurrentWallpaper(): Wallpaper {
   // 最后兜底：返回默认图片与描述
   return {
     url: defaultImageUrl,
-    description: '默认壁纸',
+    description: '🌹 花有重开日，人无再少年 ⏳',
   }
 }
