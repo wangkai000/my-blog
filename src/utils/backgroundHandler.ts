@@ -222,6 +222,12 @@ interface DailyWallpapers {
   lateNight: Wallpaper[]
 }
 
+// 公共晚间火星壁纸常量（可在所有 lateNight 时段追加）
+const MARS_LATE_NIGHT: Wallpaper = {
+  url: 'https://s3.bmp.ovh/2026/03/22/WlMQJA3r.jpg',
+  description: '星际着陆：穿越火星大气层，冲刺归零的一瞬间',
+}
+
 export function getCurrentWallpaper(): Wallpaper {
   const wallpaperSchedule: DailyWallpapers[] = [
     // 周一
@@ -291,15 +297,11 @@ export function getCurrentWallpaper(): Wallpaper {
         {
           url: 'https://s3.bmp.ovh/imgs/2025/08/09/4bf8fb6f99028352.jpg',
           description:
-                        '晚霞是天空写给你的情书，上面写着：今天你努力的样子真好看',
-        },
-        {
-          url: 'https://s3.bmp.ovh/2026/03/21/BGPQjxf9.jpg',
-          description: '夜幕降临，城市点亮星光',
+                        '今天你努力的样子真好看',
         },
         {
           url: 'https://s3.bmp.ovh/2026/03/21/O3USxWTt.jpg',
-          description: '月色如水，温柔了整个世界',
+          description: '今天的你辛苦了',
         },
         {
           url: 'https://s3.bmp.ovh/2026/03/21/ilZsWzjb.jpg',
@@ -313,11 +315,11 @@ export function getCurrentWallpaper(): Wallpaper {
       lateNight: [
         {
           url: 'https://s3.bmp.ovh/2026/03/21/9lEeANt9.jpg',
-          description: '星空浩瀚，愿你的梦境如宇宙般深邃绚烂',
+          description: '火星之赤，寂静的荒原上藏着远行者的梦想',
         },
         {
           url: 'https://s3.bmp.ovh/2026/03/22/WlMQJA3r.jpg',
-          description: '仰望星空，每一颗星星都在为你闪烁',
+          description: '星际着陆：穿越火星大气层，冲刺归零的一瞬间',
         },
         {
           url: 'https://s3.bmp.ovh/2026/03/22/KHEJaZrl.jpg',
@@ -378,10 +380,6 @@ export function getCurrentWallpaper(): Wallpaper {
           url: 'https://s3.bmp.ovh/imgs/2025/08/09/d58c5eb364d1aa75.jpg',
           description:
                         '暮色像天鹅绒幕布，你今天的演出，值得最热烈的星光掌声',
-        },
-        {
-          url: 'https://s3.bmp.ovh/2026/03/21/BGPQjxf9.jpg',
-          description: '周二的夜晚，静谧而美好',
         },
       ],
       lateNight: [
@@ -655,14 +653,44 @@ export function getCurrentWallpaper(): Wallpaper {
     timePeriod = 'lateNight'
   }
 
-  const currentWallpapers = wallpaperSchedule[adjustedDayIndex][timePeriod]
+  // 防护：如果索引越界或数据有误，返回兜底壁纸对象
+  const safeDayIndex = Math.min(Math.max(adjustedDayIndex, 0), wallpaperSchedule.length - 1)
+  const dayEntry = wallpaperSchedule[safeDayIndex] || (wallpaperSchedule[0] as DailyWallpapers)
+  // 规范化候选数组（支持两种形式：{url,description} 或直接 url 字符串）
+  const rawCandidates = (dayEntry && (dayEntry as any)[timePeriod]) || []
+  const candidates: Wallpaper[] = Array.isArray(rawCandidates)
+    ? rawCandidates.map((it: any) => {
+      if (!it)
+        return { url: defaultImageUrl, description: '壁纸' }
+      if (typeof it === 'string')
+        return { url: it, description: '壁纸' }
+      return {
+        url: typeof it.url === 'string' && it.url.length > 0 ? it.url : defaultImageUrl,
+        description: typeof it.description === 'string' && it.description.length > 0 ? it.description : '壁纸',
+      }
+    })
+    : []
 
-  if (Array.isArray(currentWallpapers)) {
-    const randomIndex = Math.floor(
-      Math.random() * currentWallpapers.length,
-    )
-    return currentWallpapers[randomIndex]
+  // 如果是夜间时段，添加公共的火星壁纸到候选集中
+  if (timePeriod === 'lateNight') {
+    candidates.push(MARS_LATE_NIGHT)
   }
 
-  return currentWallpapers
+  if (candidates.length > 0) {
+    const randomIndex = Math.floor(Math.random() * candidates.length)
+    const chosen = candidates[randomIndex]
+    // 最后校验一次，确保 url 存在且是字符串
+    if (chosen && typeof chosen.url === 'string' && chosen.url.length > 0) {
+      return {
+        url: chosen.url,
+        description: chosen.description || '壁纸',
+      }
+    }
+  }
+
+  // 最后兜底：返回默认图片与描述
+  return {
+    url: defaultImageUrl,
+    description: '默认壁纸',
+  }
 }
