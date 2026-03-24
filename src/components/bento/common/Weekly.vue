@@ -19,7 +19,7 @@ onMounted(() => {
   }
   pre.onerror = () => {
     mvImageUrl.value = defaultImageUrl
-    centerText.value = '默认壁纸'
+    centerText.value = '云尽天涯，星入梦中'
   }
   pre.src = wp.url
 })
@@ -27,7 +27,7 @@ onMounted(() => {
 function handleImgError() {
   // img 的运行时错误再兜底一次（保持文字与图像配对）
   mvImageUrl.value = defaultImageUrl
-  centerText.value = '默认壁纸'
+  centerText.value = '云尽天涯，星入梦中'
 }
 </script>
 
