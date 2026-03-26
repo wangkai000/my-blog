@@ -89,6 +89,7 @@ const personalBlogs = ref([
   //   url: 'https://blog.liuzijian.com',
   //   avatarFailed: false,
   // },
+
   {
     title: '张洪 Heo',
     description: '分享设计与科技生活',
@@ -410,6 +411,38 @@ const personalBlogs = ref([
     description: '兴趣指引方向，会玩才会学',
     avatar: 'https://imgs.2broear.com/2broear.png',
     url: 'https://blog.2broear.com',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
+  {
+    title: 'Sky\'s Blog',
+    description: '山河浪漫，人间温暖',
+    avatar: 'http://cdn.wanglingyue.com/me-1.jpg',
+    url: 'https://www.wanglingyue.com',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
+  {
+    title: '酥米的小站',
+    description: '记录小日常与代码笔记，分享生活点滴',
+    avatar: 'https://www.sumi233.top/favicon.ico',
+    url: 'https://www.sumi233.top',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
+  {
+    title: '十玖八柒',
+    description: '探索代码的世界，追寻生活的诗篇',
+    avatar: 'https://ahzoo.cn/img/avatar.webp',
+    url: 'https://blog.ahzoo.cn',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
+  {
+    title: '哈喽！林墨白',
+    description: '沉墨满纸，一笑若白。',
+    avatar: 'https://files.blog.lmb.blue/assets/img/logo/pink-black.png',
+    url: 'https://blog.lmb.blue/',
     avatarFailed: false,
     avatarLoaded: false,
   },
@@ -811,8 +844,6 @@ watchOnce(giscusRootRef, (root) => {
 .avatar-container {
   width: 48px;
   height: 48px;
-  /* 确保容器不会被内容撑开 */
-  overflow: hidden;
   position: relative;
 }
 
@@ -842,6 +873,13 @@ watchOnce(giscusRootRef, (root) => {
   height: 100%;
   display: block;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* 站点类头像 hover 放大效果 */
+.site-card:hover .avatar-image-site,
+.site-card:hover .avatar-fallback-site {
+  transform: scale(1.15);
 }
 
 /* 骨架屏 */
@@ -855,13 +893,22 @@ watchOnce(giscusRootRef, (root) => {
 /* 头像图片（修复加载显示） */
 .avatar-image {
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.3s ease;
   /* 确保图片可点击（a标签内） */
   pointer-events: none;
+  transform: scale(1);
 }
 /* 加载完成后显示 */
 .avatar-image.opacity-100 {
   opacity: 1;
+}
+
+/* 头像 hover 放大效果 */
+.friend-card:hover .avatar-image,
+.friend-card:hover .avatar-fallback {
+  transform: scale(1.15);
 }
 
 /* 加载失败占位符 */
@@ -991,5 +1038,93 @@ pre {
   .site-card {
     min-height: 110px;
   }
+}
+
+/* 入场动画 - 淡入上浮 */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeSlideUpSite {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 个人博客卡片入场动画 */
+.friend-card {
+  animation: fadeSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+/* 站点卡片入场动画 */
+.site-card {
+  animation: fadeSlideUpSite 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+/* 交错延迟 - 个人博客 */
+.friend-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.friend-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.friend-card:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.friend-card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.friend-card:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.friend-card:nth-child(6) {
+  animation-delay: 0.3s;
+}
+.friend-card:nth-child(7) {
+  animation-delay: 0.35s;
+}
+.friend-card:nth-child(8) {
+  animation-delay: 0.4s;
+}
+.friend-card:nth-child(9) {
+  animation-delay: 0.45s;
+}
+.friend-card:nth-child(10) {
+  animation-delay: 0.5s;
+}
+.friend-card:nth-child(n + 11) {
+  animation-delay: 0.55s;
+}
+
+/* 交错延迟 - 站点类 */
+.site-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.site-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.site-card:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.site-card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.site-card:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.site-card:nth-child(6) {
+  animation-delay: 0.3s;
 }
 </style>

@@ -423,7 +423,7 @@ export function getCurrentWallpaper(): Wallpaper {
       evening: [
         {
           url: 'https://s21.ax1x.com/2025/07/20/pV8e6Zn.jpg',
-          description: '夕阳把云朵烤成棉花糖，奖励坚持到现在的你',
+          description: '奖励下坚持到现在的你',
         },
         {
           url: 'https://s3.bmp.ovh/imgs/2025/08/09/d58c5eb364d1aa75.jpg',
