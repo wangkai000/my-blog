@@ -35,11 +35,14 @@ function toggleTag(tag: string) {
   else {
     activeTags.value = [...activeTags.value, tag]
   }
+  // 滚动到顶部
+  window.scrollTo({ top: 0, behavior: 'instant' })
 }
 
 // 清除筛选
 function clearFilter() {
   activeTags.value = []
+  window.scrollTo({ top: 0, behavior: 'instant' })
 }
 
 // 处理图片加载错误
@@ -74,6 +77,7 @@ watch(
 function prevPage() {
   if (currentPage.value > 1) {
     currentPage.value--
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }
 }
 
@@ -81,6 +85,7 @@ function prevPage() {
 function nextPage() {
   if (currentPage.value < totalPages.value) {
     currentPage.value++
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }
 }
 </script>
@@ -89,20 +94,30 @@ function nextPage() {
   <div class="max-w-6xl mx-auto px-4 py-8">
     <!-- 标签筛选区域 -->
     <div
-      class="mb-10 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700"
+      class="mb-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-gray-100/50 dark:border-gray-700/50 transition-all duration-300"
     >
-      <div class="flex flex-wrap items-center justify-between mb-4 gap-3">
-        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">
-          收录👍资源{{ filteredResources.length }}个
-        </h2>
+      <div class="flex flex-wrap items-center justify-between mb-5 gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
+            <Icon icon="mdi:bookmark-multiple" class="text-white text-xl" />
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">
+              收录👍资源
+            </h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              {{ filteredResources.length }} 个站点
+            </p>
+          </div>
+        </div>
 
         <div class="flex items-center space-x-2">
           <button
             v-if="activeTags.length > 0"
-            class="px-4 py-2 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-200 rounded-full text-sm font-medium hover:bg-red-200 dark:hover:bg-red-800 transition-colors flex items-center hover:scale-[1.03] duration-200"
+            class="px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full text-sm font-medium hover:bg-red-200 dark:hover:bg-red-900/50 transition-all duration-200 flex items-center gap-1.5 shadow-sm"
             @click="clearFilter"
           >
-            <Icon icon="mdi:filter-remove" class="mr-1" />
+            <Icon icon="mdi:filter-remove" class="text-base" />
             清除筛选
           </button>
         </div>
@@ -110,14 +125,15 @@ function nextPage() {
 
       <div class="flex flex-wrap gap-2">
         <button
-          v-for="tag in uniqueTags"
+          v-for="(tag, index) in uniqueTags"
           :key="tag"
-          class="transition-all px-4 py-2 rounded-full text-sm font-medium hover:scale-105 duration-200"
+          class="transition-all duration-300 px-4 py-2 rounded-xl text-sm font-medium hover:scale-105 active:scale-95"
           :class="[
             activeTags.includes(tag)
-              ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md scale-105'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600',
+              ? 'bg-gradient-to-r from-violet-500 to-indigo-600 text-white shadow-lg'
+              : 'bg-gray-100/80 dark:bg-gray-700/60 text-gray-600 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-gray-600/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50',
           ]"
+          :style="{ animationDelay: `${index * 30}ms` }"
           @click="toggleTag(tag)"
         >
           {{ tag }}
@@ -126,7 +142,7 @@ function nextPage() {
     </div>
 
     <!-- 资源展示区域 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       <div
         v-for="resource in paginatedResources"
         :key="resource.id"
@@ -135,17 +151,18 @@ function nextPage() {
         <a
           :href="resource.url"
           target="_blank"
-          class="block w-full h-full rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 transition-all hover:shadow-xl hover:-translate-y-1 active:scale-98"
-          :style="{
-            background:
-              resource.bgGradient
-              || 'var(--default-glass-bg)',
-          }"
+          class="group relative block w-full h-full rounded-2xl overflow-hidden shadow-lg border border-violet-100 dark:border-gray-700/50 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 active:scale-[0.98] bg-gradient-to-br from-white dark:from-gray-900 via-violet-50/80 dark:via-gray-800/80 to-indigo-100/60 dark:to-gray-800"
         >
-          <div class="p-6 h-full flex flex-col">
-            <div class="flex items-start mb-3">
+          <!-- 装饰光斑 -->
+          <div class="absolute -top-12 -right-12 w-32 h-32 bg-violet-200/50 dark:bg-gray-600/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-indigo-200/50 dark:bg-gray-600/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+          <!-- 卡片内容 -->
+          <div class="relative p-5 h-full flex flex-col backdrop-blur-sm">
+            <!-- 头部：图标 + 标题 -->
+            <div class="flex items-start gap-4 mb-3">
               <div
-                class="flex-shrink-0 w-14 h-14 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center"
+                class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-100 to-indigo-100 dark:from-gray-700 dark:to-gray-700 backdrop-blur-md border border-violet-200/50 dark:border-gray-600 flex items-center justify-center shadow-inner transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
               >
                 <img
                   v-if="!resource.imageError"
@@ -157,90 +174,93 @@ function nextPage() {
                 <Icon
                   v-else
                   icon="mdi:link-variant"
-                  class="text-2xl text-blue-500"
+                  class="text-2xl text-violet-600 dark:text-violet-400"
                 />
               </div>
-              <div class="ml-4 flex-1">
+              <div class="flex-1 min-w-0">
                 <h3
-                  class="text-xl font-bold text-white line-clamp-2"
+                  class="text-lg font-bold text-gray-800 dark:text-gray-100 line-clamp-2 leading-tight group-hover:text-violet-700 dark:group-hover:text-violet-300 transition-colors"
                 >
                   {{ resource.title }}
                 </h3>
               </div>
+              <Icon
+                icon="mdi:arrow-top-right"
+                class="flex-shrink-0 w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-violet-600 dark:group-hover:text-violet-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
+              />
             </div>
-            <div class="flex flex-wrap mb-3">
+
+            <!-- 标签 -->
+            <div class="flex flex-wrap gap-1.5 mb-3">
               <span
                 v-for="tag in resource.tags"
                 :key="tag"
-                class="text-xs px-2 py-1 rounded mr-2 mb-1 bg-white/20 text-white"
+                class="text-xs px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-gray-700/60 text-violet-600 dark:text-gray-200 backdrop-blur-sm border border-violet-200/50 dark:border-gray-600 font-medium"
               >
                 {{ tag }}
               </span>
             </div>
-            <p class="text-white/90 flex-grow line-clamp-4">
+
+            <!-- 描述 -->
+            <p class="text-sm text-gray-600 dark:text-gray-300 flex-grow leading-relaxed line-clamp-3 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
               {{ resource.description }}
             </p>
+
+            <!-- 底部装饰线 -->
+            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-violet-300/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 dark:via-gray-500/60" />
           </div>
         </a>
       </div>
     </div>
 
+    <!-- 空状态 -->
+    <div
+      v-if="filteredResources.length === 0"
+      class="flex flex-col items-center justify-center py-20 text-center"
+    >
+      <div class="w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
+        <Icon icon="mdi:bookmark-off-outline" class="text-4xl text-gray-400" />
+      </div>
+      <p class="text-gray-500 dark:text-gray-400 text-lg">
+        暂无匹配的资源
+      </p>
+      <button
+        class="mt-4 px-6 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-600 transition-colors"
+        @click="clearFilter"
+      >
+        清除筛选
+      </button>
+    </div>
+
     <!-- 分页器 -->
     <div
       v-if="totalPages > 1"
-      class="flex items-center justify-center mt-10 gap-4"
+      class="flex items-center justify-center mt-10 gap-3"
     >
       <button
         :disabled="currentPage === 1"
-        class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center"
+        class="w-11 h-11 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white hover:dark:bg-gray-800 hover:border-violet-300 hover:dark:border-violet-600 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
         @click="prevPage"
       >
-        <Icon icon="mdi:chevron-left" />
+        <Icon icon="mdi:chevron-left" class="text-xl" />
       </button>
-      <span
-        class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
-      >
-        {{ currentPage }}
-      </span>
+      <div class="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-sm">
+        <span class="text-lg font-semibold text-violet-600 dark:text-violet-400">{{ currentPage }}</span>
+        <span class="text-gray-400">/</span>
+        <span class="text-gray-500 dark:text-gray-400">{{ totalPages }}</span>
+      </div>
       <button
         :disabled="currentPage === totalPages"
-        class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center"
+        class="w-11 h-11 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white hover:dark:bg-gray-800 hover:border-violet-300 hover:dark:border-violet-600 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
         @click="nextPage"
       >
-        <Icon icon="mdi:chevron-right" />
+        <Icon icon="mdi:chevron-right" class="text-xl" />
       </button>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* 定义默认磨砂玻璃背景变量 */
-:root {
-  --default-glass-bg: linear-gradient(
-    135deg,
-    rgba(120, 119, 198, 0.1),
-    rgba(251, 176, 204, 0.1)
-  );
-}
-
-.dark {
-  --default-glass-bg: linear-gradient(
-    135deg,
-    rgba(30, 29, 61, 0.3),
-    rgba(55, 29, 71, 0.3)
-  );
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -248,16 +268,10 @@ function nextPage() {
   overflow: hidden;
 }
 
-.line-clamp-4 {
+.line-clamp-3 {
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.block {
-  display: flex;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 </style>

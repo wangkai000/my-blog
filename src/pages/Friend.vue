@@ -446,6 +446,14 @@ const personalBlogs = ref([
     avatarFailed: false,
     avatarLoaded: false,
   },
+  {
+    title: '周天记(满心博客)',
+    description: '记录生活里的小美好',
+    avatar: 'https://bu.dusays.com/2023/01/29/63d5bf7fa0d2c.png',
+    url: 'https://zhoutian.com',
+    avatarFailed: false,
+    avatarLoaded: false,
+  },
 ])
 // 我的网站信息
 const mySite = ref({

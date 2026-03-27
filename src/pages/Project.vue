@@ -1,179 +1,234 @@
 <script setup lang="ts">
-import { PROJECTS } from "~/config";
+import { computed, ref } from 'vue'
+import { Icon } from '@iconify/vue'
 
-import UiShadowCard from "~/components/bento/wrapper/ShadowCard.vue";
-import UiShadowButton from "~/components/normal/ShadowButton.vue";
+// 项目数据类型
+interface Project {
+  name: string
+  desc: string
+  cover?: string
+  tags: string[]
+  github?: string
+  gitee?: string
+  demoUrl?: string
+}
 
-const isOpen = ref(false);
-const currentProject = ref<(typeof PROJECTS)[0]>();
+// 项目数据
+const projects: Project[] = [
+  {
+    name: '我的博客',
+    desc: '基于 Vue3 + TypeScript + Vite 构建的个人博客系统',
+    cover: 'https://bu.dusays.com/2024/01/14/65a2c3e4e7d8f.png',
+    tags: ['Web', 'Vue'],
+    github: 'https://github.com/wangkai000/wangkai000.github.io',
+    demoUrl: 'https://wangkai.com',
+  },
+  {
+    name: 'update-notify-js',
+    desc: '一个轻量级的纯前端实现的版本更新自动检测和提示刷新插件。',
+    tags: ['工具', 'JavaScript'],
+    github: 'https://github.com/wangkai000/update-notify-js',
+  },
 
-function openModal(_item: (typeof PROJECTS)[0]) {
-    // currentProject.value = item
-    // isOpen.value = true
+]
+
+// 当前选中的标签
+const selectedTags = ref<string[]>([])
+
+// 获取所有唯一标签
+const allTags = computed(() => {
+  const tags = new Set<string>()
+  projects.forEach((project) => {
+    project.tags.forEach(tag => tags.add(tag))
+  })
+  return Array.from(tags)
+})
+
+// 过滤后的项目
+const filteredProjects = computed(() => {
+  if (selectedTags.value.length === 0)
+    return projects
+  return projects.filter(project =>
+    selectedTags.value.some(tag => project.tags.includes(tag)),
+  )
+})
+
+// 切换标签
+function toggleTag(tag: string) {
+  if (selectedTags.value.includes(tag)) {
+    selectedTags.value = selectedTags.value.filter(t => t !== tag)
+  }
+  else {
+    selectedTags.value = [...selectedTags.value, tag]
+  }
+}
+
+// 清除筛选
+function clearSelectedTags() {
+  selectedTags.value = []
+}
+
+// 处理图片加载错误
+function handleImageError(event: Event) {
+  const img = event.target as HTMLImageElement
+  img.style.display = 'none'
+  const icon = img.nextElementSibling as HTMLElement
+  if (icon)
+    icon.style.display = 'flex'
 }
 </script>
 
 <template>
-    <div>
-        <ClientOnly>
-            <div
-                class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] mx-auto max-w-[970px] justify-center gap-[10px] rounded-xl px-[5px] text-start md:grid-cols-[repeat(auto-fill,minmax(240px,300px))] md:px-[25px]"
-            >
-                <UiShadowCard
-                    v-for="project in PROJECTS"
-                    :key="project.name"
-                    style="border: 5px solid var(--blog-card-border)"
-                    class="box relative flex flex-col cursor-pointer justify-center overflow-hidden border-[var(--blog-card-border)] rounded-[12px] border-solid bg-[var(--blog-card-bg)] object-cover text-[var(--blog-card-text)] shadow-md !p-[0px] hover:opacity-100"
-                    @click="openModal(project)"
-                >
-                    <!-- 配图 -->
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <!-- 顶部筛选区域 -->
+    <div class="flex justify-center mb-8">
+      <div
+        class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl px-5 py-3 shadow-lg border border-gray-100/50 dark:border-gray-700/50 transition-all duration-300"
+      >
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            v-for="tag in allTags"
+            :key="tag"
+            class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:scale-105 active:scale-95"
+            :class="
+              selectedTags.includes(tag)
+                ? 'bg-gradient-to-r from-violet-500 to-indigo-600 text-white shadow-md'
+                : 'bg-gray-100/80 dark:bg-gray-700/60 text-gray-600 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-gray-600/60'
+            "
+            @click="toggleTag(tag)"
+          >
+            {{ tag }}
+          </button>
 
-                    <div
-                        class="image min-h-[200px] w-full select-none px-[10px] py-[20px] duration-500"
-                    >
-                        <img
-                            :src="project.cover"
-                            class="pointer-events-none block h-full min-h-[213px] min-w-[270px] w-full rounded-[6px] object-cover"
-                        />
-                    </div>
-                    <!-- 标题 -->
-                    <div
-                        class="pointer-events-auto absolute bottom-0 left-0 z-[1] w-full flex items-center justify-between p-[10px] text-[16px] text-[var(--project-card-text)] leading-7"
-                    >
-                        <a
-                            :href="project.demoUrl"
-                            class="inline-flex gap-[0.5] pr-[0.5] text-[0.95em] leading-none hover:underline"
-                            target="_blank"
-                            data-state="closed"
-                            @click="
-                                (event: MouseEvent) => event.stopPropagation()
-                            "
-                        >
-                            {{ project.name }}
-                            <svg
-                                width="0.95em"
-                                height="0.95em"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="inline-block translate-y-0.5"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    d="M20 13.5001C20 14.8946 20 15.5919 19.8618 16.1673C19.4229 17.9956 17.9955 19.423 16.1672 19.8619C15.5918 20.0001 14.8945 20.0001 13.5 20.0001H12C9.19974 20.0001 7.79961 20.0001 6.73005 19.4551C5.78924 18.9758 5.02433 18.2109 4.54497 17.2701C4 16.2005 4 14.8004 4 12.0001V11.5001C4 9.17035 4 8.0055 4.3806 7.08664C4.88807 5.8615 5.86144 4.88813 7.08658 4.38066C7.86344 4.05888 8.81614 4.00915 10.5 4.00146M19.7597 9.45455C20.0221 7.8217 20.0697 6.16984 19.9019 4.54138C19.8898 4.42328 19.838 4.31854 19.7597 4.24027M19.7597 4.24027C19.6815 4.16201 19.5767 4.11023 19.4586 4.09806C17.8302 3.93025 16.1783 3.97792 14.5455 4.24027M19.7597 4.24027L10 14"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </UiShadowCard>
+          <button
+            v-if="selectedTags.length > 0"
+            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-all flex items-center gap-1"
+            @click="clearSelectedTags"
+          >
+            <Icon icon="mdi:filter-remove" width="14" height="14" />
+            清除
+          </button>
 
-                <!-- <UModal v-model="isOpen" :ui="{ background: 'bg-transparent', rounded: 'rounded-[10px]' }"> -->
-                <UiShadowCard v-if="currentProject" class="p-4">
-                    <template #default>
-                        <div class="pointer-events-auto p-0 md:p-[1.5em]">
-                            <div
-                                class="mb-4 flex flex-row items-center justify-between"
-                            >
-                                <h2 class="text-[1.25rem] font-bold">
-                                    {{ currentProject.name }}
-                                </h2>
-
-                                <div
-                                    class="cursor-pointer hover:opacity-50"
-                                    i-carbon-close
-                                    @click="isOpen = false"
-                                />
-                            </div>
-                            <img
-                                :src="currentProject.cover"
-                                class="pointer-events-none mb-4 block h-full w-full rounded-[6px] object-cover"
-                            />
-                        </div>
-                    </template>
-
-                    <template #footer>
-                        <div
-                            class="flex flex-row justify-between gap-[20px] p-0 md:p-[1.5em]"
-                        >
-                            <UiShadowButton class="rounded-md">
-                                <div class="truncate">
-                                    {{ currentProject.desc }}
-                                </div>
-                            </UiShadowButton>
-                            <div class="flex flex-shrink-0 flex-row gap-4">
-                                <UiShadowButton class="rounded-[6px]">
-                                    <router-link
-                                        i-carbon-logo-github
-                                        class="h-[24px] w-[24px]"
-                                        :to="currentProject.repoUrl"
-                                        target="_blank"
-                                    />
-                                </UiShadowButton>
-                                <UiShadowButton class="rounded-[6px]">
-                                    <router-link
-                                        :to="currentProject.demoUrl"
-                                        target="_blank"
-                                    >
-                                        <svg
-                                            class="z-10"
-                                            aria-hidden="true"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                        >
-                                            <path
-                                                opacity="0.2"
-                                                d="M7.8 21H14.2C15.8802 21 16.7202 21 17.362 20.673C17.9265 20.3854 18.3854 19.9265 18.673 19.362C19 18.7202 19 17.8802 19 16.2V14L10 5H7.8C6.11984 5 5.27976 5 4.63803 5.32698C4.07354 5.6146 3.6146 6.07354 3.32698 6.63803C3 7.27976 3 8.11984 3 9.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z"
-                                                fill="currentColor"
-                                            />
-                                            <path
-                                                d="M21 9L21 3M21 3H15M21 3L13 11M10 5H7.8C6.11984 5 5.27976 5 4.63803 5.32698C4.07354 5.6146 3.6146 6.07354 3.32698 6.63803C3 7.27976 3 8.11984 3 9.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21H14.2C15.8802 21 16.7202 21 17.362 20.673C17.9265 20.3854 18.3854 19.9265 18.673 19.362C19 18.7202 19 17.8802 19 16.2V14"
-                                                stroke="currentColor"
-                                                stroke-width="1.5"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            />
-                                        </svg>
-                                    </router-link>
-                                </UiShadowButton>
-                            </div>
-                        </div>
-                    </template>
-                </UiShadowCard>
-
-                <!-- </UModal> -->
-            </div>
-        </ClientOnly>
-        <div />
+          <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">
+            {{ filteredProjects.length }} 个项目
+          </span>
+        </div>
+      </div>
     </div>
+
+    <!-- 项目展示区域 -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <a
+        v-for="project in filteredProjects"
+        :key="project.name"
+        :href="project.demoUrl || project.github || project.gitee || '#'"
+        target="_blank"
+        class="group relative block rounded-2xl overflow-hidden shadow-lg border border-violet-100 dark:border-gray-700/50 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 active:scale-[0.98] bg-gradient-to-br from-white dark:from-gray-900 via-violet-50/80 dark:via-gray-800/80 to-indigo-100/60 dark:to-gray-800"
+      >
+        <!-- 封面区域 -->
+        <div class="aspect-video bg-gray-100 dark:bg-gray-800 relative overflow-hidden">
+          <img
+            v-if="project.cover"
+            :src="project.cover"
+            :alt="project.name"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            @error="handleImageError"
+          >
+          <div
+            v-if="!project.cover"
+            class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-violet-100 to-indigo-100 dark:from-gray-700 dark:to-gray-700"
+          >
+            <Icon
+              icon="mdi:folder-star-outline"
+              class="text-6xl text-violet-400 dark:text-violet-500"
+            />
+          </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+            {{ project.name }}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed min-h-[2.5rem]">
+            {{ project.desc }}
+          </p>
+
+          <!-- 标签 -->
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span
+              v-for="tag in project.tags"
+              :key="tag"
+              class="text-xs px-2 py-1 rounded-lg bg-violet-50 dark:bg-gray-700/60 text-violet-600 dark:text-gray-300 border border-violet-200/50 dark:border-gray-600"
+            >
+              {{ tag }}
+            </span>
+          </div>
+
+          <!-- 操作按钮 -->
+          <div class="flex items-center gap-3 mt-4 pt-3 border-t border-gray-100 dark:border-gray-700/50">
+            <a
+              v-if="project.github"
+              :href="project.github"
+              target="_blank"
+              class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+              @click.stop
+            >
+              <Icon icon="mdi:github" width="16" height="16" />
+              GitHub
+            </a>
+            <a
+              v-if="project.gitee"
+              :href="project.gitee"
+              target="_blank"
+              class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+              @click.stop
+            >
+              <Icon icon="simple-icons:gitee" width="16" height="16" />
+              Gitee
+            </a>
+            <a
+              v-if="project.demoUrl"
+              :href="project.demoUrl"
+              target="_blank"
+              class="flex items-center gap-1 text-xs text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors ml-auto"
+              @click.stop
+            >
+              <Icon icon="mdi:open-in-new" width="16" height="16" />
+              预览
+            </a>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 空状态 -->
+    <div
+      v-if="filteredProjects.length === 0"
+      class="flex flex-col items-center justify-center py-20 text-center"
+    >
+      <div class="w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
+        <Icon icon="mdi:folder-off-outline" class="text-4xl text-gray-400" />
+      </div>
+      <p class="text-gray-500 dark:text-gray-400 text-lg">
+        暂无匹配的项目
+      </p>
+      <button
+        v-if="selectedTags.length > 0"
+        class="mt-4 px-6 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-600 transition-colors"
+        @click="clearSelectedTags"
+      >
+        清除筛选
+      </button>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.box:hover .image {
-    transform: scale(1.1);
-}
-.box {
-    position: relative;
-}
-.box::after {
-    content: "";
-    pointer-events: none;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.9),
-        50%,
-        rgba(0, 0, 0, 0)
-    );
-    position: absolute;
-    z-index: 0;
-    width: 100%;
-    height: 200px;
-    bottom: -150px;
-    transition: opacity 200ms ease 0s;
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

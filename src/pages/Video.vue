@@ -213,7 +213,6 @@ function toggleTag(tag: string) {
 function clearSelectedTags() {
   selectedTags.value = []
 }
-const clearAllTags = () => clearSelectedTags()
 
 // 筛选视频
 const filteredVideos = computed(() => {
@@ -361,69 +360,35 @@ watch(currentPage, () => {
 
         <div class="flex justify-center my-6">
           <div
-            class="flex flex-wrap items-center gap-3 max-w-3xl mx-auto"
+            class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl px-5 py-3 shadow-lg border border-gray-100/50 dark:border-gray-700/50 transition-all duration-300"
           >
-            <div class="flex flex-wrap gap-2">
-              <button
-                class="px-3 py-1.5 rounded-full text-xs transition-all flex items-center gap-1 hover:shadow-md"
-                :class="
-                  selectedTags.length === 0
-                    ? 'bg-blue-600 text-white hover:bg-blue-700'
-                    : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700'
-                "
-                @click="clearAllTags"
-              >
-                <Icon
-                  icon="mdi:view-grid"
-                  width="14"
-                  height="14"
-                />
-                全部
-              </button>
-
+            <div class="flex flex-wrap items-center gap-2">
               <button
                 v-for="tag in allTags"
                 :key="tag"
-                class="px-3 py-1.5 rounded-full text-xs transition-all flex items-center gap-1 hover:shadow-md"
+                class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:scale-105 active:scale-95"
                 :class="
                   selectedTags.includes(tag)
-                    ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                    : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    ? 'bg-gradient-to-r from-violet-500 to-indigo-600 text-white shadow-md'
+                    : 'bg-gray-100/80 dark:bg-gray-700/60 text-gray-600 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-gray-600/60'
                 "
                 @click="toggleTag(tag)"
               >
-                <Icon
-                  icon="mdi:tag-outline"
-                  width="14"
-                  height="14"
-                />
                 {{ tag }}
               </button>
 
               <button
                 v-if="selectedTags.length > 0"
-                class="px-3 py-1.5 rounded-full text-xs transition-all flex items-center gap-1 hover:shadow-md bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-900/50"
+                class="px-3 py-1.5 rounded-lg text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-all flex items-center gap-1"
                 @click="clearSelectedTags"
               >
-                <Icon
-                  icon="mdi:close-circle-outline"
-                  width="14"
-                  height="14"
-                />
+                <Icon icon="mdi:filter-remove" width="14" height="14" />
                 清除
               </button>
-            </div>
 
-            <div
-              class="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center ml-2"
-            >
-              <Icon
-                icon="mdi:video"
-                width="16"
-                height="16"
-                class="mr-1.5 text-blue-500"
-              />
-              <span>找到 {{ filteredVideos.length }} 个视频</span>
+              <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">
+                {{ filteredVideos.length }} 个视频
+              </span>
             </div>
           </div>
         </div>
