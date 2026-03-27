@@ -101,7 +101,7 @@ export const PROJECTS = [
 ]
 
 export const giscusSetting = {
-  'data-repo': 'wangkai000/wangkai000.github.io',
+  'data-repo': 'wangkai000/my-blog',
   'data-repo-id': 'R_kgDOJohJlw',
   'data-category': 'General',
   'data-category-id': 'DIC_kwDOJohJl84CjIV4',
@@ -114,13 +114,6 @@ export const giscusSetting = {
   'data-loading': '',
   'crossorigin': 'anonymous',
 }
-
-// export enum MapboxSetting {
-//   // 待替换
-//   token = 'pk.eyJ1IjoicGlua3ktcGlnIiwiYSI6ImNsZnJvZ2Q1cDAwZ3ozcG56bXFwbjAzZjAifQ.eEOFvRbKqZHQ3OxeqPBsXw',
-//   mapLightStyle = 'mapbox://styles/pinky-pig/clgc32u1e004g01n2bitvj86a',
-//   mapDarkStyle = 'mapbox://styles/pinky-pig/clft35kll000o01osk8svnlfg',
-// }
 
 // 默认壁纸
 export const defaultImageUrl
