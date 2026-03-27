@@ -17,16 +17,16 @@ interface Project {
 const projects: Project[] = [
   {
     name: '我的博客',
-    desc: '基于 Vue3 + TypeScript + Vite 构建的个人博客系统',
-    cover: 'https://bu.dusays.com/2024/01/14/65a2c3e4e7d8f.png',
+    desc: '基于 Vue3 + TypeScript + Vite + TailwindCSS 构建的个人博客系统',
+    cover: 'https://s3.bmp.ovh/2026/03/22/WlMQJA3r.jpg',
     tags: ['Web', 'Vue'],
-    github: 'https://github.com/wangkai000/wangkai000.github.io',
-    demoUrl: 'https://wangkai.com',
+    github: 'https://github.com/wangkai000/my-blog',
+    demoUrl: 'https://tianmiao.site/',
   },
   {
     name: 'update-notify-js',
-    desc: '一个轻量级的纯前端实现的版本更新自动检测和提示刷新插件。',
-    tags: ['工具', 'JavaScript'],
+    desc: '一个轻量级的纯前端实现的版本更新自动检测和提示刷新插件。它能够自动监测应用的新版本发布，并通过友好的方式通知用户进行更新，确保用户始终使用最新版本的应用。',
+    tags: ['工具', 'TypeScript'],
     github: 'https://github.com/wangkai000/update-notify-js',
   },
 
