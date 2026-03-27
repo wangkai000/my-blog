@@ -38,7 +38,6 @@ const sites = ref([
     avatarFailed: false,
     avatarLoaded: false,
   },
-
 ])
 
 // 个人博客链接
@@ -513,7 +512,9 @@ watchOnce(giscusRootRef, (root) => {
     <div class="mx-auto max-w-6xl px-4 py-8">
       <!-- 站点类链接 -->
       <div class="mb-12">
-        <div class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-purple-50/60 to-slate-50 dark:from-gray-800 dark:via-purple-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm max-w-2xl mx-auto">
+        <div
+          class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-purple-50/60 to-slate-50 dark:from-gray-800 dark:via-purple-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm max-w-2xl mx-auto"
+        >
           <div class="mx-auto max-w-prose text-center">
             <h2
               class="text-xl md:text-2xl font-bold text-slate-700 dark:text-white mb-2 flex items-center justify-center"
@@ -588,7 +589,9 @@ watchOnce(giscusRootRef, (root) => {
 
       <!-- 个人博客链接 -->
       <div class="mb-16">
-        <div class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-blue-50/60 to-slate-50 dark:from-gray-800 dark:via-blue-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm max-w-2xl mx-auto">
+        <div
+          class="mb-8 text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 via-blue-50/60 to-slate-50 dark:from-gray-800 dark:via-blue-900/20 dark:to-gray-800 border border-slate-200/50 dark:border-gray-600 shadow-sm max-w-2xl mx-auto"
+        >
           <div class="mx-auto max-w-prose text-center">
             <h2
               class="text-xl md:text-2xl font-bold text-slate-700 dark:text-white mb-2 flex items-center justify-center"

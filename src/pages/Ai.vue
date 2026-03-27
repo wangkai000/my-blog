@@ -41,7 +41,10 @@ const message = useMessage()
 // 工具函数
 // ────────────────────────────────────────────
 function formatTime(date: Date): string {
-  return date.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
+  return date.toLocaleTimeString('zh-CN', {
+    hour: '2-digit',
+    minute: '2-digit',
+  })
 }
 
 function _scrollToBottom() {
@@ -88,19 +91,35 @@ function clearMessages() {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col items-center px-3 sm:px-4 py-6 sm:py-8 bg-gray-50 dark:bg-gray-900 rounded-xl max-w-full sm:max-w-[90%] md:max-w-[85%] lg:max-w-[80%] mx-auto transition-colors duration-300">
-    <div class="w-full max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[70%] flex flex-col px-3 sm:px-4 md:px-6" style="height: calc(100vh - 100px); min-height: 400px;">
+  <div
+    class="min-h-screen flex flex-col items-center px-3 sm:px-4 py-6 sm:py-8 bg-gray-50 dark:bg-gray-900 rounded-xl max-w-full sm:max-w-[90%] md:max-w-[85%] lg:max-w-[80%] mx-auto transition-colors duration-300"
+  >
+    <div
+      class="w-full max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[70%] flex flex-col px-3 sm:px-4 md:px-6"
+      style="height: calc(100vh - 100px); min-height: 400px"
+    >
       <!-- 顶部标题栏 -->
-      <div class="flex items-center justify-between mb-4 px-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 transition-all duration-300">
+      <div
+        class="flex items-center justify-between mb-4 px-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 transition-all duration-300"
+      >
         <div class="flex items-center gap-2 sm:gap-3">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-md ring-2 ring-violet-500/20">
-            <Icon icon="carbon:bot" class="text-white text-sm sm:text-xl" />
+          <div
+            class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-md ring-2 ring-violet-500/20"
+          >
+            <Icon
+              icon="carbon:bot"
+              class="text-white text-sm sm:text-xl"
+            />
           </div>
           <div>
-            <h1 class="text-base sm:text-lg font-bold text-gray-800 dark:text-gray-100 leading-tight">
+            <h1
+              class="text-base sm:text-lg font-bold text-gray-800 dark:text-gray-100 leading-tight"
+            >
               AI分身
             </h1>
-            <p class="text-xs text-gray-400 dark:text-gray-500 truncate max-w-[120px] sm:max-w-none">
+            <p
+              class="text-xs text-gray-400 dark:text-gray-500 truncate max-w-[120px] sm:max-w-none"
+            >
               由 {{ selectedModel }} 驱动
             </p>
           </div>
@@ -118,15 +137,18 @@ function clearMessages() {
 
       <!-- 消息列表区域 -->
       <div
-        class="flex-1 overflow-y-auto rounded-2xl border border-gray-100 dark:border-gray-700/60
-               bg-white/90 dark:bg-gray-800/80 backdrop-blur-sm shadow-sm p-3 sm:p-4 space-y-3 sm:space-y-4 transition-colors duration-300"
+        class="flex-1 overflow-y-auto rounded-2xl border border-gray-100 dark:border-gray-700/60 bg-white/90 dark:bg-gray-800/80 backdrop-blur-sm shadow-sm p-3 sm:p-4 space-y-3 sm:space-y-4 transition-colors duration-300"
       >
         <TransitionGroup name="msg">
           <div
             v-for="msg in messages"
             :key="msg.id"
             class="flex gap-2 sm:gap-3"
-            :class="[msg.role === 'user' ? 'flex-row-reverse' : 'flex-row']"
+            :class="[
+              msg.role === 'user'
+                ? 'flex-row-reverse'
+                : 'flex-row',
+            ]"
           >
             <!-- 头像 -->
             <div
@@ -147,13 +169,24 @@ function clearMessages() {
               >
               <Icon
                 v-else
-                :icon="msg.role === 'user' ? 'carbon:user' : 'carbon:warning'"
+                :icon="
+                  msg.role === 'user'
+                    ? 'carbon:user'
+                    : 'carbon:warning'
+                "
                 class="text-white"
               />
             </div>
 
             <!-- 气泡 -->
-            <div class="max-w-[85%] sm:max-w-[80%] md:max-w-[78%] flex flex-col" :class="[msg.role === 'user' ? 'items-end' : 'items-start']">
+            <div
+              class="max-w-[85%] sm:max-w-[80%] md:max-w-[78%] flex flex-col"
+              :class="[
+                msg.role === 'user'
+                  ? 'items-end'
+                  : 'items-start',
+              ]"
+            >
               <div
                 class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap break-words shadow-sm transition-all duration-200 hover:shadow-md"
                 :class="[
@@ -166,7 +199,9 @@ function clearMessages() {
               >
                 {{ msg.content }}
               </div>
-              <span class="text-xs text-gray-400 dark:text-gray-500 mt-1 px-1">{{ msg.time }}</span>
+              <span
+                class="text-xs text-gray-400 dark:text-gray-500 mt-1 px-1"
+              >{{ msg.time }}</span>
             </div>
           </div>
         </TransitionGroup>
@@ -176,8 +211,7 @@ function clearMessages() {
       <!-- 输入区域 -->
       <div class="mt-3">
         <div
-          class="flex items-end gap-2 p-2 rounded-2xl border border-gray-200 dark:border-gray-700
-                 bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 focus-within:border-violet-400 dark:focus-within:border-violet-500 focus-within:ring-2 focus-within:ring-violet-500/20"
+          class="flex items-end gap-2 p-2 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 focus-within:border-violet-400 dark:focus-within:border-violet-500 focus-within:ring-2 focus-within:ring-violet-500/20"
         >
           <textarea
             ref="textareaRef"
@@ -192,10 +226,15 @@ function clearMessages() {
             class="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 text-white flex items-center justify-center shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
             @click="sendMessage"
           >
-            <Icon icon="lucide:send" class="w-4 h-4 sm:w-5 sm:h-5" />
+            <Icon
+              icon="lucide:send"
+              class="w-4 h-4 sm:w-5 sm:h-5"
+            />
           </button>
         </div>
-        <p class="text-center text-xs text-gray-400 dark:text-gray-500 mt-2 px-2">
+        <p
+          class="text-center text-xs text-gray-400 dark:text-gray-500 mt-2 px-2"
+        >
           AI 可能产生错误内容，请注意甄别
         </p>
       </div>

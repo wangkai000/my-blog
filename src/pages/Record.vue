@@ -12,9 +12,7 @@ const filteredResources = computed<Resource[]>(() => {
   if (activeTags.value.length === 0)
     return resources
   return resources.filter(resource =>
-    activeTags.value.some(tag =>
-      resource.tags.includes(tag),
-    ),
+    activeTags.value.some(tag => resource.tags.includes(tag)),
   )
 })
 
@@ -98,11 +96,18 @@ function nextPage() {
     >
       <div class="flex flex-wrap items-center justify-between mb-5 gap-3">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
-            <Icon icon="mdi:bookmark-multiple" class="text-white text-xl" />
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/25"
+          >
+            <Icon
+              icon="mdi:bookmark-multiple"
+              class="text-white text-xl"
+            />
           </div>
           <div>
-            <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">
+            <h2
+              class="text-xl font-bold text-gray-800 dark:text-gray-100"
+            >
               收录👍资源
             </h2>
             <p class="text-sm text-gray-500 dark:text-gray-400">
@@ -154,11 +159,17 @@ function nextPage() {
           class="group relative block w-full h-full rounded-2xl overflow-hidden shadow-lg border border-violet-100 dark:border-gray-700/50 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 active:scale-[0.98] bg-gradient-to-br from-white dark:from-gray-900 via-violet-50/80 dark:via-gray-800/80 to-indigo-100/60 dark:to-gray-800"
         >
           <!-- 装饰光斑 -->
-          <div class="absolute -top-12 -right-12 w-32 h-32 bg-violet-200/50 dark:bg-gray-600/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-indigo-200/50 dark:bg-gray-600/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <div
+            class="absolute -top-12 -right-12 w-32 h-32 bg-violet-200/50 dark:bg-gray-600/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          />
+          <div
+            class="absolute -bottom-8 -left-8 w-24 h-24 bg-indigo-200/50 dark:bg-gray-600/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+          />
 
           <!-- 卡片内容 -->
-          <div class="relative p-5 h-full flex flex-col backdrop-blur-sm">
+          <div
+            class="relative p-5 h-full flex flex-col backdrop-blur-sm"
+          >
             <!-- 头部：图标 + 标题 -->
             <div class="flex items-start gap-4 mb-3">
               <div
@@ -202,12 +213,16 @@ function nextPage() {
             </div>
 
             <!-- 描述 -->
-            <p class="text-sm text-gray-600 dark:text-gray-300 flex-grow leading-relaxed line-clamp-3 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+            <p
+              class="text-sm text-gray-600 dark:text-gray-300 flex-grow leading-relaxed line-clamp-3 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300"
+            >
               {{ resource.description }}
             </p>
 
             <!-- 底部装饰线 -->
-            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-violet-300/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 dark:via-gray-500/60" />
+            <div
+              class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-violet-300/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 dark:via-gray-500/60"
+            />
           </div>
         </a>
       </div>
@@ -218,8 +233,13 @@ function nextPage() {
       v-if="filteredResources.length === 0"
       class="flex flex-col items-center justify-center py-20 text-center"
     >
-      <div class="w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
-        <Icon icon="mdi:bookmark-off-outline" class="text-4xl text-gray-400" />
+      <div
+        class="w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4"
+      >
+        <Icon
+          icon="mdi:bookmark-off-outline"
+          class="text-4xl text-gray-400"
+        />
       </div>
       <p class="text-gray-500 dark:text-gray-400 text-lg">
         暂无匹配的资源
@@ -244,10 +264,16 @@ function nextPage() {
       >
         <Icon icon="mdi:chevron-left" class="text-xl" />
       </button>
-      <div class="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-sm">
-        <span class="text-lg font-semibold text-violet-600 dark:text-violet-400">{{ currentPage }}</span>
+      <div
+        class="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-sm"
+      >
+        <span
+          class="text-lg font-semibold text-violet-600 dark:text-violet-400"
+        >{{ currentPage }}</span>
         <span class="text-gray-400">/</span>
-        <span class="text-gray-500 dark:text-gray-400">{{ totalPages }}</span>
+        <span class="text-gray-500 dark:text-gray-400">{{
+          totalPages
+        }}</span>
       </div>
       <button
         :disabled="currentPage === totalPages"

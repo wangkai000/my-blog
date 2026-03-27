@@ -296,8 +296,7 @@ export function getCurrentWallpaper(): Wallpaper {
         },
         {
           url: 'https://s3.bmp.ovh/imgs/2025/08/09/4bf8fb6f99028352.jpg',
-          description:
-                        '今天你努力的样子真好看',
+          description: '今天你努力的样子真好看',
         },
         {
           url: 'https://s3.bmp.ovh/2026/03/21/O3USxWTt.jpg',
@@ -654,8 +653,13 @@ export function getCurrentWallpaper(): Wallpaper {
   }
 
   // 防护：如果索引越界或数据有误，返回兜底壁纸对象
-  const safeDayIndex = Math.min(Math.max(adjustedDayIndex, 0), wallpaperSchedule.length - 1)
-  const dayEntry = wallpaperSchedule[safeDayIndex] || (wallpaperSchedule[0] as DailyWallpapers)
+  const safeDayIndex = Math.min(
+    Math.max(adjustedDayIndex, 0),
+    wallpaperSchedule.length - 1,
+  )
+  const dayEntry
+        = wallpaperSchedule[safeDayIndex]
+        || (wallpaperSchedule[0] as DailyWallpapers)
   // 规范化候选数组（支持两种形式：{url,description} 或直接 url 字符串）
   const rawCandidates = (dayEntry && (dayEntry as any)[timePeriod]) || []
   const candidates: Wallpaper[] = Array.isArray(rawCandidates)
@@ -665,8 +669,15 @@ export function getCurrentWallpaper(): Wallpaper {
       if (typeof it === 'string')
         return { url: it, description: '壁纸' }
       return {
-        url: typeof it.url === 'string' && it.url.length > 0 ? it.url : defaultImageUrl,
-        description: typeof it.description === 'string' && it.description.length > 0 ? it.description : '壁纸',
+        url:
+                      typeof it.url === 'string' && it.url.length > 0
+                        ? it.url
+                        : defaultImageUrl,
+        description:
+                      typeof it.description === 'string'
+                      && it.description.length > 0
+                        ? it.description
+                        : '壁纸',
       }
     })
     : []

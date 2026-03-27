@@ -29,7 +29,6 @@ const projects: Project[] = [
     tags: ['工具', 'TypeScript'],
     github: 'https://github.com/wangkai000/update-notify-js',
   },
-
 ]
 
 // 当前选中的标签
@@ -121,12 +120,16 @@ function handleImageError(event: Event) {
       <a
         v-for="project in filteredProjects"
         :key="project.name"
-        :href="project.demoUrl || project.github || project.gitee || '#'"
+        :href="
+          project.demoUrl || project.github || project.gitee || '#'
+        "
         target="_blank"
         class="group relative block rounded-2xl overflow-hidden shadow-lg border border-violet-100 dark:border-gray-700/50 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 active:scale-[0.98] bg-gradient-to-br from-white dark:from-gray-900 via-violet-50/80 dark:via-gray-800/80 to-indigo-100/60 dark:to-gray-800"
       >
         <!-- 封面区域 -->
-        <div class="aspect-video bg-gray-100 dark:bg-gray-800 relative overflow-hidden">
+        <div
+          class="aspect-video bg-gray-100 dark:bg-gray-800 relative overflow-hidden"
+        >
           <img
             v-if="project.cover"
             :src="project.cover"
@@ -147,10 +150,14 @@ function handleImageError(event: Event) {
 
         <!-- 内容区域 -->
         <div class="p-4">
-          <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+          <h3
+            class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors"
+          >
             {{ project.name }}
           </h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed min-h-[2.5rem]">
+          <p
+            class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed min-h-[2.5rem]"
+          >
             {{ project.desc }}
           </p>
 
@@ -166,7 +173,9 @@ function handleImageError(event: Event) {
           </div>
 
           <!-- 操作按钮 -->
-          <div class="flex items-center gap-3 mt-4 pt-3 border-t border-gray-100 dark:border-gray-700/50">
+          <div
+            class="flex items-center gap-3 mt-4 pt-3 border-t border-gray-100 dark:border-gray-700/50"
+          >
             <a
               v-if="project.github"
               :href="project.github"
@@ -184,7 +193,11 @@ function handleImageError(event: Event) {
               class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
               @click.stop
             >
-              <Icon icon="simple-icons:gitee" width="16" height="16" />
+              <Icon
+                icon="simple-icons:gitee"
+                width="16"
+                height="16"
+              />
               Gitee
             </a>
             <a
@@ -194,7 +207,11 @@ function handleImageError(event: Event) {
               class="flex items-center gap-1 text-xs text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors ml-auto"
               @click.stop
             >
-              <Icon icon="mdi:open-in-new" width="16" height="16" />
+              <Icon
+                icon="mdi:open-in-new"
+                width="16"
+                height="16"
+              />
               预览
             </a>
           </div>
@@ -207,8 +224,13 @@ function handleImageError(event: Event) {
       v-if="filteredProjects.length === 0"
       class="flex flex-col items-center justify-center py-20 text-center"
     >
-      <div class="w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
-        <Icon icon="mdi:folder-off-outline" class="text-4xl text-gray-400" />
+      <div
+        class="w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4"
+      >
+        <Icon
+          icon="mdi:folder-off-outline"
+          class="text-4xl text-gray-400"
+        />
       </div>
       <p class="text-gray-500 dark:text-gray-400 text-lg">
         暂无匹配的项目

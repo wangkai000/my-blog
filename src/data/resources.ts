@@ -35,7 +35,8 @@ export const resources: Resource[] = [
   {
     id: 1,
     title: '发现AI',
-    description: '覆盖自然语言处理、图像识别、数据分析等全领域，提供行业趋势报告+使用教程，界面简洁且支持精准搜索。',
+    description:
+            '覆盖自然语言处理、图像识别、数据分析等全领域，提供行业趋势报告+使用教程，界面简洁且支持精准搜索。',
     url: 'https://www.faxianai.com/',
     tags: ['AI', '导航'],
     imageUrl: 'https://www.faxianai.com/favicon.ico',
@@ -45,7 +46,8 @@ export const resources: Resource[] = [
   {
     id: 2,
     title: 'Toolify.ai',
-    description: '全球最大AI工具库（超1.8万款工具），支持智能推荐和用户评分，自动化更新系统确保时效性。',
+    description:
+            '全球最大AI工具库（超1.8万款工具），支持智能推荐和用户评分，自动化更新系统确保时效性。',
     url: 'https://www.toolify.ai/',
     tags: ['AI', '导航'],
     imageUrl: 'https://www.toolify.ai/favicon.ico',
@@ -55,7 +57,8 @@ export const resources: Resource[] = [
   {
     id: 3,
     title: 'PANews数据导航',
-    description: 'PANews 数据导航是区块链和 Web3.0 领域的重要工具，为用户提供了丰富的链上数据及各类相关资源，助力其在区块链领域的探索与投资决策。',
+    description:
+            'PANews 数据导航是区块链和 Web3.0 领域的重要工具，为用户提供了丰富的链上数据及各类相关资源，助力其在区块链领域的探索与投资决策。',
     url: 'https://www.panewslab.com',
     tags: ['Web3.0'],
     imageUrl: 'https://image.panewslab.com/images/favicon.ico',
@@ -75,7 +78,8 @@ export const resources: Resource[] = [
   {
     id: 5,
     title: 'OpenBuild',
-    description: 'OpenBuild 是一个专注于 Web3 开发者生态的开源社区，致力于连接 Web2 与 Web3 技术领域，帮助开发者过渡到去中心化网络，并提供工具、资源及商业机会',
+    description:
+            'OpenBuild 是一个专注于 Web3 开发者生态的开源社区，致力于连接 Web2 与 Web3 技术领域，帮助开发者过渡到去中心化网络，并提供工具、资源及商业机会',
     url: 'https://openbuild.xyz/',
     tags: ['Web3.0'],
     imageUrl: 'https://openbuild.xyz/favicon.ico',
@@ -88,24 +92,28 @@ export const resources: Resource[] = [
     description: '一个不错的AI工具收集网站',
     url: 'https://ai-bot.cn/',
     tags: ['AI', '导航'],
-    imageUrl: 'https://ai-bot.cn/wp-content/uploads/2023/03/ai-bot-square-logo.png',
+    imageUrl:
+            'https://ai-bot.cn/wp-content/uploads/2023/03/ai-bot-square-logo.png',
     bgGradient: gradients[5],
     imageError: false,
   },
   {
     id: 7,
     title: 'Tbox导航',
-    description: 'Tbox导航是一个集合大量优质在线工具的导航网站,包括实用工具、影音工具、图片工具、编程工具、网络资源等几十种分类,覆盖全网在线工具,只收录最优质的的精品网站,做一个真正有用好用的工具导航网站。',
+    description:
+            'Tbox导航是一个集合大量优质在线工具的导航网站,包括实用工具、影音工具、图片工具、编程工具、网络资源等几十种分类,覆盖全网在线工具,只收录最优质的的精品网站,做一个真正有用好用的工具导航网站。',
     url: 'https://www.tboxn.com/',
     tags: ['Tool', '导航'],
-    imageUrl: 'https://tboxn.com/wp-content/uploads/2022/03/cropped-tboxlogo512.png',
+    imageUrl:
+            'https://tboxn.com/wp-content/uploads/2022/03/cropped-tboxlogo512.png',
     bgGradient: gradients[6],
     imageError: false,
   },
   {
     id: 9,
     title: 'Uiverse UI',
-    description: 'uiverse.io是一个开源UI组件库平台，由社区驱动，提供大量可直接复用的UI组件，包括按钮、卡片、加载动画、表单控件等',
+    description:
+            'uiverse.io是一个开源UI组件库平台，由社区驱动，提供大量可直接复用的UI组件，包括按钮、卡片、加载动画、表单控件等',
     url: 'https://uiverse.io/',
     tags: ['UI组件库'],
     imageUrl: 'https://uiverse.io/android-chrome-512x512.png',
@@ -115,7 +123,8 @@ export const resources: Resource[] = [
   {
     id: 10,
     title: 'Inspira UI',
-    description: 'Inspira UI 是 Vue3 生态中兼具「设计美学」与「技术深度」的革新者。其动态交互能力与模块化架构，特别适合追求视觉创新且需高效开发的团队。若你的项目需要跳出传统组件库的固化框架，Inspira UI 值得优先尝试。',
+    description:
+            'Inspira UI 是 Vue3 生态中兼具「设计美学」与「技术深度」的革新者。其动态交互能力与模块化架构，特别适合追求视觉创新且需高效开发的团队。若你的项目需要跳出传统组件库的固化框架，Inspira UI 值得优先尝试。',
     url: 'https://inspira-ui.com/',
     tags: ['UI组件库'],
     imageUrl: 'https://uiverse.io/android-chrome-512x512.png',
@@ -125,10 +134,12 @@ export const resources: Resource[] = [
   {
     id: 11,
     title: '开源精选',
-    description: '开源精选是一款专注于收录优质开源工具的导航网站，开源精选只收集每个软件工具类目中完全免费且超好用的开源软件，来服务于所有网络用户，力求软件简单免费好用，小白也能轻松使用，让所有人都能尽享数字自由！',
+    description:
+            '开源精选是一款专注于收录优质开源工具的导航网站，开源精选只收集每个软件工具类目中完全免费且超好用的开源软件，来服务于所有网络用户，力求软件简单免费好用，小白也能轻松使用，让所有人都能尽享数字自由！',
     url: 'https://www.ossnav.com',
     tags: ['开源', '导航'],
-    imageUrl: 'https://www.ossnav.com/wp-content/uploads/2024/11/1732557264-open-64.png',
+    imageUrl:
+            'https://www.ossnav.com/wp-content/uploads/2024/11/1732557264-open-64.png',
     bgGradient: gradients[9],
     imageError: false,
   },
@@ -145,7 +156,8 @@ export const resources: Resource[] = [
   {
     id: 13,
     title: 'Itch.io',
-    description: '创立于2013年，由程序员兼游戏爱好者 Leaf Corcoran 创建，旨在打破传统平台（如Steam）的高门槛限制，为独立开发者提供无审核上架、自由定价和页面设计的开放空间。',
+    description:
+            '创立于2013年，由程序员兼游戏爱好者 Leaf Corcoran 创建，旨在打破传统平台（如Steam）的高门槛限制，为独立开发者提供无审核上架、自由定价和页面设计的开放空间。',
     url: 'https://itch.io/',
     tags: ['独立开发', '社区', '游戏'],
     imageUrl: 'https://static.itch.io/images/logo-black-new.svg',
@@ -165,7 +177,8 @@ export const resources: Resource[] = [
   {
     id: 15,
     title: 'cocos游戏引擎',
-    description: 'Cocos 凭借开源免费策略、极致轻量化（尤其适合移动端及 IoT）和中国开发者生态，成为全球化通用引擎标杆。虽在 3A 级图形效果上仍落后于 Unreal，但在中小型项目开发效率、跨平台兼容性及新兴场景（车载/教育）落地方面具有显著优势，是国产基础软件国际化的典范案例。',
+    description:
+            'Cocos 凭借开源免费策略、极致轻量化（尤其适合移动端及 IoT）和中国开发者生态，成为全球化通用引擎标杆。虽在 3A 级图形效果上仍落后于 Unreal，但在中小型项目开发效率、跨平台兼容性及新兴场景（车载/教育）落地方面具有显著优势，是国产基础软件国际化的典范案例。',
     url: 'https://www.cocos.com/',
     tags: ['游戏开发引擎', '游戏'],
     imageUrl: 'https://www.cocos.com/favicon.ico',
@@ -175,7 +188,8 @@ export const resources: Resource[] = [
   {
     id: 16,
     title: 'Twine文字游戏引擎',
-    description: 'Twine 是一款免费开源的互动叙事创作工具，专为构建非线性故事与文字冒险游戏设计。它以低门槛、高灵活性为核心优势，成为独立开发者和叙事设计师的首选引擎之一。',
+    description:
+            'Twine 是一款免费开源的互动叙事创作工具，专为构建非线性故事与文字冒险游戏设计。它以低门槛、高灵活性为核心优势，成为独立开发者和叙事设计师的首选引擎之一。',
     url: 'https://twinery.org/',
     tags: ['游戏开发引擎', '游戏'],
     imageUrl: 'https://twinery.org/favicon-152.png',
@@ -185,10 +199,12 @@ export const resources: Resource[] = [
   {
     id: 17,
     title: '深潮techflow',
-    description: '深潮 TechFlow 是华语世界最具特色的区块链与加密货币深度媒体平台，以前沿洞察、内容质量与行业连接力著称。',
+    description:
+            '深潮 TechFlow 是华语世界最具特色的区块链与加密货币深度媒体平台，以前沿洞察、内容质量与行业连接力著称。',
     url: 'https://www.techflowpost.com/',
     tags: ['Web3.0'],
-    imageUrl: 'https://upload.techflowpost.com/upload/images/20230331/2023033111502613443948.png',
+    imageUrl:
+            'https://upload.techflowpost.com/upload/images/20230331/2023033111502613443948.png',
     bgGradient: gradients[7],
     imageError: false,
   },
@@ -205,10 +221,12 @@ export const resources: Resource[] = [
   {
     id: 19,
     title: '独立精神 | indienova 独立游戏',
-    description: 'Indienova 以 技术赋能+文化沉淀 的双轨模式，成为中国独立游戏领域的"生态基石"。其价值不仅在于工具性支持（如发行、组队），更在于构建了一个 尊重原创、鼓励思辨的创作者共同体，持续推动独立游戏从边缘走向主流。',
+    description:
+            'Indienova 以 技术赋能+文化沉淀 的双轨模式，成为中国独立游戏领域的"生态基石"。其价值不仅在于工具性支持（如发行、组队），更在于构建了一个 尊重原创、鼓励思辨的创作者共同体，持续推动独立游戏从边缘走向主流。',
     url: 'https://indienova.com/',
     tags: ['社区', '游戏'],
-    imageUrl: 'https://static.indienova.com/assets/images/logos/indienova_new@2x.png',
+    imageUrl:
+            'https://static.indienova.com/assets/images/logos/indienova_new@2x.png',
     bgGradient: gradients[5],
     imageError: false,
   },
@@ -225,7 +243,8 @@ export const resources: Resource[] = [
   {
     id: 21,
     title: 'Headless UI',
-    description: 'Headless UI 代表了现代UI开发的新范式，将交互逻辑与视觉表现分离，让开发者既能获得完整的组件功能，又能保持100%的设计控制权。',
+    description:
+            'Headless UI 代表了现代UI开发的新范式，将交互逻辑与视觉表现分离，让开发者既能获得完整的组件功能，又能保持100%的设计控制权。',
     url: 'https://headlessui.com/',
     tags: ['UI组件库'],
     imageUrl: 'https://headlessui.com/favicon.ico',
@@ -235,7 +254,8 @@ export const resources: Resource[] = [
   {
     id: 22,
     title: 'Ren\'Py',
-    description: 'Ren\'Py 凭借 低门槛脚本+Python可扩展性 的双层设计，成为视觉小说开发的首选引擎。其开源免费策略与跨平台特性，尤其适合独立开发者和小团队快速实现叙事创意。尽管在 RPG 等复杂类型中稍显不足，但持续的社区更新（如 Live2D 支持、性能优化）正不断拓展其边界',
+    description:
+            'Ren\'Py 凭借 低门槛脚本+Python可扩展性 的双层设计，成为视觉小说开发的首选引擎。其开源免费策略与跨平台特性，尤其适合独立开发者和小团队快速实现叙事创意。尽管在 RPG 等复杂类型中稍显不足，但持续的社区更新（如 Live2D 支持、性能优化）正不断拓展其边界',
     url: 'https://www.renpy.org/',
     tags: ['游戏开发引擎'],
     imageUrl: 'https://www.renpy.org/static/favicon.ico',
@@ -245,7 +265,8 @@ export const resources: Resource[] = [
   {
     id: 23,
     title: 'GameMaker',
-    description: 'GameMaker 凭借 "低门槛 + 高性能 2D 开发" 成为独立游戏黄金标准，尤其适合混合类型 2D 游戏。尽管 3D 与中文支持是短板，其许可改革（非商业免费）和持续跨平台优化，仍使其在 Godot、Unity 竞争下保持独特优势。',
+    description:
+            'GameMaker 凭借 "低门槛 + 高性能 2D 开发" 成为独立游戏黄金标准，尤其适合混合类型 2D 游戏。尽管 3D 与中文支持是短板，其许可改革（非商业免费）和持续跨平台优化，仍使其在 Godot、Unity 竞争下保持独特优势。',
     url: 'https://gamemaker.io',
     tags: ['游戏开发引擎'],
     imageUrl: 'https://gamemaker.io/next/images/icons/favicon-32x32.png',
@@ -255,17 +276,20 @@ export const resources: Resource[] = [
   {
     id: 24,
     title: 'AIGC工具导航',
-    description: 'AIGC导航，一个全网分类最全，收录最全的生成式人工智能工具导航平台，分类包括AI写作、AI绘画、AI视频、AI办公、AI数字人、AI设计、AI语音、AI音乐、AI论文、AI简历、AI智能体、文本转语音等AI工具。AIGC导航提供一站式AI工具导航服务，帮助用户快速找到能够提升工作效率和创作能力的生产力工具。找AI工具，就上AIGC工具导航！',
+    description:
+            'AIGC导航，一个全网分类最全，收录最全的生成式人工智能工具导航平台，分类包括AI写作、AI绘画、AI视频、AI办公、AI数字人、AI设计、AI语音、AI音乐、AI论文、AI简历、AI智能体、文本转语音等AI工具。AIGC导航提供一站式AI工具导航服务，帮助用户快速找到能够提升工作效率和创作能力的生产力工具。找AI工具，就上AIGC工具导航！',
     url: 'https://www.aigc.cn/',
     tags: ['AI', '导航'],
-    imageUrl: 'https://www.aigc.cn/wp-content/uploads/2025/06/aigc-icon.png',
+    imageUrl:
+            'https://www.aigc.cn/wp-content/uploads/2025/06/aigc-icon.png',
     bgGradient: gradients[0],
     imageError: false,
   },
   {
     id: 25,
     title: 'Photopea',
-    description: '这个在线PS是捷克程序员Ivan Kutskir在2013年开发，至今已经发展了十多年了。',
+    description:
+            '这个在线PS是捷克程序员Ivan Kutskir在2013年开发，至今已经发展了十多年了。',
     url: 'https://www.photopea.com/',
     tags: ['Tool'],
     imageUrl: 'https://www.photopea.com/promo/icon512.png',
@@ -275,7 +299,8 @@ export const resources: Resource[] = [
   {
     id: 26,
     title: 'Draw.io',
-    description: '一款开源免费的在线图表绘制工具，适合绘制流程图、组织结构图、网络拓扑图等多种图表。它基于浏览器运行，无需安装，支持拖拽、自动布局等功能，新手也能快速上手，还提供了丰富的模板库。',
+    description:
+            '一款开源免费的在线图表绘制工具，适合绘制流程图、组织结构图、网络拓扑图等多种图表。它基于浏览器运行，无需安装，支持拖拽、自动布局等功能，新手也能快速上手，还提供了丰富的模板库。',
     url: 'https://www.drawio.com/',
     tags: ['Tool'],
     imageUrl: 'https://www.drawio.com/favicon.ico',
@@ -285,10 +310,12 @@ export const resources: Resource[] = [
   {
     id: 27,
     title: 'RPG Maker',
-    description: 'RPG Maker既是工具，更是创作者生态的基石——从提供免费试用到技术资源整合，从插件开发到作品分发，它降低了RPG开发的门槛，推动个人创作走向商业成功。',
+    description:
+            'RPG Maker既是工具，更是创作者生态的基石——从提供免费试用到技术资源整合，从插件开发到作品分发，它降低了RPG开发的门槛，推动个人创作走向商业成功。',
     url: 'https://www.rpgmakerweb.com/',
     tags: ['游戏开发引擎'],
-    imageUrl: 'https://src.onlinedown.net/d/file/p/2019-01-18/bfa8537ccd4e24a88c58b02dfe4cf6b0.jpg',
+    imageUrl:
+            'https://src.onlinedown.net/d/file/p/2019-01-18/bfa8537ccd4e24a88c58b02dfe4cf6b0.jpg',
     bgGradient: gradients[3],
     imageError: false,
   },
@@ -305,20 +332,24 @@ export const resources: Resource[] = [
   {
     id: 29,
     title: 'Awwwards',
-    description: 'Awwwards 是一个专注于评选和展示全球顶尖网页设计的国际平台，被誉为"网页设计界的奥斯卡"',
+    description:
+            'Awwwards 是一个专注于评选和展示全球顶尖网页设计的国际平台，被誉为"网页设计界的奥斯卡"',
     url: 'https://www.awwwards.com/',
     tags: ['资源'],
-    imageUrl: 'https://assets.awwwards.com/assets/images/favicon-safari.svg',
+    imageUrl:
+            'https://assets.awwwards.com/assets/images/favicon-safari.svg',
     bgGradient: gradients[5],
     imageError: false,
   },
   {
     id: 30,
     title: 'Dribbble',
-    description: 'Dribbble 是一个以篮球元素为特色，采用邀请制，专注于 UI/UX 设计等领域，鼓励设计师展示作品、分享创意并进行互动交流的全球性设计社区',
+    description:
+            'Dribbble 是一个以篮球元素为特色，采用邀请制，专注于 UI/UX 设计等领域，鼓励设计师展示作品、分享创意并进行互动交流的全球性设计社区',
     url: 'https://dribbble.com/',
     tags: ['资源', '社区', '设计'],
-    imageUrl: 'https://cdn.dribbble.com/assets/dribbble-vector-ball-c75e531ccee3110d0ee5ae951fd1d0a65d2ff25d3c0577757ea7e8d8e3e75db4.svg',
+    imageUrl:
+            'https://cdn.dribbble.com/assets/dribbble-vector-ball-c75e531ccee3110d0ee5ae951fd1d0a65d2ff25d3c0577757ea7e8d8e3e75db4.svg',
     bgGradient: gradients[6],
     imageError: false,
   },
@@ -338,7 +369,8 @@ export const resources: Resource[] = [
     description: 'w2solo - 独立开发者社区',
     url: 'https://w2solo.com/',
     tags: ['独立开发', '社区'],
-    imageUrl: 'https://indiehackers-1251406926.cos.ap-chengdu.myqcloud.com/hackers/7cl3u.png',
+    imageUrl:
+            'https://indiehackers-1251406926.cos.ap-chengdu.myqcloud.com/hackers/7cl3u.png',
     bgGradient: gradients[8],
     imageError: false,
   },
@@ -355,10 +387,12 @@ export const resources: Resource[] = [
   {
     id: 34,
     title: '办公人导航',
-    description: '办公人导航是一个实用的办公生活导航网站,致力于分享优质的网站网址及软件资源等内容,帮助大家节省时间,提高办公生活效率!',
+    description:
+            '办公人导航是一个实用的办公生活导航网站,致力于分享优质的网站网址及软件资源等内容,帮助大家节省时间,提高办公生活效率!',
     url: 'https://www.bgrdh.com/',
     tags: ['导航', '资源'],
-    imageUrl: 'https://www.bgrdh.com/wp-content/uploads/2022/11/20221119185003612150.png',
+    imageUrl:
+            'https://www.bgrdh.com/wp-content/uploads/2022/11/20221119185003612150.png',
     bgGradient: gradients[10],
     imageError: false,
   },
@@ -435,7 +469,8 @@ export const resources: Resource[] = [
   {
     id: 42,
     title: '独立开发前线',
-    description: '独立开发前线是独立开发指南网站，内容包含独立开发创意发现，产品实现，获取增长，流量变现等方面，旨在帮助独立开发者更快的成长，打造属于自己的盈利产品。',
+    description:
+            '独立开发前线是独立开发指南网站，内容包含独立开发创意发现，产品实现，获取增长，流量变现等方面，旨在帮助独立开发者更快的成长，打造属于自己的盈利产品。',
     url: 'https://www.91wink.com',
     tags: ['社区', '独立开发'],
     imageUrl: 'https://www.91wink.com/wp-content/uploads/2024/01/logo.png',
@@ -455,7 +490,8 @@ export const resources: Resource[] = [
   {
     id: 44,
     title: 'TopIndie.dev',
-    description: 'TopIndie.dev 是独立开发者发现、展示和探索创新项目（从应用程序到开源工具）的中心。',
+    description:
+            'TopIndie.dev 是独立开发者发现、展示和探索创新项目（从应用程序到开源工具）的中心。',
     url: 'https://topindie.dev/',
     tags: ['资源', '独立开发'],
     imageUrl: 'https://topindie.dev/assets/image/favicon.ico',
@@ -465,7 +501,8 @@ export const resources: Resource[] = [
   {
     id: 45,
     title: '21st.dev',
-    description: 'Discover, share, and craft UI components 一个为提供高质量 UI 组件与设计资源的平台，很多代码完全也可以直接复制使用。',
+    description:
+            'Discover, share, and craft UI components 一个为提供高质量 UI 组件与设计资源的平台，很多代码完全也可以直接复制使用。',
     url: 'https://21st.dev',
     tags: ['资源', 'UI组件库'],
     imageUrl: 'https://21st.dev/favicon.ico',
@@ -475,7 +512,8 @@ export const resources: Resource[] = [
   {
     id: 46,
     title: 'Idea haber',
-    description: '一个不错的英文产品灵感的集合平台，很适合独立开发者发掘灵感。',
+    description:
+            '一个不错的英文产品灵感的集合平台，很适合独立开发者发掘灵感。',
     url: 'https://ideaharbor.xyz',
     tags: ['资源', '社区'],
     imageUrl: 'https://ideaharbor.xyz/favicon.ico',
@@ -505,7 +543,8 @@ export const resources: Resource[] = [
   {
     id: 49,
     title: '优设网',
-    description: '国内专业的设计师平台，汇聚大量设计教程、行业资讯和作品展示。提供高质量的 UI/UX 设计案例、免费模板等资源供下载，还设有设计问答版块，便于设计师交流经验、共同成长。',
+    description:
+            '国内专业的设计师平台，汇聚大量设计教程、行业资讯和作品展示。提供高质量的 UI/UX 设计案例、免费模板等资源供下载，还设有设计问答版块，便于设计师交流经验、共同成长。',
     url: 'https://www.uisdc.com/',
     tags: ['资源', '社区', '设计'],
     imageUrl: 'https://www.uisdc.com/favicon.ico',
@@ -515,7 +554,8 @@ export const resources: Resource[] = [
   {
     id: 50,
     title: 'Product hunt',
-    description: 'Product Hunt 是一个全球领先的产品发现平台,于2013年由Ryan Howard创立,旨在帮助用户发现和分享最新的科技产品、创业公司和创新项目。',
+    description:
+            'Product Hunt 是一个全球领先的产品发现平台,于2013年由Ryan Howard创立,旨在帮助用户发现和分享最新的科技产品、创业公司和创新项目。',
     url: 'https://www.producthunt.com/',
     tags: ['社区', '独立开发'],
     imageUrl: 'https://www.producthunt.com/favicon.ico',
@@ -535,7 +575,8 @@ export const resources: Resource[] = [
   {
     id: 53,
     title: '智能工具导航',
-    description: '智能工具导航，国内外热门ai工具集导航。智能工具导航,国内外热门ai工具集导航,ai工具,ai导航,智能对话,文生图,文生视频,AIGC,AiAgent,智能bot。',
+    description:
+            '智能工具导航，国内外热门ai工具集导航。智能工具导航,国内外热门ai工具集导航,ai工具,ai导航,智能对话,文生图,文生视频,AIGC,AiAgent,智能bot。',
     url: 'https://www.coderutil.com',
     tags: ['导航', '资源'],
     imageUrl: 'https://www.coderutil.com/favicon.ico',
@@ -545,7 +586,8 @@ export const resources: Resource[] = [
   {
     id: 54,
     title: 'Mnggiflab',
-    description: 'MNGGIFLAB-在线gif制作,视频转gif,gif编辑,gif合成,gif压缩,录屏gif',
+    description:
+            'MNGGIFLAB-在线gif制作,视频转gif,gif编辑,gif合成,gif压缩,录屏gif',
     url: 'https://www.mnggiflab.com/',
     tags: ['图片', 'Tool'],
     imageUrl: 'https://mnggiflab.com/img/logo/logo-icon.png',
@@ -565,7 +607,8 @@ export const resources: Resource[] = [
   {
     id: 56,
     title: 'LimgX',
-    description: '免费在线图片压缩与格式转换工具。本地处理保护隐私，支持JPG、PNG、WebP格式转换，无需上传服务器。',
+    description:
+            '免费在线图片压缩与格式转换工具。本地处理保护隐私，支持JPG、PNG、WebP格式转换，无需上传服务器。',
     url: 'https://limgx.com/',
     tags: ['Tool', '图片'],
     imageUrl: 'https://limgx.com/favicon.ico',
@@ -585,7 +628,8 @@ export const resources: Resource[] = [
   {
     id: 58,
     title: '看雪论坛',
-    description: '专注于软件安全技术交流，为安全技术爱好者提供了技术交流平台和资源，涵盖软件调试、逆向工程等多个版块。',
+    description:
+            '专注于软件安全技术交流，为安全技术爱好者提供了技术交流平台和资源，涵盖软件调试、逆向工程等多个版块。',
     url: 'https://www.kanxue.com/',
     tags: ['网络安全', '社区'],
     imageUrl: 'https://www.kanxue.com/view/img/favicon.ico',
@@ -595,7 +639,8 @@ export const resources: Resource[] = [
   {
     id: 59,
     title: 'Hack Forums',
-    description: '是一个知名的网络安全技术论坛，不仅适合黑白客群体，也适用于开发人员、游戏开发者等，论坛上有丰富的技术讨论和相关资源。',
+    description:
+            '是一个知名的网络安全技术论坛，不仅适合黑白客群体，也适用于开发人员、游戏开发者等，论坛上有丰富的技术讨论和相关资源。',
     url: 'https://hackforums.net/',
     tags: ['网络安全', '社区'],
     imageUrl: 'https://www.hackforums.net/view/img/favicon.ico',
@@ -605,7 +650,8 @@ export const resources: Resource[] = [
   {
     id: 60,
     title: 'Block beats',
-    description: '律动BlockBeats, BlockBeats 是一家专业的Crypto、Web3及NFT研究机构及资讯平台，网站内容涵盖海外区块链新闻以及国内行业信息 - BlockBeats is the most influential Chinese-language',
+    description:
+            '律动BlockBeats, BlockBeats 是一家专业的Crypto、Web3及NFT研究机构及资讯平台，网站内容涵盖海外区块链新闻以及国内行业信息 - BlockBeats is the most influential Chinese-language',
     url: 'https://www.theblockbeats.info/',
     tags: ['Web3.0'],
     imageUrl: 'https://image.blockbeats.cn/icon/favicon.ico',
@@ -615,7 +661,8 @@ export const resources: Resource[] = [
   {
     id: 61,
     title: 'Crypto Bubbles',
-    description: 'Crypto Bubbles是一款专注于加密货币市场数据可视化的工具,通过动态泡泡图帮助用户快速识别市场热点。',
+    description:
+            'Crypto Bubbles是一款专注于加密货币市场数据可视化的工具,通过动态泡泡图帮助用户快速识别市场热点。',
     url: 'https://cryptobubbles.net',
     tags: ['Web3.0'],
     imageUrl: 'https://cryptobubbles.net/favicon.ico',
@@ -635,7 +682,8 @@ export const resources: Resource[] = [
   {
     id: 63,
     title: '星火编辑器',
-    description: '最好的UGC游戏引擎，在TapTap和Steam上线超500款游戏，已为开发者带来数千万收入。',
+    description:
+            '最好的UGC游戏引擎，在TapTap和Steam上线超500款游戏，已为开发者带来数千万收入。',
     url: 'http://fc.spark.xd.com',
     tags: ['游戏开发引擎'],
     imageUrl: 'http://fc.spark.xd.com/images/favicon.png',
@@ -675,7 +723,8 @@ export const resources: Resource[] = [
   {
     id: 67,
     title: 'Refero',
-    description: '设计研究指南,最大的网页和iOS UI UX设计灵感库，展示真实产品，精心组织，激发您的创造力。',
+    description:
+            '设计研究指南,最大的网页和iOS UI UX设计灵感库，展示真实产品，精心组织，激发您的创造力。',
     url: 'https://refero.design/',
     tags: ['资源', '社区', '设计'],
     imageUrl: 'https://refero.design/favicon.ico',
@@ -685,7 +734,8 @@ export const resources: Resource[] = [
   {
     id: 68,
     title: '登链社区 - Web3 开发者社区',
-    description: '专业的中文区块链技术博客,技术问答社区,区块链视频,系统区块链技术的最佳网站。',
+    description:
+            '专业的中文区块链技术博客,技术问答社区,区块链视频,系统区块链技术的最佳网站。',
     url: 'https://learnblockchain.cn/',
     tags: ['Web3.0'],
     imageUrl: 'https://learnblockchain.cn/favicon.ico',
@@ -715,10 +765,12 @@ export const resources: Resource[] = [
   {
     id: 71,
     title: '区块链网址导航',
-    description: '这里收录了全世界最优质区块链以及各类钱包和交易所网址，包括比特币交易平台网址，数字货币网址... ',
+    description:
+            '这里收录了全世界最优质区块链以及各类钱包和交易所网址，包括比特币交易平台网址，数字货币网址... ',
     url: 'https://www.coinnavs.com/',
     tags: ['Web3.0'],
-    imageUrl: 'https://www.coinnavs.com/wp-content/uploads/2024/05/1c0fc288cf6678d-32x32.png',
+    imageUrl:
+            'https://www.coinnavs.com/wp-content/uploads/2024/05/1c0fc288cf6678d-32x32.png',
     bgGradient: gradients[5],
     imageError: false,
   },
@@ -745,7 +797,8 @@ export const resources: Resource[] = [
   {
     id: 74,
     title: '链捕手ChainCatcher',
-    description: '链捕手ChainCatcher — 专业的区块链技术研究与资讯平台-Chain Catcher',
+    description:
+            '链捕手ChainCatcher — 专业的区块链技术研究与资讯平台-Chain Catcher',
     url: 'https://www.chaincatcher.com',
     tags: ['Web3.0'],
     imageUrl: 'https://www.chaincatcher.com/favicon.ico',
@@ -765,7 +818,8 @@ export const resources: Resource[] = [
   {
     id: 76,
     title: 'The Block',
-    description: 'The Block: Bitcoin, Ethereum & Crypto News | Live Prices, Data & Indices',
+    description:
+            'The Block: Bitcoin, Ethereum & Crypto News | Live Prices, Data & Indices',
     url: 'https://www.theblock.co/',
     tags: ['Web3.0'],
     imageUrl: 'https://www.theblock.co/favicon.ico',
@@ -775,7 +829,8 @@ export const resources: Resource[] = [
   {
     id: 77,
     title: 'Decrypt',
-    description: 'Decrypt: AI, Bitcoin, Culture, Gaming, and Crypto News - Decrypt',
+    description:
+            'Decrypt: AI, Bitcoin, Culture, Gaming, and Crypto News - Decrypt',
     url: 'https://decrypt.co/',
     tags: ['Web3.0'],
     imageUrl: 'https://decrypt.co/favicon.ico',
@@ -785,7 +840,8 @@ export const resources: Resource[] = [
   {
     id: 78,
     title: 'CoinDesk',
-    description: '加密货币与区块链领域权威综合平台，核心围绕全球加密货币生态提供媒体、活动、指数数据等服务',
+    description:
+            '加密货币与区块链领域权威综合平台，核心围绕全球加密货币生态提供媒体、活动、指数数据等服务',
     url: 'https://www.coindesk.com',
     tags: ['Web3.0'],
     imageUrl: 'https://www.coindesk.com/favicon.ico',
@@ -805,7 +861,8 @@ export const resources: Resource[] = [
   {
     id: 80,
     title: 'YouMind - AI 创作智能体',
-    description: 'YouMind 是一个创新的创作智能体，利用生成式 AI 的力量将多样化的材料转化为富有灵感的创作。',
+    description:
+            'YouMind 是一个创新的创作智能体，利用生成式 AI 的力量将多样化的材料转化为富有灵感的创作。',
     url: 'https://youmind.com/',
     tags: ['AI', '资源'],
     imageUrl: 'https://youmind.com/static/assets/favicon.ico',

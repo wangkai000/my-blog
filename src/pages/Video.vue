@@ -243,7 +243,9 @@ watch(currentPage, () => {
 
 // 初始化播放器
 function initPlayer(video: Video) {
-  const iframe = document.querySelector(`iframe[title="${video.title}"]`) as HTMLIFrameElement | null
+  const iframe = document.querySelector(
+        `iframe[title="${video.title}"]`,
+  ) as HTMLIFrameElement | null
   if (iframe && iframe.contentWindow) {
     video.loaded = true
     video.player = iframe.contentWindow
@@ -382,11 +384,17 @@ watch(currentPage, () => {
                 class="px-3 py-1.5 rounded-lg text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-all flex items-center gap-1"
                 @click="clearSelectedTags"
               >
-                <Icon icon="mdi:filter-remove" width="14" height="14" />
+                <Icon
+                  icon="mdi:filter-remove"
+                  width="14"
+                  height="14"
+                />
                 清除
               </button>
 
-              <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">
+              <span
+                class="ml-2 text-xs text-gray-500 dark:text-gray-400"
+              >
                 {{ filteredVideos.length }} 个视频
               </span>
             </div>

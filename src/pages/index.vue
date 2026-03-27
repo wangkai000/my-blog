@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Bento from './Bento.vue'
 import Loading from '@/components/normal/Loading.vue'
 </script>
 
@@ -8,7 +7,7 @@ import Loading from '@/components/normal/Loading.vue'
     <Suspense>
       <template #default>
         <div>
-          <Bento />
+          <!-- TODO: 恢复 Bento 布局 -->
         </div>
       </template>
 
